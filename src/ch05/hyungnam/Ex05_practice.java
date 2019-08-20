@@ -1,4 +1,4 @@
-package ch5.hyungnam;
+package ch05.hyungnam;
 
 public class Ex05_practice {
 
