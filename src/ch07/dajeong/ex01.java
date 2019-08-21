@@ -1,4 +1,4 @@
-package ch07;
+package ch07.dajeong;
 
 class Triangle {
 	int width;
