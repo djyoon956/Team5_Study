@@ -8,18 +8,16 @@ public class ClothesMain2 {
 			Clothes clothes3 = new Clothes("프라다", "가방", 19000);
 			Clothes clothes4 = new Clothes("샤넬", "신발", 19000);
 			Clothes clothes5 = new Clothes("디올", "바지", 19000);
-			Clothes clothes6 = new Clothes("디올", "바지", 19000);
-			Clothes clothes7 = new Clothes("디올", "바지", 19000);
-			Clothes clothes8 = new Clothes("디올", "바지", 19000);
-			Clothes clothes9 = new Clothes("디올", "바지", 19000);
-			Clothes clothes10 = new Clothes("디올", "바지", 19000);
-			Clothes clothe11 = new Clothes("디올", "바지", 19000);
+
 			
-			clothes1.printClothesInfo();
+			clothes1.csales();
+			clothes1.csales();
+			clothes1.csales();
+			clothes1.csales();
 //			clothes1.csales();
 //			clothes2.csales();
 			
-			System.out.printf("총 판매 갯수 : %d\n", Clothes.getSoldcount());
+			System.out.printf("누적 판매 갯수 : %d\n", Clothes.getSoldcount());
 			System.out.printf("총 판매 금액 : %d\n", Clothes.getTotalsales());
 			System.out.printf("보유중인 옷 갯수 : %d\n", Clothes.getPossessioncount());
 			System.out.printf("보유 자산 : %s\n", Clothes.getCapital());

@@ -1,4 +1,4 @@
-package kr.or.bit;
+package ch10.taeil;
 
 public class Accumulator {
 	
