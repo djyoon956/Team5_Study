@@ -1,3 +1,5 @@
+package ch10.sungho;
+
 
 class Accumelator {
     static int sum=0;
