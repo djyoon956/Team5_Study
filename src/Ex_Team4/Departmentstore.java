@@ -18,8 +18,9 @@ public class Departmentstore {
 		int floor = 0;
 
 		do {
+			System.out.println("956 입력시 종료됩니다.");
 			System.out.print("층 수를 입력하세요 : ");
-			System.out.print("956 입력시 종료됩니다.");
+
 			if (scanner.hasNextInt()) {
 				floor = scanner.nextInt();
 				if (floor == 956)
