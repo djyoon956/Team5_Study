@@ -1,4 +1,4 @@
-package ch10.sungho;
+/*package ch10.sungho;
 
 
 class Accumelator {
@@ -20,7 +20,7 @@ class Accumelator {
 
 }
 
-
+*/
 
 
 

@@ -1,4 +1,4 @@
-package ch09.sungho;
+ /* package ch09.sungho;
 
 
 
@@ -300,7 +300,7 @@ public static void Main(String[] args) {
 
 
 
- */
+
 
     }
 
@@ -308,7 +308,6 @@ public static void Main(String[] args) {
 }
 
 
-
-
+*/
 
 
