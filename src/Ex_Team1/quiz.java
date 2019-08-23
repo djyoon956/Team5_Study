@@ -1,3 +1,5 @@
+package Ex_Team1;
+
 public class quiz {
     public static void main(String[] args){
 
