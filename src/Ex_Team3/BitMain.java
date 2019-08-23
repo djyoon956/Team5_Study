@@ -1,54 +1,72 @@
 package Ex_Team3;
+
 import java.util.Scanner;
 
 public class BitMain {
 
 	public static void main(String[] args) {
-		Scanner sc =new Scanner(System.in);
-		Bit bit=new Bit("Çü³²", "01036423603", bCard)
+		Scanner sc = new Scanner(System.in);
+		Bit bit = new Bit("í˜•ë‚¨", "01036423603", "1123123123");
+
 		String center;
-		while(true) {
-			System.out.println("* * * * °­ÀÇ ¹øÈ£¸¦  ¼±ÅÃÇØÁÖ¼¼¿ä * * * *");
+		while (true) {
+			System.out.println("* * * * ê°•ì˜ ë²ˆí˜¸ë¥¼  ì„ íƒí•´ì£¼ì„¸ìš” * * * *");
 			System.out.println("1. java  / 2. pythone / 3. C ");
-			
-			int num=Integer.parseInt(sc.nextLine());
-			if(num <0 || num>3)
-			{
-				System.out.println("¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä");
+
+			int num = Integer.parseInt(sc.nextLine());
+			if (num < 0 || num > 3) {
+				System.out.println("ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				continue;
-			}
-			else
-				center= (num==1) ? "°­³²(ÀÓ°æ±Õ °­»ç´Ô)" : (num==2) ? "¼­ÃÊº»¿ø" : (num==3) ? "Á¾·Î" : null;
+			} else
+				center = (num == 1) ? "ê°•ë‚¨(ì„ê²½ê·  ê°•ì‚¬ë‹˜)" : (num == 2) ? "ì„œì´ˆë³¸ì›" : (num == 3) ? "ì¢…ë¡œ" : null;
+			System.out.println("íšŒì›ì •ë³´ ì¶œë ¥");
+			bit.bitInfo();
+			System.out.println("ìˆ˜ê°• ì„¼í„°: " + center);
 		}
-		System.out.println("È¸¿ø Á¤º¸Ãâ·Â : "  + );
+		
+		
 	}
 
 }
 
-class Bit{
+class Bit {
 	private String bName;
 	private String bPhone;
 	private String bCard;
-	
+
 	public Bit(String bName, String bPhone) {
-		System.out.println("³»ÀÏ¹è¿òÄ«µå°¡ ¾øÀ¸¸é ½ÅÃ»ÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù.");
+		System.out.println("ë‚´ì¼ë°°ì›€ì¹´ë“œê°€ ì—†ìœ¼ë©´ ì‹ ì²­ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.");
 
 	}
-	
+
 	public Bit(String bName, String bPhone, String bCard) {
-		this.bName=bName;
-		this.bPhone=bPhone;
-		this.bCard=bCard;
+		this.bName = bName;
+		this.bPhone = bPhone;
+		this.bCard = bCard;
 	}
-	
+
 	public void bitInfo() {
-		if(bCard ==null) {
+		if (bCard == null) {
 			System.out.println(bName + " / " + bPhone);
-		}
-		else
+		} else
 			System.out.println
-			
-			(bName + " / " + bPhone + " / ");
+			(bName + " / " + bPhone + " / " + bCard);
 	}
-	
+
+	public String getbPhone() {
+		return bPhone;
+	}
+
+	public void setbPhone(String bPhone) {
+		this.bPhone = bPhone;
+	}
+
+	public String getbName() {
+		return bName;
+	}
+
+	public String getbCard() {
+		return bCard;
+	}
+
 }

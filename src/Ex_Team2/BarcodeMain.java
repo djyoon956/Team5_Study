@@ -3,12 +3,12 @@ package Ex_Team2;
 public class BarcodeMain {
 
 	public static void main(String[] args) {
-		Barcode barcode=new Barcode(111, 111, "Çü³²", "ÇÒÀÎ»óÇ°");
+		Barcode barcode=new Barcode(111, 111, "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½Î»ï¿½Ç°");
 		System.out.println(barcode.bCode);
 		System.out.println(barcode.bName);
 		System.out.println(barcode.bPrice);
 		System.out.println(barcode.bSale);
-		barcode.bInfo();
+		barcode.bInfo();//ddd
 	}
 
 }
