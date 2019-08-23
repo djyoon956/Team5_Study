@@ -3,7 +3,6 @@ package ch10.hyungnam;
 public class Clothes {
 	private int price; // 가격
 
-
 	private String brand; // 브랜드
 	private String kind; // 종류
 
@@ -16,25 +15,21 @@ public class Clothes {
 	static {
 		capital = 100000;
 	}
+
 	public Clothes(String cbrand, String ckind, int cprice) {
 
 		capital -= 10000;
-		if (capital < 0) {
-			System.out.println("제작비가 부족합니다.");
-			capital += 10000;
-			return;
-		} else {
-			brand = cbrand;
-			kind = ckind;
-			price = cprice;
-			possessioncount++;
-		}
+		brand = cbrand;
+		kind = ckind;
+		price = cprice;
+		possessioncount++;
 	}
+
 
 	public static int getCapital() {
 		return capital;
 	}
-	
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
