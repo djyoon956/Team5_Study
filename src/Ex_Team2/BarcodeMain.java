@@ -3,7 +3,7 @@ package Ex_Team2;
 public class BarcodeMain {
 
 	public static void main(String[] args) {
-		Barcode barcode=new Barcode(111, 111, "����", "���λ�ǰ");
+		Barcode barcode=new Barcode(111, 111, "ㅇㅇ", "할인상품");
 		System.out.println(barcode.bCode);
 		System.out.println(barcode.bName);
 		System.out.println(barcode.bPrice);
