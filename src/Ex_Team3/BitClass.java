@@ -20,8 +20,13 @@ public class BitClass {
 
 	// 1. 수강신청자는 반드시 이름, 휴대폰번호를 가지고 있다.
 	public BitClass(String nameString, String phoneNumber) {
+		this(nameString, phoneNumber, "");
+	}
+
+	public BitClass(String nameString, String phoneNumber, String cardNumber) {
 		this.name = nameString;
 		this.phoneNumber = phoneNumber;
+		this.cardNumber = cardNumber;
 	}
 
 	// 3. 만약 내일 배움카드가 없으면 수강 신청이 불가능하다는 내용이 출력된다.
@@ -41,9 +46,5 @@ public class BitClass {
 			System.out.printf("내일 배움카드 번호 : %s", cardNumber);
 		else
 			System.out.println();
-	}
-	
-	public void name() {
-		
 	}
 }
