@@ -14,7 +14,7 @@ public class Product_main {
 	}
 }
 
-public class Product {
+class Product {
 	private int bacord;
 	private int price;
 	private String name;
