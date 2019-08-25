@@ -31,7 +31,6 @@ public class Departmentstore {
 
 		if (this.floor == floor) {
 			System.out.printf("%d층 - %s", floor, brand);
-
 		}
 	}
 
