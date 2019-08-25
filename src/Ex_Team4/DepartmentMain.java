@@ -10,7 +10,7 @@ public class DepartmentMain {
 		Department department3 = new Department(3, "아이다스");
 		int num = 0;
 		Scanner sc = new Scanner(System.in);
-		num = 0;
+		
 		while (true) {
 
 				System.out.println("층수를 입력해주세요");
