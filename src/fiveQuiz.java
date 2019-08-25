@@ -91,7 +91,7 @@ class mind{   //마인드 클래스 입니다. 이놈이 여러분이 인성을 
         }
     }
 
-    void subEvil() {
+    void subEvil() {    //여기서 부터는 4가지 점수 중 어떤 점수가 가장 높은지 알아보기 위해 각 점수당 1점씩 빼는 역할을 하는 함수들입니다.
         if (evilZero == false) {
             if (evil > 0)
                 evil--;
