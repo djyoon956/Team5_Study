@@ -26,7 +26,7 @@ public class DepartmentMain {
 					return;
 				} else
 					System.out.println("층수를 잘못 입력하셨습니다. 다시 입력해주세요");
-			} 
+		}
 
 	}
 }
