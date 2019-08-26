@@ -9,7 +9,8 @@ public class etc {
 
         for( int i = 1 ; i < 10 ; i++){
             for(int j = input-1 ; j < input + 2; j++){
-                System.out.printf("%d * %d = %d \t", j, i, i*j);
+                System.out.printf("%d *"
+                		+ " %d = %d \t", j, i, i*j);
             }
             System.out.println();
         }

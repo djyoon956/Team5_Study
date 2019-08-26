@@ -1,39 +1,39 @@
-package ch09.hayeon;
-class Point { 
-    int xPos, yPos;
-    public Point(int x, int y) {
-        xPos = x;
-        xPos = y;
-    }
-    public void showPointInfo() { 
-        System.out.println("[" + xPos + ", " + yPos + "]"); 
-    }
-}
-
-
-
-class Circle
-{
-	int center;
-	Point length;
-	
-	Public Circle(int a, int b, int c) {
-		center=a;
-		length=b;
-	}
-	Public void bookInfor() {
-		System.out.println("ÁÂÇ¥:"+center+"±æÀÌ"+length);
-	}
-	
-}
-
-class UseCircle {
-    public static void main(String[] args) {
-        // ÁÂÇ¥ [2, 2] ¹ÝÁö¸§ 4ÀÎ ¿øÀÇ »ý¼º
-        Circle c = new Circle(2, 2, 4);
-
-        // ¿øÀÇ Á¤º¸ Ãâ·Â
-        c.showCircleInfo();
-    }
-}
+//package ch09.hayeon;
+//class Point { 
+//    int xPos, yPos;
+//    public Point(int x, int y) {
+//        xPos = x;
+//        xPos = y;
+//    }
+//    public void showPointInfo() { 
+//        System.out.println("[" + xPos + ", " + yPos + "]"); 
+//    }
+//}
+//
+//
+//
+//class Circle
+//{
+//	int center;
+//	Point length;
+//	
+//	Public Circle(int a, int b, int c) {
+//		center=a;
+//		length=b;
+//	}
+//	Public void bookInfor() {
+//		System.out.println("ï¿½ï¿½Ç¥:"+center+"ï¿½ï¿½ï¿½ï¿½"+length);
+//	}
+//	
+//}
+//
+//class UseCircle {
+//    public static void main(String[] args) {
+//        // ï¿½ï¿½Ç¥ [2, 2] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//        Circle c = new Circle(2, 2, 4);
+//
+//        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//        c.showCircleInfo();
+//    }
+//}
 
