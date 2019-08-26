@@ -1,3 +1,4 @@
+package quiz_week01.sungho;
 import java.util.Scanner;
 
 public class etc {
