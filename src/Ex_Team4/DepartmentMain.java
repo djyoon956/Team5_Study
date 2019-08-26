@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class DepartmentMain {
 
 	public static void main(String[] args) {
-		Department department1 = new Department(1, "샤넬");
-		Department department2 = new Department(2, "리바이스");
-		Department department3 = new Department(3, "아이다스");
+		Department1 department1 = new Department1(1, "샤넬");
+		Department1 department2 = new Department1(2, "리바이스");
+		Department1 department3 = new Department1(3, "아이다스");
 		int num = 0;
 		Scanner sc = new Scanner(System.in);
 		
@@ -31,11 +31,11 @@ public class DepartmentMain {
 	}
 }
 
-class Department {
+class Department1 {
 	private int floor;
 	private String brand;
 
-	public Department(int floor, String brand) {
+	public Department1(int floor, String brand) {
 		this.brand = brand;
 		this.floor = floor;
 	}

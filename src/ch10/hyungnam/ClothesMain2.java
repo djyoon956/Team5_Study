@@ -3,83 +3,22 @@ public class ClothesMain2 {
 
 	public static void main(String[] args) {
 		
-			Clothes clothes1 = new Clothes("·çÀÌºñÅë", "½Å¹ß", 19000);
-			Clothes clothes2 = new Clothes("±¸Âî", "Æ¼¼ÅÃ÷", 19000);
-			Clothes clothes3 = new Clothes("ÇÁ¶ó´Ù", "°¡¹æ", 19000);
-			Clothes clothes4 = new Clothes("»þ³Ú", "½Å¹ß", 19000);
-			Clothes clothes5 = new Clothes("µð¿Ã", "¹ÙÁö", 19000);
+			Clothes clothes1 = new Clothes("ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½", "ï¿½Å¹ï¿½", 19000);
+			Clothes clothes2 = new Clothes("ï¿½ï¿½ï¿½ï¿½", "Æ¼ï¿½ï¿½ï¿½ï¿½", 19000);
+			Clothes clothes3 = new Clothes("ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", 19000);
+			Clothes clothes4 = new Clothes("ï¿½ï¿½ï¿½ï¿½", "ï¿½Å¹ï¿½", 19000);
+			Clothes clothes5 = new Clothes("ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", 19000);
 
 			clothes1.csales();
 			clothes1.csales();
 			clothes1.csales();
 			clothes1.csales();
 			
-			System.out.printf("´©Àû ÆÇ¸Å °¹¼ö : %d\n\n", Clothes.getSoldcount());
-			System.out.printf("ÃÑ ÆÇ¸Å ±Ý¾× : %d\n\n", Clothes.getTotalsales());
-			System.out.printf("º¸À¯ÁßÀÎ ¿Ê °¹¼ö : %d\n\n", Clothes.getPossessioncount());
-			System.out.printf("º¸À¯ ÀÚ»ê : %s\n\n", Clothes.getCapital());
+			System.out.printf("ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d\n\n", Clothes.getSoldcount());
+			System.out.printf("ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½Ý¾ï¿½ : %d\n\n", Clothes.getTotalsales());
+			System.out.printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d\n\n", Clothes.getPossessioncount());
+			System.out.printf("ï¿½ï¿½ï¿½ï¿½ ï¿½Ú»ï¿½ : %s\n\n", Clothes.getCapital());
 			
-	}
-
-}
-
-class Clothes {
-	
-	private int price; // °¡°Ý
-	private String brand; // ºê·£µå
-	private String kind; // Á¾·ù
-
-	private static int soldcount; // ÃÑ ÆÇ¸Å°³¼ö
-	private static int totalsales; // ÃÑ ÆÇ¸Å±Ý¾×
-	private static int possessioncount; // º¸À¯ÇÏ°í ÀÖ´Â °³¼ö
-	private static int capital; //ÀÚ»ê
-	boolean isSale; //ÆÇ¸Å ¿©ºÎ ½ºÀ§Äª º¯¼ö
-
-	static { //ÃÊ±â ÀÚº»±ÝÀ» À§ÇÑ static variable ÃÊ±âÈ­
-		capital = 1000000;
-	}
-	//¿ÊÀº Á¦ÀÛºñ 1¸¸¿øÀÌ ¼Ò¿äµÇ°í Á¦ÀÛ°ú µ¿½Ã¿¡ ºê·£µå¿Í Á¾·ù¿Í ÆÇ¸Å±Ý¾×À» °¡Áö°Ô µÇ¸ç ÃÑ ¿ÊÀÇ °¹¼ö´Â ´Ã¾î³ª°í ÀÚ»êÀº Á¦ÀÛºñ¸¸Å­ ÁÙ¾îµì´Ï´Ù.
-	public Clothes(String brand, String kind, int price) {  
-		capital -= 10000;
-		this.brand = brand;
-		this.kind = kind;
-		this.price = price;
-		possessioncount++;
-	}
-
-	public static int getCapital() { //ÇöÀç ÀÚ»êÀ» ºÒ·¯¿É´Ï´Ù.
-		return capital;
-	}
-
-	public void setPrice(int price) { //°¡°ÝÀ» Àç¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-		this.price = price;
-	}
-
-	public static int getSoldcount() { //´©Àû ÆÇ¸Å·®À» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
-		return soldcount;
-	}
-
-	public static int getTotalsales() { //ÃÑ ÆÇ¸Å±Ý¾×À» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
-		return totalsales;
-	}
-
-	public static int getPossessioncount() { //ÇöÀç º¸À¯ÁßÀÎ ¿ÊÀÇ °¹¼ö¸¦ È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
-		return possessioncount;
-	}
-
-	public void csales() { //isSaleÀÌ false¸é ÆÇ¸ÅÇÏ°í true·Î ¹Ù²ò´Ï´Ù. isSaleÀÌ true¸é ´Ù¸¥ º¯¼ö¿¡ ¿µÇâÁÖÁö ¾Ê°í ¸Þ¼¼Áö¸¸ ¶ç¿ó´Ï´Ù.
-		if (isSale == false) {
-			soldcount++;
-			totalsales += price;
-			possessioncount--;
-			capital += price;
-			isSale = true;
-		} else
-			System.out.println("****ÀÌ¹Ì ÆÇ¸Å µÈ »óÇ°ÀÔ´Ï´Ù.**** ");
-	}
-
-	public void printClothesInfo() { //¿ÊÀÇ Á¤º¸¸¦ Ãâ·ÂÇÒ ¼ö ÀÖ½À´Ï´Ù.
-		System.out.println("ºê·£µå: [" + brand + "]" + " / Á¾·ù: [" + kind + "] " + " / °¡°Ý: " + "[" + price + "¿ø]");
 	}
 
 }
