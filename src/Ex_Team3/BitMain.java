@@ -33,7 +33,6 @@ class Bit {
 
 	public void bRequest() {
 		Scanner sc = new Scanner(System.in);
-
 		while (true) {
 			System.out.println("* * * * 강의 번호를  선택해주세요 * * * *");
 			System.out.println("1. java  / 2. pythone / 3. C / 4. 프로그램 종료 ");
@@ -50,15 +49,11 @@ class Bit {
 					System.out.println("프로그램이 종료됩니다.");
 					return;
 				}
-					
-
 			} catch (Exception e) {
 				System.out.println("1~4의 숫자를 입력해주세요");
 				continue;
 			}
-
 		}
-
 	}
 
 	public void bitInfo() {
@@ -71,15 +66,12 @@ class Bit {
 	public String getbPhone() {
 		return bPhone;
 	}
-
 	public void setbPhone(String bPhone) {
 		this.bPhone = bPhone;
 	}
-
 	public String getbName() {
 		return bName;
 	}
-
 	public String getbCard() {
 		return bCard;
 

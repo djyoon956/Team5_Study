@@ -9,14 +9,12 @@ public class two_review {
     }
 }
 
-
 class goods{
     private int bar;
     private int price;
     private String name;
     private String kind;
     private String sale;
-
 
     public int getBar() {   //바코드와 상품이름, 종류는 겟터로 확인만 가능하
         return bar;
@@ -45,8 +43,6 @@ class goods{
         this.kind = kind;
         this.sale = sale;
     }
-
-
     void info(){   // 가격 바코드 상품명은 한번에 확인 가능하다.
         System.out.println("가격:"+ this.price+" 바코드 : "+ this.bar + " 상품명 : "+ this.name);
     }
