@@ -1,4 +1,4 @@
-package quiz_week01;
+package quiz_week01.hyungnam;
 
 import java.util.Scanner;
 
