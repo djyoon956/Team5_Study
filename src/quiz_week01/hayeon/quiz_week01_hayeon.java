@@ -1,20 +1,22 @@
+package quiz_week01.hayeon;
 import java.util.Scanner;
 
-public class Ex06_999 {
+public class quiz_week01_hayeon {
 
 	public static void main(String[] args) {
 		// 구구단 단수를 입력받아 입력받은 단수의 -1~+1 단을 가로로 출력하기
 		// 입력은 5
 		Scanner sc = new Scanner(System.in);
 		System.out.println("단을 입력하시오");
+		int dan = sc.nextInt();
+		for(int i=dan-1; i<=dan+1; i++) {
+			
+		for (int j = 1; j <= 9; j++) {
 
-		int num = sc.nextInt();
+				System.out.print(i + "X" + j + "=" + i * j + "\t\t");
 
-		for (int i = 4; i <= 6; i++) {
-			for (int j = 1; j < 10; j++) {
-				System.out.printf(i + "X" + j + "=" + i * j + "\t");
 			}
-			System.out.printf("\n");
+			System.out.println("");
 		}
 
 	}
