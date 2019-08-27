@@ -1,4 +1,4 @@
-package quiz_week01.hayeon;
+package quiz_week01_01.hayeon;
 
 public class exam13_1 {
 
