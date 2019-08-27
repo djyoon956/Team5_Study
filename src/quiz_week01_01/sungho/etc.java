@@ -1,4 +1,4 @@
-package quiz_week01.sungho;
+package quiz_week01_01.sungho;
 import java.util.Scanner;
 
 public class etc {
