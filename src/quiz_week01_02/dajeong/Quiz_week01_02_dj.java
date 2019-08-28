@@ -1,4 +1,4 @@
-package quiz_week01_02;
+package quiz_week01_02.dajeong;
 
 import java.util.Scanner;
 
