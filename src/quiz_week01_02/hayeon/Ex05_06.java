@@ -1,4 +1,4 @@
-package Ex05.copy;
+package quiz_week01_02.hayeon;
 
 public class Ex05_06 {
 
@@ -15,8 +15,7 @@ public class Ex05_06 {
 		System.out.println("합:"+count);
 		
 		//5-6-2
-		int sum=1;
-		for(int )
+
 	}
 
 }

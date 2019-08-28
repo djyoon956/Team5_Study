@@ -1,4 +1,4 @@
-package Ex05.copy;
+package quiz_week01_02.hayeon;
 
 public class Ex05_01 {
 
