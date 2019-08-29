@@ -1,4 +1,4 @@
-package quiz_week01_02;
+package quiz_week01_02.sungho;
 
 import java.util.Scanner;
 public class ababab {
