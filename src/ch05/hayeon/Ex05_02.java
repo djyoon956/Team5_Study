@@ -1,4 +1,4 @@
-package Ex05.copy;
+package ch05.hayeon;
 
 public class Ex05_02 {
 

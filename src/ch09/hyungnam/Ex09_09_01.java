@@ -3,6 +3,7 @@ package ch09.hyungnam;
 public class Ex09_09_01 {
 
 	public static void main(String[] args) {
+		
 		Circle3 circle3=new Circle3(3, 1, 4);
 		circle3.showPointInfo();
 	}
@@ -20,6 +21,6 @@ class Circle3{
 	}
 	
 	public void showPointInfo() {
-		System.out.println("["+xPos + " , " + yPos + ", ¹ÝÁö¸§:  " + r + "]");
+		System.out.println("["+xPos + " , " + yPos + ", ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:  " + r + "]");
 	}
 }
