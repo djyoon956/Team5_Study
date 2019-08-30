@@ -2,7 +2,7 @@ package ch15.dajeong;
 
 class Box {
 	public void Wrap() {
-		System.out.println("Simple Wrqpping");
+		System.out.println("Simple Wrqppinga");
 	}
 }
 
