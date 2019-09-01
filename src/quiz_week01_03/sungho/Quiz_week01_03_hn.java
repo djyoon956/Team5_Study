@@ -1,22 +1,20 @@
 package quiz_week01_03.sungho;
-
-
 //문제는 밑에 메인메소드 안에 주석으로 달렸있습니다. 밑으로 내려서 읽어주세요.
 
-class animal{
+class Animal{
     String name;
     int old;
-    tiger t;
+    tiger_hn t;
 
-    animal(){
+    Animal(){
         this("틀렸어" , 4444);
     }
 
     //여기 코드는 당신이 수정해야 할 것이 있습니다. 완전 새롭게 다시 짜는게 아니라, '일부'만 수정 해 주세요.
     //---------------------------------------------------------------
-    private animal(String name, int old){
-        this.name = name;
-        this.old = old;
+    public Animal(String name, int old){
+    	this.name=name;
+    	this.old=old;
     }
     //---------------------------------------------------------------
 
@@ -25,13 +23,11 @@ class animal{
 
     //여기 코드는 생성자가 있어야 하는데 당신이 만들어 주세요.
     //---------------------------------------------------------------
-
-
-
-                         //이 안에 만들어 주세요.
-
-
-
+    public Animal(String name, int old, tiger_hn t) {
+        this.name = name;
+        this.old = old;
+        this.t=t;
+    }
     //---------------------------------------------------------------
 
 
@@ -48,21 +44,25 @@ class animal{
     }
 }
 
-
-class tiger{
+class tiger_hn{
     String variety ;
 
-    tiger(){
+    tiger_hn(){
         this.variety = "틀렸어 이게아니야";
     }
-    tiger(String variety){
+    tiger_hn(String variety){
         this.variety = variety;
     }
 }
 
 
-class overloadingAndPrivate {
+public class Quiz_week01_03_hn {
     public static void main(String[] args) {
+    	tiger_hn t=new tiger_hn("SuperCat");
+    	Animal animal=new Animal("박성호", 31, t);
+    	animal.printInfoOne();
+    	System.out.println("");
+    	animal.printInfoTwo();
         // 위의 클래스는 동물을 정의하는 animal 클래스와  tiger클래스가 있습니다.
         // 근데 제가 키보드가 미끄러워서 그만 코드들을 지워버리거나 엉뚱한 접근자를 쓰고 말았습니다. 찾아서 해결 해 주세요
         // 일단 코드들을 잘 보면서 역으로 원래는 어떤 모습이였을까 생각해보세요.
