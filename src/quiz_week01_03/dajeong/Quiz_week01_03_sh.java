@@ -1,4 +1,6 @@
+package quiz_week01_03.sungho;
 import java.util.Scanner;
+
 
 public class Quiz_week01_03_sh {
     public static void main(String[] args) {
