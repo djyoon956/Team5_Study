@@ -4,7 +4,7 @@ package quiz_week01_03.sungho;
 class Animal{
     String name;
     int old;
-    Tiger t;
+    tiger_hn t;
 
     Animal(){
         this("틀렸어" , 4444);
@@ -23,7 +23,7 @@ class Animal{
 
     //여기 코드는 생성자가 있어야 하는데 당신이 만들어 주세요.
     //---------------------------------------------------------------
-    public Animal(String name, int old, Tiger t) {
+    public Animal(String name, int old, tiger_hn t) {
         this.name = name;
         this.old = old;
         this.t=t;
@@ -44,14 +44,13 @@ class Animal{
     }
 }
 
-
-class Tiger{
+class tiger_hn{
     String variety ;
 
-    Tiger(){
+    tiger_hn(){
         this.variety = "틀렸어 이게아니야";
     }
-    Tiger(String variety){
+    tiger_hn(String variety){
         this.variety = variety;
     }
 }
@@ -59,7 +58,7 @@ class Tiger{
 
 public class Quiz_week01_03_hn {
     public static void main(String[] args) {
-    	Tiger t=new Tiger("SuperCat");
+    	tiger_hn t=new tiger_hn("SuperCat");
     	Animal animal=new Animal("박성호", 31, t);
     	animal.printInfoOne();
     	System.out.println("");
