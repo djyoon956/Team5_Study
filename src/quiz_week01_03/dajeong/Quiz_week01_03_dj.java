@@ -15,5 +15,10 @@ public class Quiz_week01_03_dj {
 //		출력 포맷) 1회 정렬 : x x x x x 
 //				2회 정렬 : x x x x x
 //				n회 정렬 : x x x x x
+		
+		
+		
 	}
 }
+
+
