@@ -1,9 +1,8 @@
 package quiz_week01_03.dajeong;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Quiz_week01_03_dj {
+public class Quiz_week01_03_hn {
 	public static void main(String[] args) {
 //		1. 사용자에게 숫자를 5번 입력받는다.
 //		>> 사용자는무조건 숫자만 입력한다는 가정하에 코딩한다.
@@ -18,23 +17,31 @@ public class Quiz_week01_03_dj {
 //		출력 포맷) 1회 정렬 : x x x x x 
 //				2회 정렬 : x x x x x
 //				n회 정렬 : x x x x x
-		Scanner scanner = new Scanner(System.in);
-		int[] inputs = new int[5];
-		for (int i = 0; i < 5; i++) {
-			System.out.print("입력 >> ");
-			inputs[i] = Integer.parseInt(scanner.nextLine());
-		}
-		scanner.close();
+		Scanner sc=new Scanner(System.in);
+		int[] arr=new int[5];
+		System.out.println("숫자를 5개 입력해주세요.");
 		
-		for (int i = 0; i < inputs.length; i++) {
-			for (int j = 0; j < inputs.length - 1; j++) {
-				if (inputs[j] > inputs[j + 1]) {
-					int temp = inputs[j + 1];
-					inputs[j + 1] = inputs[j];
-					inputs[j] = temp;
+		for(int i=0; i<arr.length; i++) {
+			System.out.print("입력" + (i+1) + ">> ");
+			arr[i]=sc.nextInt();
+		}
+		
+		System.out.println("버블정렬 시작 >>>>>>>");
+		
+		int temp=0;
+		for(int i=0; i<arr.length; i++) {
+			for(int j=0; j<arr.length-i-1; j++) {
+				if(arr[j]>arr[j+1]) {
+					temp=arr[j+1];
+					arr[j+1]=arr[j];
+					arr[j]=temp;
 				}
 			}
-			System.out.printf("%d회 정렬 : %s\n", i + 1, Arrays.toString(inputs));
+			System.out.print((i+1)+"회 정렬: ");
+			for (int value : arr) {
+				System.out.print(value);
+			}
+			System.out.println("");
 		}
 	}
 }
