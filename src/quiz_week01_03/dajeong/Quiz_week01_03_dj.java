@@ -21,11 +21,11 @@ public class Quiz_week01_03_dj {
 		Scanner scanner = new Scanner(System.in);
 		int[] inputs = new int[5];
 		for (int i = 0; i < 5; i++) {
-			System.out.print("입력 >> ");
+			System.out.print("입력 " + (i + 1) + " >>");
 			inputs[i] = Integer.parseInt(scanner.nextLine());
 		}
 		scanner.close();
-		
+
 		for (int i = 0; i < inputs.length; i++) {
 			for (int j = 0; j < inputs.length - 1; j++) {
 				if (inputs[j] > inputs[j + 1]) {
@@ -34,7 +34,10 @@ public class Quiz_week01_03_dj {
 					inputs[j] = temp;
 				}
 			}
-			System.out.printf("%d회 정렬 : %s\n", i + 1, Arrays.toString(inputs));
+			System.out.printf("%d회 정렬 : ", i + 1);
+			for (int value : inputs)
+				System.out.print(value + " ");
+			System.out.println();
 		}
 	}
 }
