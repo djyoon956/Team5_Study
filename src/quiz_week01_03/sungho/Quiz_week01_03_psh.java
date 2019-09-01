@@ -1,4 +1,6 @@
 package quiz_week01_03.sungho;
+
+
 //문제는 밑에 메인메소드 안에 주석으로 달렸있습니다. 밑으로 내려서 읽어주세요.
 
 class animal{
