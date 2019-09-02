@@ -17,14 +17,14 @@ class Circle{
     int demension;
     Circle(int r){
         this.r = r;
-    
-        this.demenstion = Math.PI * r * r;
-        
-        
+
+        this.demension = (int)(Math.PI * r * r);
+
+
     }
-    
+
     void printInfo(){
-        System.out.println("원의 넓이는 : " + this.demenstion);
-        
+        System.out.println("원의 넓이는 : " + this.demension);
+
     }
 }
