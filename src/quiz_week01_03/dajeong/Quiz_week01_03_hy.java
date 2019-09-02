@@ -1,7 +1,7 @@
-package quiz_week01_03.hayeon;
+package quiz_week01_03.dajeong;
 
 import java.util.Scanner;
-public class dd{
+public class Quiz_week01_03_hy{
 public static void main(String[] args){
 int[] data=new int[5];
 Scanner obj=new Scanner (System.in);

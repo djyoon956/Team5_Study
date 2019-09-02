@@ -1,4 +1,4 @@
-package quiz_week01_03.hayeon;
+package quiz_week01_03.taeil;
 
 class Shape { 
   int x, y; 
