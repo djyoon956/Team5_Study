@@ -18,15 +18,10 @@ public class Quiz_week01_03_dj {
 //		출력 포맷) 1회 정렬 : x x x x x 
 //				2회 정렬 : x x x x x
 //				n회 정렬 : x x x x x
-<<<<<<< HEAD
-		
-		
-		
-	}
-}
 
+		// }
+		// }
 
-=======
 		Scanner scanner = new Scanner(System.in);
 		int[] inputs = new int[5];
 		for (int i = 0; i < 5; i++) {
@@ -36,7 +31,7 @@ public class Quiz_week01_03_dj {
 		scanner.close();
 
 		for (int i = 0; i < inputs.length; i++) {
-			for (int j = 0; j < inputs.length - 1; j++) {
+			for (int j = 0; j < inputs.length - i - 1; j++) {
 				if (inputs[j] > inputs[j + 1]) {
 					int temp = inputs[j + 1];
 					inputs[j + 1] = inputs[j];
@@ -50,4 +45,3 @@ public class Quiz_week01_03_dj {
 		}
 	}
 }
->>>>>>> c52de88fa71fcae479ab6282efadc1c979f0f9dc
