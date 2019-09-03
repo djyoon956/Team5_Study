@@ -14,7 +14,7 @@ abstract class Drink {
 	
 	@Override
 	public String toString() {
-		return name + ": " + price + "\t 잔여갯수: " +count;
+		return name + ":\t" + price + "\t 잔여갯수:" +count;
 	}
 	
 }

@@ -11,9 +11,9 @@ class Grandparent
     }
 }
 
-class Parent extends Grandparent
+class Parent3 extends Grandparent
 {
-	Parent()
+	Parent3()
 	{
 		super(50);
 	}
@@ -25,9 +25,9 @@ class Parent extends Grandparent
 	}
 }
 
-class Child extends Grandparent
+class Child3 extends Grandparent
 {
-	Child()
+	Child3()
 	{
 		super(10);
 	}
@@ -41,7 +41,7 @@ class Child extends Grandparent
 }
 
 
-public class Quiz_hyungnam_kwon {
+public class Quiz_week01_03_ti {
 	public static void main(String[] args) {
 		Grandparent grandparent = new Grandparent(80);
 		System.out.println(grandparent.age);
@@ -49,11 +49,11 @@ public class Quiz_hyungnam_kwon {
 		
 		
 		
-		Parent parent = new Parent();
+		Parent3 parent = new Parent3();
 		System.out.println(parent.age);
 		System.out.println("---------------------------------");
 
-		Child child = new Child();
+		Child3 child = new Child3();
 		System.out.println(child.age);
 		System.out.println("---------------------------------");
 
