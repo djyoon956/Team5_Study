@@ -26,6 +26,7 @@ public class Quiz_week01_03_hn {
 			arr[i]=sc.nextInt();
 		}
 		
+		
 		System.out.println("버블정렬 시작 >>>>>>>");
 		
 		int temp=0;
