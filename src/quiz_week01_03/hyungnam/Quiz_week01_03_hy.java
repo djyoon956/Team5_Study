@@ -29,7 +29,7 @@ System.out.println("Child2");
 }
 }
 
-public class Hyeng
+public class Quiz_week01_03_hy
 {
  public static void main(String args[])
  {
