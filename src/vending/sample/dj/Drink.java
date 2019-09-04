@@ -1,4 +1,4 @@
-package vending;
+package vending.sample.dj;
 
 abstract class Drink {
 	protected String name;

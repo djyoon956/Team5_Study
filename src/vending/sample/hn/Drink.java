@@ -1,4 +1,4 @@
-package vending;
+package vending.sample.hn;
 
 abstract class Drink {
 	protected String name;

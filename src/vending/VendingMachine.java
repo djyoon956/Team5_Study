@@ -10,7 +10,6 @@ public class VendingMachine {
 	public VendingMachine() { // 기본 음료 셋팅
 		scanner = new Scanner(System.in);
 		drinks = new Drink[] { new Carbonated("탄산", 1300, 10)
-									, new FruitJuce("과일", 2500, 5)
 									, new Tea("차", 800, 20)
 									, new Coffee("맥심", 500, 50) };
 	}
