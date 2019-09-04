@@ -1,7 +1,6 @@
 package quiz_week01_03.dajeong;
 import java.util.Scanner;
 
-
 public class Quiz_week01_03_sh {
     public static void main(String[] args) {
         int[] numbers = new int[5];
@@ -9,16 +8,12 @@ public class Quiz_week01_03_sh {
         Scanner sc = new Scanner(System.in);
 
         System.out.println(" 야 숫자 넣어봐 문자는 넣지마 큰 일 나니깐");
-        System.out.println(" 입력 1: ");
-        numbers[0] = sc.nextInt();
-        System.out.println(" 입력 2: ");
-        numbers[1] = sc.nextInt();
-        System.out.println(" 입력 3: ");
-        numbers[2] = sc.nextInt();
-        System.out.println(" 입력 4: ");
-        numbers[3] = sc.nextInt();
-        System.out.println(" 입력 5: ");
-        numbers[4] = sc.nextInt();
+		
+		for(int i = 0 ; i < numbers.length ; i++){
+			System.out.println(" 입력" + i+1 + " :" );
+			numbers[i] = sc.nextInt();
+		}
+		
 
         int tmp = 0;
         for (int i = 0 ; i < numbers.length-1 ; i++) {
@@ -35,7 +30,6 @@ public class Quiz_week01_03_sh {
             }
             System.out.println();
         }
-
 
     }
 }
