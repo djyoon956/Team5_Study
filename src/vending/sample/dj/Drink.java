@@ -2,6 +2,9 @@ package vending.sample.dj;
 
 abstract class Drink extends Product {
 	protected int price;
+	boolean isCostomIce;
+	boolean isCostomWater;
+	boolean isCostomPearl;
 
 	public Drink(String name, int price, int count) {
 		this.name = name;
@@ -20,6 +23,9 @@ abstract class Drink extends Product {
 class Carbonated extends Drink { // 탄산음료
 	public Carbonated(String name, int price, int count) {
 		super(name, price, count);
+		isCostomIce = true;
+		isCostomPearl = false;
+		isCostomWater = false;
 	}
 
 	void disCount() {
@@ -30,6 +36,9 @@ class Carbonated extends Drink { // 탄산음료
 class Tea extends Drink { // 차 종류
 	public Tea(String name, int price, int count) {
 		super(name, price, count);
+		isCostomIce = true;
+		isCostomPearl = true;
+		isCostomWater = true;
 	}
 
 	void disCount() {
@@ -40,6 +49,9 @@ class Tea extends Drink { // 차 종류
 class Coffee extends Drink { // 커피
 	public Coffee(String name, int price, int count) {
 		super(name, price, count);
+		isCostomIce = true;
+		isCostomPearl = true;
+		isCostomWater = true;
 	}
 
 	void disCount() {

@@ -3,6 +3,9 @@ package vending.sample.dj;
 import java.util.Scanner;
 
 public class VendingMachine {
+	private final String ADMIN_ID = "admin";
+	private final String ADMIN_PASSWORD = "admin123";
+
 	private int inputMoney;
 	private Scanner scanner;
 	private int total;
@@ -73,50 +76,100 @@ public class VendingMachine {
 	}
 
 	private void comparison() { // 실질적으로 음료선택, 비교하는 메소드
-		Drink drink = (Drink) choiceDrink();
+		Drink drink = (Drink) choiceDrink(false);
 		if (drink.count > 0) {
 			if (inputMoney < drink.price) {
 				System.out.println("잔액이 부족합니다.");
 				showDrinkMenu(false);
 				comparison();
 			} else {
+				String options = checkOptions(drink);
 				inputMoney -= drink.price;
 				total += drink.price;
 				drink.disCount();
-				System.out.println(drink.name + "가(이) 나왔습니다. \n");
+				System.out.println(drink.name + "\n------------\n" + options + "------------\n" + "가(이) 나왔습니다. \n");
 				checkChange();
 			}
 		} else
 			System.out.println("품절입니다.");
 	}
 
-	private Product choiceDrink() { // 음료 선택(comparison 도와주는 메소드
+	private Product choiceDrink(boolean isAdmin) { // 음료 선택(comparison 도와주는 메소드
 		System.out.println("음료 번호를 선택해주세요.");
 		int num = scanner.nextInt();
-		Product drink = null;
-		switch (num) {
-		case 1:
-		case 2:
-		case 3:
-			drink = drinks[num - 1];
-			break;
-		case 4:
-		case 5:
-			drink = options[num - 1];
-			break;
-		default:
+		Product pick = null;
+
+		if (num > 0 && num < 4)
+			pick = drinks[num - 1];
+		else if (isAdmin && (num > 3 && num < 7))
+			pick = options[num - 4];
+		else {
 			System.out.println("다시 입력해주세요.");
 			showDrinkMenu(false);
 			comparison();
-			break;
 		}
-		return drink;
+
+		return pick;
+	}
+
+	private String checkOptions(Drink drink) {
+		int input = 0;
+		String result = "";
+
+		if (drink.isCostomIce) {
+			System.out.println("얼음 양 설정");
+			System.out.println("1.적게\t2.보통\t3.많게");
+			input = scanner.nextInt();
+			if (input == 1)
+				result += "얼음 양 : 적게\n";
+			else if (input == 2)
+				result += "얼음 양 : 보통 \n";
+			else if (input == 3)
+				result += "얼음 양 : 많게\n";
+		}
+		if (drink.isCostomWater) {
+			System.out.println("물 양 설정");
+			System.out.println("1.적게\t2.보통\t3.많게");
+			input = scanner.nextInt();
+			if (input == 1)
+				result += "물 양 : 적게\n";
+			else if (input == 2)
+				result += "물 양 : 보통\n";
+			else if (input == 3)
+				result += "물 양 : 많게\n";
+		}
+		if (drink.isCostomPearl && inputMoney > (drink.price + 500)) {
+			System.out.println("펄 추가 (+500원)");
+			System.out.println("1.예\t2.아니오");
+			input = scanner.nextInt();
+			if (input == 1) {
+				result += "펄 추가\n";
+				drink.price += 500;
+			}
+		}
+		return result;
 	}
 
 	private void adminMode() { // 관리자모드 메소드
+		adminLogin();
 		showDrinkMenu(true);
-		Product drink = choiceDrink();
+		Product drink = choiceDrink(true);
 		addSub(drink);
+	}
+
+	private void adminLogin() {
+		String id = "";
+		String password = "";
+		boolean isLogin = false;
+		do {
+			System.out.println("************관리자 로그인************");
+			System.out.print("Id : ");
+			id = scanner.next();
+			System.out.print("Password : ");
+			password = scanner.next();
+			isLogin = id.equals(ADMIN_ID) && password.equals(ADMIN_PASSWORD);
+			System.out.println(isLogin ? "로그인 성공!" : "로그인 실패!");
+		} while (!isLogin);
 	}
 
 	private void addSub(Product drink) { // 음료 넣거나 빼는 메소드
