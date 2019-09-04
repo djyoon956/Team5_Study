@@ -1,9 +1,9 @@
 package vending;
 
 abstract class Drink {
-	String name;
-	int price;
-	int count;
+	protected String name;
+	protected int price;
+	protected int count;
 	
 	public Drink(String name, int price, int count) {
 		this.name=name;

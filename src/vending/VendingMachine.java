@@ -15,23 +15,24 @@ public class VendingMachine {
 									, new Coffee("맥심", 500, 50) };
 	}
 
-	public void firstSelect() { // 완전 처음 시작
+	public void start() { // 완전 처음 시작
+		
 		while (true) {
-			System.out.println("번호를 선택해주세요.");
-			System.out.println("1. 자판기 사용\t2. 관리자모드 실행\t3.종료");
-			int num = scanner.nextInt();
-			switch (num) {
-			case 1:
-				startVending();
-				break;
-			case 2:
-				adminMode();
-				break;
-			case 3:
-				System.out.println("시스템을 종료합니다.");
-				System.exit(0);
-				break;
-			default:
+				System.out.println("번호를 선택해주세요.");
+				System.out.println("1. 자판기 사용\t2. 관리자모드 실행\t3.종료");
+				int num = scanner.nextInt();
+				switch (num) {
+				case 1:
+					startVending();
+					break;
+				case 2:
+					adminMode();
+					break;
+				case 3:
+					System.out.println("시스템을 종료합니다.");
+					System.exit(0);
+					break;
+				default:
 				System.out.println("다시 입력해주세요.\n");
 				return;
 			}
@@ -41,9 +42,9 @@ public class VendingMachine {
 	private void startVending() { // 자판기 사용 시작
 		System.out.println("자판기 사용을 시작합니다~");
 		while (true) {
-			showDrinkPrice();
-			input();
-			comparison();
+				showDrinkPrice();
+				input();
+				comparison();
 		}
 	}
 
@@ -55,7 +56,11 @@ public class VendingMachine {
 
 	private void input() { // 금액 투입
 		System.out.println("금액을 넣어주세요.");
-		this.inputMoney = scanner.nextInt();
+		try {
+			this.inputMoney = scanner.nextInt();
+		}catch (Exception e) {
+			System.out.println("다시 입력해주세요.\n");
+		}
 	}
 
 	private void comparison() { // 실질적으로 음료선택, 비교하는 메소드
