@@ -91,6 +91,10 @@ public class VendingMachine {
 		case 4:
 			drink = drinks[num - 1];
 			break;
+		case 5:
+			break;
+		case 6:
+			break;
 		default:
 			System.out.println("다시 입력해주세요.");
 			showDrinkPrice();
