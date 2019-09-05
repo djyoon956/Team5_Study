@@ -54,13 +54,23 @@ public class VendingMachine_new {
 				continue;
 			}
 			String option = choiceOptions(choice);
-			boolean isOrder = checkChoiceMenu(option);
-			if (!isOrder) {
-				System.out.println("주문이 취소되었습니다.");
+
+			switch (checkChoiceMenu(option)) {
+			case 1:
+				input();
+				start();
+				break;
+			case 2:
+				continue;
+			case 3:
+				System.out.println("초기화면으로 이동합니다.");
+				start();
+
+			default:
+				System.out.println("잘못된 입력입니다. 메뉴선택화면으로 이동합니다.");
 				continue;
 			}
-			input();
-			endVending();
+
 		}
 	}
 
@@ -78,7 +88,6 @@ public class VendingMachine_new {
 				index++;
 			}
 		}
-		System.out.println(index + ".\t되돌아가기");
 	}
 
 	private void input() { // 금액 투입
@@ -97,7 +106,8 @@ public class VendingMachine_new {
 				total += choice.price;
 				choice.disCount();
 				System.out.println(choice.name + "가(이) 나왔습니다.");
-				System.out.println("거스름 돈 : " + checkChange(inputMoney, choice.price));
+				System.out.println("거스름 돈 : " + checkChange(inputMoney, choice.price)+"\n");
+				
 				break;
 			}
 		}
@@ -115,19 +125,22 @@ public class VendingMachine_new {
 
 	private Product choiceDrink() { // 음료 선택(comparison 도와주는 메소드
 		System.out.println("음료 번호를 선택해주세요.");
-		System.out.print(">> ");
-		int num = scanner.nextInt();
 		Product pick = null;
-
-		if (num > 0 && num < 4)
-			pick = drinks[num - 1];
-		else if (isAdmin && (num > 3 && num < 7))
-			pick = options[num - 4];
-		else {
-			System.out.println("선택 오류 입니다. 다시 입력해주세요.");
-			showMenu();
-			choiceMenu();
-		}
+		int num = 0;
+		boolean isChoice = false;
+		do {
+			System.out.print(">> ");
+			isChoice = false;
+			num = scanner.nextInt();
+			if (num > 0 && num < 4)
+				pick = drinks[num - 1];
+			else if (isAdmin && (num > 3 && num < 7))
+				pick = options[num - 4];
+			else {
+				System.out.println("선택 오류 입니다. 다시 입력해주세요.");
+				isChoice = true;
+			}
+		} while (isChoice);
 
 		return pick;
 	}
@@ -176,19 +189,17 @@ public class VendingMachine_new {
 		return result;
 	}
 
-	private boolean checkChoiceMenu(String option) {
+	private int checkChoiceMenu(String option) {
 		System.out.println("---------주 문 표---------");
 		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
 		System.out.println("금액 : " + choice.price);
 		System.out.println("------------------------");
 
-		System.out.println("1. 주문\t2. 되돌아가기");
+		System.out.println("1. 주문\t2. 주문취소\t 3. 초기화면");
 		System.out.print(">> ");
-		int input = scanner.nextInt();
-		if (input != 1 && input != 2)
-			System.out.println("잘 못된 입력입니다.");
-		return input == 1 ? true : false;
+		return scanner.nextInt();
+
 	}
 
 	private void adminMode() { // 관리자모드 메소드
