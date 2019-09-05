@@ -19,7 +19,7 @@ class Water extends Option {
 
 	@Override
 	public String toString() {
-		return "Water :\t" + "   잔여갯수:" + count + "\t";
+		return "물:\t\t" + "잔여갯수:" + count + "\t";
 	}
 }
 
@@ -30,7 +30,7 @@ class Ice extends Option {
 
 	@Override
 	public String toString() {
-		return "Ice :\t" + "   잔여갯수:" + count + "\t";
+		return "얼음:\t\t" + "잔여갯수:" + count + "\t";
 	}
 }
 
@@ -41,6 +41,6 @@ class Pearl extends Option {
 
 	@Override
 	public String toString() {
-		return "Pearl :\t" + "   잔여갯수:" + count + "\t";
+		return "펄:\t\t" + "잔여갯수:" + count + "\t";
 	}
 }

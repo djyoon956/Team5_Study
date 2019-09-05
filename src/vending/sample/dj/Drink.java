@@ -16,7 +16,7 @@ abstract class Drink extends Product {
 
 	@Override
 	public String toString() {
-		return name + ":\t" + price + "   잔여갯수:" + count + "\t";
+		return name + ":\t" + price + "\t잔여갯수:" + count + "\t";
 	}
 }
 
