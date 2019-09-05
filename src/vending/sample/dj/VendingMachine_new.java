@@ -45,7 +45,7 @@ public class VendingMachine_new {
 	}
 
 	private void startVending() { // 자판기 사용 시작
-		System.out.println("*****자판기 사용을 시작합니다.*****");
+		System.out.println("*****자판기 사용을 시작합니다.*****\n");
 		while (true) {
 			showMenu();
 			choice = choiceMenu();
@@ -57,14 +57,15 @@ public class VendingMachine_new {
 			boolean isOrder = checkChoiceMenu(option);
 			if (!isOrder) {
 				System.out.println("주문이 취소되었습니다.");
-				endVending();
+				continue;
 			}
 			input();
+			endVending();
 		}
 	}
 
 	private void showMenu() { // 메뉴 출력
-		System.out.println("\t*****메뉴 선택*****");
+		System.out.println("[메뉴 선택]\n");
 		int index = 1;
 		for (int i = 0; i < drinks.length; i++) {
 			System.out.println(index + ".\t" + drinks[i].toString());
@@ -77,6 +78,7 @@ public class VendingMachine_new {
 				index++;
 			}
 		}
+		System.out.println(index + ".\t되돌아가기");
 	}
 
 	private void input() { // 금액 투입
@@ -134,10 +136,11 @@ public class VendingMachine_new {
 		int input = 0;
 		String result = "";
 
-		System.out.println("*****옵션 설정*****");
+		System.out.println("\n[옵션 설정]\n");
 		if (drink.isCostomIce) {
 			System.out.println("얼음 양 설정");
 			System.out.println("1.적게\t2.보통\t3.많게");
+			System.out.print(">> ");
 			input = scanner.nextInt();
 			if (input == 1)
 				result += "얼음 양 : 적게\n";
@@ -149,6 +152,7 @@ public class VendingMachine_new {
 		if (drink.isCostomWater) {
 			System.out.println("물 양 설정");
 			System.out.println("1.적게\t2.보통\t3.많게");
+			System.out.print(">> ");
 			input = scanner.nextInt();
 			if (input == 1) {
 				result += "물 양 : 적게\n";
@@ -161,6 +165,7 @@ public class VendingMachine_new {
 		if (drink.isCostomPearl) {
 			System.out.println("펄 추가 (+500원)");
 			System.out.println("1.예\t2.아니오");
+			System.out.print(">> ");
 			input = scanner.nextInt();
 			if (input == 1) {
 				result += "펄 추가\n";
@@ -175,13 +180,14 @@ public class VendingMachine_new {
 		System.out.println("---------주 문 표---------");
 		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
-		System.out.println("\t\t금액 : " + choice.price);
+		System.out.println("금액 : " + choice.price);
 		System.out.println("------------------------");
 
-		System.out.println("1. 주문\t2. 주문 취소");
+		System.out.println("1. 주문\t2. 되돌아가기");
 		System.out.print(">> ");
 		int input = scanner.nextInt();
-
+		if (input != 1 && input != 2)
+			System.out.println("잘 못된 입력입니다.");
 		return input == 1 ? true : false;
 	}
 
@@ -189,7 +195,7 @@ public class VendingMachine_new {
 		adminLogin();
 		while (isAdmin) {
 			System.out.println("───────────────관리자 메뉴───────────────");
-			System.out.println("│\t1. 물품 관리\t\t2. 매출 확인\t\t 3.로그아웃  │");
+			System.out.println("│1. 물품 관리\t\t2. 매출 확인\t\t 3.로그아웃  │");
 			System.out.println("────────────────────────────────────");
 			System.out.print(">> ");
 			int num = scanner.nextInt();
@@ -256,7 +262,7 @@ public class VendingMachine_new {
 				drink.count -= num;
 			} else {
 				System.out.println("갯수가 부족합니다. 다시 입력해주세요.");
-				adminMode();
+				addSub(drink);
 			}
 		} else {
 			System.out.println("다시 입력해주세요.");
