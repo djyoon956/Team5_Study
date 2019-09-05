@@ -185,9 +185,9 @@ public class VendingMachine_new {
 
 	private void adminMode() { // 관리자모드 메소드
 		adminLogin();
-		while (true) {
+		while (isAdmin) {
 			System.out.println("──────관리자 메뉴──────");
-			System.out.println("│1. 물품 관리\t 2. 매출 확인  │");
+			System.out.println("│1. 물품 관리\t 2. 매출 확인\t 3.로그아웃  │");
 			System.out.println("──────────────────");
 			System.out.print(">> ");
 			int num = scanner.nextInt();
@@ -202,7 +202,7 @@ public class VendingMachine_new {
 				break;
 			case 3:
 				adminLogout();
-				
+				break;
 			default:
 				System.out.println("다시 입력해주세요.");
 				return;
@@ -224,11 +224,11 @@ public class VendingMachine_new {
 			isAdmin = isLogin;
 			System.out.println(isLogin ? "로그인 성공!" : "로그인 실패!");
 		} while (!isLogin);
-
+	
 	}
 	
 	private void adminLogout() {
-		
+		isAdmin=false;
 	}
 
 	private void showTotal() {
