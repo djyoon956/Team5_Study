@@ -3,8 +3,8 @@ package vending.sample.dj;
 import java.util.Scanner;
 
 public class VendingMachine_new {
-	private final String ADMIN_ID = "admin";
-	private final String ADMIN_PASSWORD = "admin123";
+	private final String ADMIN_ID = "1";
+	private final String ADMIN_PASSWORD = "1";
 
 	private int inputMoney;
 	private Scanner scanner;
@@ -24,7 +24,7 @@ public class VendingMachine_new {
 	public void start() {
 		while (true) {
 			System.out.println("번호를 선택해주세요.");
-			System.out.println("1. 자판기 사용\t2. 관리자모드 실행\t3.종료");
+			System.out.println("1. 자판기 사용\t2. 관리자 모드\t3.종료");
 			System.out.print(">> ");
 			int num = scanner.nextInt();
 			switch (num) {
@@ -64,7 +64,7 @@ public class VendingMachine_new {
 	}
 
 	private void showMenu() { // 메뉴 출력
-		System.out.println("*****메뉴 선택*****");
+		System.out.println("\t*****메뉴 선택*****");
 		int index = 1;
 		for (int i = 0; i < drinks.length; i++) {
 			System.out.println(index + ".\t" + drinks[i].toString());
@@ -172,7 +172,7 @@ public class VendingMachine_new {
 
 	private boolean checkChoiceMenu(String option) {
 		System.out.println("---------주 문 표---------");
-		System.out.printf("선 택 음료 : %s\n", choice.count);
+		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
 		System.out.println("------------------------");
 
@@ -186,9 +186,9 @@ public class VendingMachine_new {
 	private void adminMode() { // 관리자모드 메소드
 		adminLogin();
 		while (isAdmin) {
-			System.out.println("──────관리자 메뉴──────");
-			System.out.println("│1. 물품 관리\t 2. 매출 확인\t 3.로그아웃  │");
-			System.out.println("──────────────────");
+			System.out.println("───────────────관리자 메뉴───────────────");
+			System.out.println("│\t1. 물품 관리\t\t2. 매출 확인\t\t 3.로그아웃  │");
+			System.out.println("────────────────────────────────────");
 			System.out.print(">> ");
 			int num = scanner.nextInt();
 			switch (num) {
