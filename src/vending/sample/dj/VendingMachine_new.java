@@ -79,7 +79,6 @@ public class VendingMachine_new {
 		}
 	}
 
-	// !!!!!!!!!!계산 관련된 걸로 이름 변경
 	private void input() { // 금액 투입
 		System.out.println("금액을 넣어주세요.");
 		System.out.print(">> ");
