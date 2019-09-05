@@ -88,12 +88,13 @@ public class VendingMachine_new {
 
 			if (inputMoney < choice.price) {
 				inputMoney = 0;
-				System.out.println("다시 입력해주세요.");
+				System.out.println("다시 넣어주세요.");
+				System.out.print(">> ");
 				continue;
 			} else {
 				total += choice.price;
 				choice.disCount();
-				System.out.println(choice.name + "가(이) 나왔습니다. \n");
+				System.out.println(choice.name + "가(이) 나왔습니다.");
 				System.out.println("거스름 돈 : " + checkChange(inputMoney, choice.price));
 				break;
 			}
@@ -172,8 +173,9 @@ public class VendingMachine_new {
 
 	private boolean checkChoiceMenu(String option) {
 		System.out.println("---------주 문 표---------");
-		System.out.printf("선 택 음료 : %s\n", choice.count);
+		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
+		System.out.println("\t급액 : " + choice.price);
 		System.out.println("------------------------");
 
 		System.out.println("1. 주문\t2. 주문 취소");
@@ -224,11 +226,11 @@ public class VendingMachine_new {
 			isAdmin = isLogin;
 			System.out.println(isLogin ? "로그인 성공!" : "로그인 실패!");
 		} while (!isLogin);
-	
+
 	}
-	
+
 	private void adminLogout() {
-		isAdmin=false;
+		isAdmin = false;
 	}
 
 	private void showTotal() {
