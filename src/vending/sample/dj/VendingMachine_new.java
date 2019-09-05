@@ -175,7 +175,7 @@ public class VendingMachine_new {
 		System.out.println("---------주 문 표---------");
 		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
-		System.out.println("\t급액 : " + choice.price);
+		System.out.println("\t\t금액 : " + choice.price);
 		System.out.println("------------------------");
 
 		System.out.println("1. 주문\t2. 주문 취소");
