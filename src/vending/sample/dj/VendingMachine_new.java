@@ -17,11 +17,11 @@ public class VendingMachine_new {
 
 	public VendingMachine_new() { // 기본 음료 셋팅
 		scanner = new Scanner(System.in);
-		drinks = new Drink[] { new Carbonated("탄산", 1300, 10), new Tea("차", 800, 20), new Coffee("맥심", 500, 50) };
+		drinks = new Drink[] { new Carbonated("탄산", 1300, 10), new Tea("차", 800, 20), new Coffee("커피", 500, 50) };
 		options = new Option[] { new Water(10), new Ice(10), new Pearl(10) };
 	}
 
-	public void start() {
+	public void start() { //초기화면
 		while (true) {
 			System.out.println("번호를 선택해주세요.");
 			System.out.println("1. 자판기 사용\t2. 관리자 모드\t3.종료");
@@ -113,7 +113,7 @@ public class VendingMachine_new {
 		}
 	}
 
-	private Drink choiceMenu() { // 실질적으로 음료선택, 비교하는 메소드
+	private Drink choiceMenu() { //고른 음료 확인
 		Drink drink = (Drink) choiceDrink();
 		if (drink.count == 0) {
 			drink = null;
@@ -123,7 +123,7 @@ public class VendingMachine_new {
 		return drink;
 	}
 
-	private Product choiceDrink() { // 음료 선택(comparison 도와주는 메소드
+	private Product choiceDrink() { //음료 선택
 		System.out.println("음료 번호를 선택해주세요.");
 		Product pick = null;
 		int num = 0;
@@ -145,7 +145,7 @@ public class VendingMachine_new {
 		return pick;
 	}
 
-	private String choiceOptions(Drink drink) {
+	private String choiceOptions(Drink drink) { //옵션 추가
 		int input = 0;
 		String result = "";
 
@@ -189,7 +189,7 @@ public class VendingMachine_new {
 		return result;
 	}
 
-	private int checkChoiceMenu(String option) {
+	private int checkChoiceMenu(String option) { //주문표 출력
 		System.out.println("---------주 문 표---------");
 		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
@@ -229,7 +229,7 @@ public class VendingMachine_new {
 		}
 	}
 
-	private void adminLogin() {
+	private void adminLogin() { //관리자모드 로그인
 		String id = "";
 		String password = "";
 		boolean isLogin = false;
@@ -246,15 +246,15 @@ public class VendingMachine_new {
 
 	}
 
-	private void adminLogout() {
+	private void adminLogout() { //관리자모드 로그아웃
 		isAdmin = false;
 	}
 
-	private void showTotal() {
+	private void showTotal() { //매출 출력하는 관리자 전용 메소드
 		System.out.println("매출 현황 : " + total + "원");
 	}
 
-	private void addSub(Product drink) { // 음료 넣거나 빼는 메소드
+	private void addSub(Product drink) { // 음료,옵션 넣거나 빼는 관리자 전용 메소드
 		System.out.println("선택해주세요.");
 		System.out.println("1. 넣기\t2. 빼기");
 		System.out.print(">> ");
