@@ -1,7 +1,7 @@
 package vending.sample.dj;
 
 class Drink extends Product {
-	protected int price;
+	int price;
 	boolean isCostomIce;
 	boolean isCostomWater;
 	boolean isCostomPearl;
