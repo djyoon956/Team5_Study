@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="JavaSE-1.8">
+	<output-test url="file://$MODULE_DIR$/out/test/Team5_Study"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+</component>
