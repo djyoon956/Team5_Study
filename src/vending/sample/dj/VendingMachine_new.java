@@ -19,7 +19,7 @@ public class VendingMachine_new {
 	public VendingMachine_new() { // 기본 음료 셋팅
 		scanner = new Scanner(System.in);
 		drinks = new Drink[] { new Carbonated("탄산", 1300, 10), new Tea("차", 800, 20), new Coffee("커피", 500, 50) };
-		options = new Option[] { new Water(10), new Ice(10), new Pearl(10) };
+		options = new Option[] { new Water(100), new Ice(100), new Pearl(50) };
 	}
 
 	public void start() { //초기화면
