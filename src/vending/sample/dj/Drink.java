@@ -1,6 +1,6 @@
 package vending.sample.dj;
 
-abstract class Drink extends Product {
+class Drink extends Product {
 	protected int price;
 	boolean isCostomIce;
 	boolean isCostomWater;
@@ -12,11 +12,13 @@ abstract class Drink extends Product {
 		this.count = count;
 	}
 
-	abstract void disCount();
 
-	@Override
 	public String toString() {
 		return name + ":\t" + price + "\t잔여갯수:" + count + "\t";
+	}
+	
+	void disCount() {
+		count--;
 	}
 }
 
@@ -27,10 +29,7 @@ class Carbonated extends Drink { // 탄산음료
 		isCostomPearl = false;
 		isCostomWater = false;
 	}
-
-	void disCount() {
-		count--;
-	}
+	
 }
 
 class Tea extends Drink { // 차 종류
@@ -40,10 +39,7 @@ class Tea extends Drink { // 차 종류
 		isCostomPearl = true;
 		isCostomWater = true;
 	}
-
-	void disCount() {
-		count--;
-	}
+	
 }
 
 class Coffee extends Drink { // 커피
@@ -53,8 +49,5 @@ class Coffee extends Drink { // 커피
 		isCostomPearl = true;
 		isCostomWater = true;
 	}
-
-	void disCount() {
-		count--;
-	}
+	
 }

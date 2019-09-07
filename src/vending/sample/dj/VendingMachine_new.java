@@ -11,6 +11,7 @@ public class VendingMachine_new {
 	private int total;
 	private boolean isAdmin;
 	private Drink choice;
+	private Option option;
 
 	private Drink[] drinks;
 	private Option[] options;
@@ -151,31 +152,45 @@ public class VendingMachine_new {
 
 		System.out.println("\n[옵션 설정]\n");
 		if (drink.isCostomIce) {
+			option=options[0];
 			System.out.println("얼음 양 설정");
 			System.out.println("1.적게\t2.보통\t3.많게");
 			System.out.print(">> ");
 			input = scanner.nextInt();
-			if (input == 1)
+			if (input == 1) {
 				result += "얼음 양 : 적게\n";
-			else if (input == 2)
+				option.disOptionCount(1);
+			}
+			else if (input == 2) {
 				result += "얼음 양 : 보통 \n";
-			else if (input == 3)
+				option.disOptionCount(2);
+			}
+			else if (input == 3) {
 				result += "얼음 양 : 많게\n";
+				option.disOptionCount(3);
+			}
 		}
 		if (drink.isCostomWater) {
+			option=options[1];
 			System.out.println("물 양 설정");
 			System.out.println("1.적게\t2.보통\t3.많게");
 			System.out.print(">> ");
 			input = scanner.nextInt();
 			if (input == 1) {
-				result += "물 양 : 적게\n";
-			} else if (input == 2) {
-				result += "물 양 : 보통\n";
-			} else if (input == 3) {
-				result += "물 양 : 많게\n";
+				result += "얼음 양 : 적게\n";
+				option.disOptionCount(1);
+			}
+			else if (input == 2) {
+				result += "얼음 양 : 보통 \n";
+				option.disOptionCount(2);
+			}
+			else if (input == 3) {
+				result += "얼음 양 : 많게\n";
+				option.disOptionCount(3);
 			}
 		}
 		if (drink.isCostomPearl) {
+			option=options[2];
 			System.out.println("펄 추가 (+500원)");
 			System.out.println("1.예\t2.아니오");
 			System.out.print(">> ");
@@ -183,6 +198,7 @@ public class VendingMachine_new {
 			if (input == 1) {
 				result += "펄 추가\n";
 				drink.price += 500;
+				option.disOptionCount(1);
 			}
 		}
 
