@@ -22,7 +22,7 @@ public class VendingMachine {
 		options = new Option[] { new Water(100), new Ice(100), new Pearl(50) };
 	}
 
-	public void start() { //초기화면
+	public void start() { // 초기화면
 		while (true) {
 			System.out.println("번호를 선택해주세요.");
 			System.out.println("1. 자판기 사용\t2. 관리자 모드\t3.종료");
@@ -107,14 +107,14 @@ public class VendingMachine {
 				total += choice.price;
 				choice.disCount();
 				System.out.println(choice.name + "가(이) 나왔습니다.");
-				System.out.println("거스름 돈 : " + checkChange(inputMoney, choice.price)+"\n");
-				
+				System.out.println("거스름 돈 : " + checkChange(inputMoney, choice.price) + "\n");
+
 				break;
 			}
 		}
 	}
 
-	private Drink choiceMenu() { //고른 음료 확인
+	private Drink choiceMenu() { // 고른 음료 확인
 		Drink drink = (Drink) choiceDrink();
 		if (drink.count == 0) {
 			drink = null;
@@ -124,7 +124,7 @@ public class VendingMachine {
 		return drink;
 	}
 
-	private Product choiceDrink() { //음료 선택
+	private Product choiceDrink() { // 음료 선택
 		System.out.println("음료 번호를 선택해주세요.");
 		Product pick = null;
 		int num = 0;
@@ -146,13 +146,13 @@ public class VendingMachine {
 		return pick;
 	}
 
-	private String choiceOptions(Drink drink) { //옵션 추가
+	private String choiceOptions(Drink drink) { // 옵션 추가
 		int input = 0;
 		String result = "";
 
 		System.out.println("\n[옵션 설정]\n");
 		if (drink.isCostomIce) {
-			option=options[0];
+			option = options[0];
 			System.out.println("얼음 양 설정");
 			System.out.println("1.적게\t2.보통\t3.많게");
 			System.out.print(">> ");
@@ -160,18 +160,16 @@ public class VendingMachine {
 			if (input == 1) {
 				result += "얼음 양 : 적게\n";
 				option.disOptionCount(1);
-			}
-			else if (input == 2) {
+			} else if (input == 2) {
 				result += "얼음 양 : 보통 \n";
 				option.disOptionCount(2);
-			}
-			else if (input == 3) {
+			} else if (input == 3) {
 				result += "얼음 양 : 많게\n";
 				option.disOptionCount(3);
 			}
 		}
 		if (drink.isCostomWater) {
-			option=options[1];
+			option = options[1];
 			System.out.println("물 양 설정");
 			System.out.println("1.적게\t2.보통\t3.많게");
 			System.out.print(">> ");
@@ -179,18 +177,16 @@ public class VendingMachine {
 			if (input == 1) {
 				result += "얼음 양 : 적게\n";
 				option.disOptionCount(1);
-			}
-			else if (input == 2) {
+			} else if (input == 2) {
 				result += "얼음 양 : 보통 \n";
 				option.disOptionCount(2);
-			}
-			else if (input == 3) {
+			} else if (input == 3) {
 				result += "얼음 양 : 많게\n";
 				option.disOptionCount(3);
 			}
 		}
 		if (drink.isCostomPearl) {
-			option=options[2];
+			option = options[2];
 			System.out.println("펄 추가 (+500원)");
 			System.out.println("1.예\t2.아니오");
 			System.out.print(">> ");
@@ -205,7 +201,7 @@ public class VendingMachine {
 		return result;
 	}
 
-	private int checkChoiceMenu(String option) { //주문표 출력
+	private int checkChoiceMenu(String option) { // 주문표 출력
 		System.out.println("---------주 문 표---------");
 		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
@@ -221,7 +217,7 @@ public class VendingMachine {
 	private void adminMode() { // 관리자모드 메소드
 		adminLogin();
 		while (isAdmin) {
-			System.out.println("───────────────관리자 메뉴────────────────────────────────────");
+			System.out.println("─────────────────────────관리자 메뉴──────────────────────────");
 			System.out.println("│1. 물품 관리\t\t2. 매출 확인\t\t 3.로그아웃  │");
 			System.out.println("──────────────────────────────────────────────────────────");
 			System.out.print(">> ");
@@ -245,7 +241,7 @@ public class VendingMachine {
 		}
 	}
 
-	private void adminLogin() { //관리자모드 로그인
+	private void adminLogin() { // 관리자모드 로그인
 		String id = "";
 		String password = "";
 		boolean isLogin = false;
@@ -262,11 +258,11 @@ public class VendingMachine {
 
 	}
 
-	private void adminLogout() { //관리자모드 로그아웃
+	private void adminLogout() { // 관리자모드 로그아웃
 		isAdmin = false;
 	}
 
-	private void showTotal() { //매출 출력하는 관리자 전용 메소드
+	private void showTotal() { // 매출 출력하는 관리자 전용 메소드
 		System.out.println("매출 현황 : " + total + "원");
 	}
 
