@@ -115,8 +115,8 @@ public class VendingMachine {
 	}
 
 	private Drink choiceMenu() { // 고른 음료 확인
-		Drink drink = (Drink) choiceDrink();
-		if (drink.count == 0) {
+		Drink drink = (Drink) choiceDrink();       //여기서 choiceMenu() 로 갔다가 다시여기로복귀합니다. 
+		if (drink.count == 0) {					   //여기서 리턴 받은 drink 객체는 사용자가 선택한 음료가 됩니다. 
 			drink = null;
 			System.out.println("품절입니다.");
 		}
@@ -201,7 +201,7 @@ public class VendingMachine {
 		return result;
 	}
 
-	private int checkChoiceMenu(String option) { // 주문표 출력
+	private int checkChoiceMenu(String option) { // 주문표 출력   
 		System.out.println("---------주 문 표---------");
 		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
