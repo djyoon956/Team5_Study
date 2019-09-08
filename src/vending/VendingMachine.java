@@ -175,13 +175,13 @@ public class VendingMachine {
 			System.out.print(">> ");
 			input = scanner.nextInt();
 			if (input == 1) {
-				result += "얼음 양 : 적게\n";
+				result += "물 양 : 적게\n";
 				option.disOptionCount(1);
 			} else if (input == 2) {
-				result += "얼음 양 : 보통 \n";
+				result += "물 양 : 보통 \n";
 				option.disOptionCount(2);
 			} else if (input == 3) {
-				result += "얼음 양 : 많게\n";
+				result += "물 양 : 많게\n";
 				option.disOptionCount(3);
 			}
 		}
