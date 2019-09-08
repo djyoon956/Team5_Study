@@ -1,31 +1,46 @@
 package vending;
 
-public abstract class Option {
-	int optionCount;
+public class Option extends Product {
 
-	abstract void disOptionCount();
+	public Option(int optionCount) {
+		this.count = optionCount;
+	}
+
+	public void disOptionCount(int count) {
+		this.count -= count;
+	}
 }
 
 class Water extends Option {
 
+	public Water(int optionCount) {
+		super(optionCount);
+	}
+
 	@Override
-	void disOptionCount() {
-		// TODO Auto-generated method stub
+	public String toString() {
+		return "물:\t\t" + "잔여갯수:" + count + "\t";
 	}
 }
 
 class Ice extends Option {
-	@Override
-	void disOptionCount() {
-		// TODO Auto-generated method stub
+	public Ice(int optionCount) {
+		super(optionCount);
+	}
 
+	@Override
+	public String toString() {
+		return "얼음:\t\t" + "잔여갯수:" + count + "\t";
 	}
 }
 
 class Pearl extends Option {
-	@Override
-	void disOptionCount() {
-		// TODO Auto-generated method stub
+	public Pearl(int optionCount) {
+		super(optionCount);
+	}
 
+	@Override
+	public String toString() {
+		return "펄:\t\t" + "잔여갯수:" + count + "\t";
 	}
 }
