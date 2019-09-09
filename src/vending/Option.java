@@ -5,14 +5,7 @@ public class Option extends Product {
 	public Option(int optionCount) {
 		this.count = optionCount;
 	}
-	public boolean stockCheck(int count) {
-		if(this.count<count) {
-			return true;		
-		}
-		else {
-			return false;
-		}
-	}
+	
 	public void disOptionCount(int count) {
 		this.count -= count;
 	}
