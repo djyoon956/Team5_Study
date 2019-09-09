@@ -5,12 +5,18 @@ public class Option extends Product {
 	public Option(int optionCount) {
 		this.count = optionCount;
 	}
-
+	public boolean stockCheck(int count) {
+		if(this.count<count) {
+			return true;		
+		}
+		else {
+			return false;
+		}
+	}
 	public void disOptionCount(int count) {
 		this.count -= count;
 	}
 }
-
 class Water extends Option {
 
 	public Water(int optionCount) {
@@ -19,7 +25,7 @@ class Water extends Option {
 
 	@Override
 	public String toString() {
-		return "물:\t\t" + "잔여갯수:" + count + "\t";
+		return "물:\t\t" + "잔여량:" + count + "\t";
 	}
 }
 
@@ -30,7 +36,7 @@ class Ice extends Option {
 
 	@Override
 	public String toString() {
-		return "얼음:\t\t" + "잔여갯수:" + count + "\t";
+		return "얼음:\t\t" + "잔여량:" + count + "\t";
 	}
 }
 
@@ -41,6 +47,6 @@ class Pearl extends Option {
 
 	@Override
 	public String toString() {
-		return "펄:\t\t" + "잔여갯수:" + count + "\t";
+		return "펄:\t\t" + "잔여량:" + count + "\t";
 	}
 }

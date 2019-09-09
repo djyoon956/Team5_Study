@@ -7,8 +7,11 @@ public class VendingMachine {
 	private final String ADMIN_PASSWORD = "1";
 
 	private int inputMoney;
-	private Scanner scanner;
 	private int total;
+	int inputIce;
+	int inputWater;
+	int inputPearl;
+	private Scanner scanner;
 	private boolean isAdmin;
 	private Drink choice;
 	private Option option;
@@ -106,17 +109,19 @@ public class VendingMachine {
 			} else {
 				total += choice.price;
 				choice.disCount();
+				options[0].disOptionCount(inputWater);
+				options[1].disOptionCount(inputIce);
+				options[2].disOptionCount(inputPearl);
 				System.out.println(choice.name + "가(이) 나왔습니다.");
 				System.out.println("거스름 돈 : " + checkChange(inputMoney, choice.price) + "\n");
-
 				break;
 			}
 		}
 	}
 
 	private Drink choiceMenu() { // 고른 음료 확인
-		Drink drink = (Drink) choiceDrink();       //여기서 choiceMenu() 로 갔다가 다시여기로복귀합니다. 
-		if (drink.count == 0) {					   //여기서 리턴 받은 drink 객체는 사용자가 선택한 음료가 됩니다. 
+		Drink drink = (Drink) choiceDrink();
+		if (drink.count == 0) {
 			drink = null;
 			System.out.println("품절입니다.");
 		}
@@ -147,61 +152,84 @@ public class VendingMachine {
 	}
 
 	private String choiceOptions(Drink drink) { // 옵션 추가
-		int input = 0;
+		boolean wSwitch=true;
+
 		String result = "";
-
-		System.out.println("\n[옵션 설정]\n");
-		if (drink.isCostomIce) {
-			option = options[0];
-			System.out.println("얼음 양 설정");
-			System.out.println("1.적게\t2.보통\t3.많게");
-			System.out.print(">> ");
-			input = scanner.nextInt();
-			if (input == 1) {
-				result += "얼음 양 : 적게\n";
-				option.disOptionCount(1);
-			} else if (input == 2) {
-				result += "얼음 양 : 보통 \n";
-				option.disOptionCount(2);
-			} else if (input == 3) {
-				result += "얼음 양 : 많게\n";
-				option.disOptionCount(3);
+		while(wSwitch) {
+			System.out.println("\n[옵션 설정]\n");
+			
+			if (drink.isCostomWater) {
+				option = options[0];
+				System.out.println("물 양 설정");
+				System.out.println("1.적게\t2.보통\t3.많게");
+				System.out.print(">> ");
+				inputWater = scanner.nextInt();
+				if(option.count<inputWater && inputWater<4) {
+					System.out.println("재고가 부족합니다.");
+					continue;
+				}
+				if (inputWater == 1) {
+					result += "물 양 : 적게\n";
+				} else if (inputWater == 2) {
+					result += "물 양 : 보통 \n";
+				} else if (inputWater == 3) {
+					result += "물 양 : 많게\n";
+					
+				} else {
+					System.out.println("선택 오류 입니다. 다시 입력해주세요.");
+					result="";
+					continue;
+				}
 			}
-		}
-		if (drink.isCostomWater) {
-			option = options[1];
-			System.out.println("물 양 설정");
-			System.out.println("1.적게\t2.보통\t3.많게");
-			System.out.print(">> ");
-			input = scanner.nextInt();
-			if (input == 1) {
-				result += "물 양 : 적게\n";
-				option.disOptionCount(1);
-			} else if (input == 2) {
-				result += "물 양 : 보통 \n";
-				option.disOptionCount(2);
-			} else if (input == 3) {
-				result += "물 양 : 많게\n";
-				option.disOptionCount(3);
+			
+			if (drink.isCostomIce) {
+				option = options[1];
+				System.out.println("얼음 양 설정");
+				System.out.println("1.적게\t2.보통\t3.많게");
+				System.out.print(">> ");
+				inputIce = scanner.nextInt();
+				if(option.count<inputIce && inputIce<4) {
+					System.out.println("재고가 부족합니다.");
+					continue;
+				}
+				if (inputIce == 1 ) {
+					result += "얼음 양 : 적게\n";
+				} else if (inputIce == 2) {
+					result += "얼음 양 : 보통 \n";
+				} else if (inputIce == 3) {
+					result += "얼음 양 : 많게\n";
+				} else {
+					System.out.println("선택 오류입니다. 다시 입력해주세요.");
+					result="";
+					continue;
+				}
 			}
-		}
-		if (drink.isCostomPearl) {
-			option = options[2];
-			System.out.println("펄 추가 (+500원)");
-			System.out.println("1.예\t2.아니오");
-			System.out.print(">> ");
-			input = scanner.nextInt();
-			if (input == 1) {
-				result += "펄 추가\n";
-				drink.price += 500;
-				option.disOptionCount(1);
+			
+			if (drink.isCostomPearl) {
+				option = options[2];
+				System.out.println("펄 추가 (+500원)");
+				System.out.println("1.예\t2.아니오");
+				System.out.print(">> ");
+				if(option.count<inputPearl && inputPearl<3) {
+					System.out.println("재고가 부족합니다.");
+					continue;
+				}
+				inputPearl = scanner.nextInt();
+				if (inputPearl == 1) {
+					result += "펄 추가\n";
+					drink.price += 500;
+				} else {
+					System.out.println("선택 오류 입니다. 다시 입력해주세요.\n");
+					result="";
+					continue;
+				}
 			}
+			wSwitch=false;
 		}
-
 		return result;
 	}
 
-	private int checkChoiceMenu(String option) { // 주문표 출력   
+	private int checkChoiceMenu(String option) { // 주문표 출력
 		System.out.println("---------주 문 표---------");
 		System.out.printf("선 택 음료 : %s\n", choice.name);
 		System.out.println(option);
