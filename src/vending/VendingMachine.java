@@ -8,9 +8,9 @@ public class VendingMachine {
 
 	private int inputMoney;
 	private int total;
-	int inputIce;
-	int inputWater;
-	int inputPearl;
+	private int inputIce;
+	private int inputWater;
+	private int inputPearl;
 	private Scanner scanner;
 	private boolean isAdmin;
 	private Drink choice;
