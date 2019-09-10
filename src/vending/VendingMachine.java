@@ -3,8 +3,8 @@ package vending;
 import java.util.Scanner;
 
 public class VendingMachine {
-	private final String ADMIN_ID = "1";
-	private final String ADMIN_PASSWORD = "1";
+	private final String ADMIN_ID = "admin";
+	private final String ADMIN_PASSWORD = "team5";
 
 	private int inputMoney;
 	private int total;
