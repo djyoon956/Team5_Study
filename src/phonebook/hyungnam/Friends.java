@@ -1,4 +1,4 @@
-package phonebook;
+package phonebook.hyungnam;
 
 public class Friends {
 	String fName;

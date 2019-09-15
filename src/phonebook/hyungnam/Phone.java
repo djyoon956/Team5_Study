@@ -1,4 +1,4 @@
-package phonebook;
+package phonebook.hyungnam;
 
 import java.util.ArrayList;
 import java.util.Collections;

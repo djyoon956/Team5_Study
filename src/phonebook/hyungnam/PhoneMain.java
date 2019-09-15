@@ -1,4 +1,4 @@
-package phonebook;
+package phonebook.hyungnam;
 
 public class PhoneMain {
 //지역번호 자동 부여

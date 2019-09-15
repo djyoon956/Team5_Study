@@ -1,4 +1,4 @@
-package phonebook;
+package phonebook.hyungnam;
 
 public class Validation {
 	public static final String REG_EXP_PHONE = "^01[016789]-\\d{4}-\\d{4}$";
