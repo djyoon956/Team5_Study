@@ -1,4 +1,4 @@
-package weight;
+package weight.dajeong;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Weight_Manager_dj {
+public class Weight_Manager {
 	public Scanner keyboard = new Scanner(System.in);
 	public String str_name = "기본값";
 	public String str_weight = "기본값";
@@ -18,7 +18,7 @@ public class Weight_Manager_dj {
 	File fd = new File("C://WeightMgData/"); // 파일이 생성될곳
 
 	public static void main(String[] args) {
-		Weight_Manager_dj wm = new Weight_Manager_dj();
+		Weight_Manager wm = new Weight_Manager();
 		int choiceInt;
 
 		while (true) {
