@@ -49,5 +49,10 @@ public class User {
 		return totalTime;
 	}
 	
+	@Override
+	public String toString() {
+		return "이름 : " + name + " / " + "휴대폰 번호 : " + phoneNumber + " / " + "아이뒤 : " + id + " / " + "비밀번호 : " + password + 
+				" / " + "주민번호 : " + securitNumber;
+	}
 	
 }
