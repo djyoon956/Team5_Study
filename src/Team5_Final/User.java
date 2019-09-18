@@ -12,8 +12,8 @@ public class User implements Serializable {
 
 	private boolean isLogin;
 
-	private double saveTime; // 잔여 시간
-	private double totalTime; // 누적 시간
+	private double saveTime; // �여 �간
+	private double totalTime; // �적 �간
 
 	public User(String name, String phoneNumber, String id, String password, String securitNumber) {
 		this.name = name;
@@ -57,5 +57,10 @@ public class User implements Serializable {
 
 	public double getTotalTime() {
 		return totalTime;
+	}
+	@Override
+	public String toString() {
+		return "�름 : " + name + " / " + "��번호 : " + phoneNumber + " / " + "�이: " + id + " / " + "비�번호 : " + password + 
+				" / " + "주�번호 : " + securitNumber;
 	}
 }
