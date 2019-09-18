@@ -8,5 +8,6 @@ public class PCmanagement {
 	private int[][] seats; // pc 좌석
 	private Product[] products;
 	// 게임 목록
+	private boolean isAdmin;
 
 }
