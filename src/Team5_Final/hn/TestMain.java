@@ -44,9 +44,11 @@ class Test_hn {
 
 public class TestMain {
 	public static void main(String[] args) {
-		Test_hn hn = new Test_hn();
-		hn.whileTest();
-		// hn.showSeat();
+//		Test_hn hn = new Test_hn();
+//		hn.whileTest();
+//		// hn.showSeat();
+		PCmanagement pc=new PCmanagement();
+		pc.start();
 
 	}
 
