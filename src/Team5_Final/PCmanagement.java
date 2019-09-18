@@ -3,6 +3,8 @@ package Team5_Final;
 import java.util.*;
 
 public class PCmanagement {
+	
+	
 	private Scanner scanner;
 	private List<User> users; // 회원리스트
 	private int totalSales; // 매출

@@ -13,6 +13,14 @@ public class User {
 	private double saveTime; // 잔여 시간
 	private double totalTime; // 누적 시간
 	
+	public User(String name, String phoneNumber, String id, String password, String securitNumber){
+		this.name = name; 
+		this.phoneNumber = phoneNumber;
+		this.id = id;
+		this.password = password;
+		this.securitNumber = securitNumber;
+	}
+	
 	public String getName() {
 		return name;
 	}
