@@ -6,7 +6,7 @@ public class PCmanagement {
 	private List<User> users; // 회원리스트
 	private int totalSales; // 매출
 	private int[][] seats; // pc 좌석
-	private Product[] products;
+	private 	List<Product> products;
 	// 게임 목록
 
 }

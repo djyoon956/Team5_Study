@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Command {
 	public static void main(String[] args) {
 		// args = new String[] { "D:\\99.temp", "delete", "vs.png" }; // 테스트용
-		if (args.length != 2 && args.length != 3 && args.length != 4) {
+		if (args.length != 2 && args.length != 3 && args.length != 4) { //
 			showHowTo();
 			System.exit(0);
 		}
