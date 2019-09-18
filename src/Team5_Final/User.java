@@ -13,7 +13,7 @@ public class User implements Serializable {
 	private boolean isLogin;
 
 	private double saveTime; // 잔여시간
-	private double totalTime; // 누적시간
+	private double totalTime; // 누적시간    // 착하고 예쁘면 보인다 
 
 	public User(String name, String phoneNumber, String id, String password, String securitNumber) {
 		this.name = name;
@@ -52,7 +52,7 @@ public class User implements Serializable {
 	}
 
 	public double getSaveTime() {
-		return saveTime;
+		return saveTime;   
 	}
 
 	public double getTotalTime() {
