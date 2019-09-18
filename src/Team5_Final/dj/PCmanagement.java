@@ -1,42 +1,28 @@
-package Team5_Final;
+package Team5_Final.dj;
 
 import java.util.*;
 
-public class PCmanagement {
-	private final String ADMIN_ID = "admin";
-	private final String ADMIN_PW = "123";
+import Team5_Final.Product;
+import Team5_Final.User;
 
+public class PCmanagement {
 	private Scanner scanner;
 	private List<User> users; // 회원리스트
 	private int totalSales; // 매출
 	private int[][] seats; // pc 좌석
-	private 	List<Product> products;
+	private Product[] products;
 	// 게임 목록
 	private boolean isAdmin;
 
-	public PCmanagement() {
+	// admin 메뉴
+	private final String ADMIN_ID = "admin";
+	private final String ADMIN_PW = "123";
+
+	PCmanagement() {
 		scanner = new Scanner(System.in);
 	}
 
-	public void start() {
-		while (true) {
-			System.out.println("1. 사용자 모드");
-			System.out.println("2. 관리자 모드");
-			int choice = validationChoiceNumber(1, 2);
-			switch (choice) {
-			case 1:
-
-				break;
-			case 2:
-				adminLogin();
-				break;
-			}
-		}
-	}
-
 	private void adminLogin() {
-		System.out.println("관리자 로그인을 시작합니다.");
-		
 		isAdmin = checkLoginCount(3);
 		if (isAdmin) {
 			System.out.println("관리자 로그인 성공!");
@@ -90,6 +76,22 @@ public class PCmanagement {
 			case 4:
 				adminLogout();
 				break adminLoop;
+			}
+		}
+	}
+
+	public void start() {
+		while (true) {
+			System.out.println("1. 사용자 모드");
+			System.out.println("2. 관리자 모드");
+			int choice = validationChoiceNumber(1, 2);
+			switch (choice) {
+			case 1:
+
+				break;
+			case 2:
+				adminLogin();
+				break;
 			}
 		}
 	}
