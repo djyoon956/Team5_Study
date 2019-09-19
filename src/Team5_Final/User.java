@@ -15,10 +15,10 @@ public class User implements Serializable {
 	private double saveTime; // 잔여시간
 	private double totalTime; // 누적시간
 
-	public User(String name, String phoneNumber, String id, String password, String securitNumber) {
+	public User(String name, String phoneNumber, int age, String password, String securitNumber) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
-		this.id = id;
+		this.age = age;
 		this.password = password;
 		this.securitNumber = securitNumber;
 	}
