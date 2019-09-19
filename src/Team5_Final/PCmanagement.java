@@ -90,7 +90,7 @@ public class PCmanagement {
 				showSearchMenu();
 				break;
 			case 2:
-
+				saveUserInfoFile();
 				break;
 			case 3:
 
@@ -238,7 +238,40 @@ public class PCmanagement {
 				System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
 			}
 		}
-		
+
 		return loginCheck;
+	}
+
+	private void saveUserInfoFile() {
+		String userCsv = "users.csv";
+		FileOutputStream fos = null;
+		OutputStreamWriter osw = null;
+		BufferedWriter bw = null;
+		try {
+			fos = new FileOutputStream(userCsv);
+			osw = new OutputStreamWriter(fos, "EUC-KR");
+			bw = new BufferedWriter(osw);
+
+			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,누적 시간,가입일");
+			bw.newLine();
+			int index = 0;
+			for (User user : users.values()) {
+				bw.write(++index + "," + user.getName() + "," + user.getId() + "," + user.getPhoneNumber() + ","
+						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getTotalTime() + ","
+						+ user.getJoinDay());
+				bw.newLine();
+			}
+			System.out.println("파일 저장을 완료했습니다.");
+		} catch (Exception e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			try {
+				bw.close();
+				osw.close();
+				fos.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
 	}
 }
