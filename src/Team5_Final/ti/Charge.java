@@ -1,5 +1,6 @@
 package Team5_Final.ti;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -27,11 +28,12 @@ public class Charge {
 
 	public Charge() { // 사용자로부터 돈을 입력 받으면, 그 만큼의 시간을 반환합니다.
 		
-		scanner = new Scanner(System.in);
-	} // 차지함수끝\
+	} // 차지함수끝
 		
 	public void charge() {
 		// 1. id 입력받기
+		users = new HashMap<String, User>();
+		scanner = new Scanner(System.in);
 		System.out.print("시간을 추가 할 회원ID를 입력하세요 : ");
 		String id = scanner.nextLine();
 		showMenu();
@@ -60,7 +62,7 @@ public class Charge {
 				break;
 				
 				default : 
-					System.out.println("다시 입력해주세요.");
+					System.out.println("요금표에 맞는 금액을 충전해주세요.");
 			}
 
 		} else {
@@ -81,7 +83,7 @@ public class Charge {
 	public static void main(String[] args) {
 		//users.put("taeik0303", new User("권태일", "010-3148-1088", 32, "1234", "888888-1111111"));
 		Charge charge = new Charge();
-		charge.users.put("taeik0303", new User("권태일", "010-3148-1088",32, "1234", "888888-1111111"));
+		charge.users.put("taeik0303", new User("권태일", "010-3148-1088","taeik0303", "1234", "888888-1111111"));
 		charge.charge();
 	
 	}
