@@ -125,9 +125,6 @@ public class PCmanagement {
 	}
 
 	private void exitPCmanagement() {
-		BufferedOutputStream bos = null;
-		ObjectOutputStream out = null;
-
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(userFilenName))) {
 			oos.writeObject(users);
 		} catch (Exception e) {
