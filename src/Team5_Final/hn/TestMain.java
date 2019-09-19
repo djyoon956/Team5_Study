@@ -2,6 +2,8 @@ package Team5_Final.hn;
 
 import java.util.Scanner;
 
+import Team5_Final.User;
+
 class Test_hn {
 //	boolean[] arr = new boolean[21];
 //	Scanner sc = new Scanner(System.in);
@@ -47,6 +49,13 @@ public class TestMain {
 //		PCmanagement hn = new PCmanagement();
 //		hn.showSeat();
 		PCmanagement pc=new PCmanagement();
+		pc.users.put("zzzsh123", new User("형남", 
+				"01036423603", "zzzsh123", "123456", "961220-1111111"));
+		pc.users.put("zzzsh456", new User("오형남", 
+				"01036423603", "zzzsh123", "123456", "961220-1111111"));
+		pc.users.put("zzzsh789", new User("오형", 
+				"01036423603", "zzzsh123", "123456", "961220-1111111"));
+		
 		pc.start();
 
 	}

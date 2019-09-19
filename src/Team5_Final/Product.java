@@ -5,7 +5,7 @@ import java.util.List;
 public class Product {
 	protected String name;
 	protected int price;
-	protected int
+	protected int count;
 
 	
 
