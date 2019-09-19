@@ -339,4 +339,17 @@ public class PCmanagement {
 		users.put(user.getId(), user);
 		System.out.println(user.getName() + "님 회원가입이 완료되었습니다.");
 	}
+
+	public void logout(String id) { // 일반 사용자 로그아웃(사용종료)
+		if (users.get(id).isLogin()) {// 로그인 상태가 true 일 경우에만 로그아웃이 가능하다.
+			users.get(id).setLogin(false); // 로그아웃 하면 로그인상태는 false 로 바뀐다.
+			// 먼저 충전시간 - 사용시간 해서 saveTime 에 넣어줘야함
+			System.out.println("당신의 남은 시간은 " + users.get(id).getSaveTime()); // 남은시간보여줌
+			// 그리고 현재 좌석을 빈 좌석으로 다시 바꿔야함.
+
+		} else {
+			System.out.println("로그인을 먼저 해주세요. "); // 로그인상태가 false일 경우
+			System.exit(0);
+		}
+	}
 }
