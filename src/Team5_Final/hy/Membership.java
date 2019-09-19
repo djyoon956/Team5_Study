@@ -88,7 +88,7 @@ public class Membership {
 			System.out.println(year - 2000 - Integer.parseInt(securitNumber.substring(0, 2)) + "살");
 		}
 
-		User user = new User(name, phonenumber, age, password, securitNumber);
+		User user = new User(name, phonenumber, id, password, securitNumber);
 		users.put(user.getId(), user);
 		System.out.println(user);
 	}

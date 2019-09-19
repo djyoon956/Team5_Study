@@ -86,7 +86,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "이름 : " + name + " / " + "전화번호 : " + phoneNumber + " / " + "나이: " + id + " / " + "비밀번호 : " + password
+		return "이름 : " + name + " / " + "전화번호 : " + phoneNumber + " / " + "아이디: " + id + " / " + "비밀번호 : " + password
 				+ " / " + "주민번호 : " + securitNumber;
 	}
 
