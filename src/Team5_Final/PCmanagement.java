@@ -78,21 +78,22 @@ public class PCmanagement {
 
 	private void showAdminMenu() {
 		while (true) {
-			System.out.println("1. 회원 전체 조회");
-			System.out.println("2. 회원 아이디 조회");
-			System.out.println("3. ");
+			System.out.println("1. 회원 조회");
+			System.out.println("2. 파일 저장");
+			System.out.println("3. 발주");
 			System.out.println("4. 관리자 로그아웃");
 			System.out.println("5. 프로그램 종료");
 
 			int choice = validationChoiceNumber(1, 5);
 			adminLoop: switch (choice) {
 			case 1:
-				searchAllUser();
+				showSearchMenu();
 				break;
 			case 2:
-				searchId();
+
 				break;
 			case 3:
+
 				break;
 			case 4:
 				adminLogout();
@@ -150,6 +151,30 @@ public class PCmanagement {
 		return users;
 	}
 
+	private void showSearchMenu() {
+		searchLoop: while (true) {
+			System.out.println("1. 전체 조회");
+			System.out.println("2. ID 조회");
+			System.out.println("3. 이름 조회");
+			System.out.println("4. 이전 메뉴로 돌아가기");
+
+			int choice = validationChoiceNumber(1, 6);
+			switch (choice) {
+			case 1:
+				searchAllUser();
+				break;
+			case 2:
+				searchId();
+				break;
+			case 3:
+				searchName();
+				break;
+			case 4:
+				break searchLoop;
+			}
+		}
+	}
+
 	private void searchAllUser() {
 		Iterator<User> iterator = users.values().iterator();
 		while (iterator.hasNext()) {
@@ -159,13 +184,29 @@ public class PCmanagement {
 	}
 
 	private void searchId() {
-		System.out.print("검색 이름을 입력하세요 : ");
+		System.out.print("검색 ID를 입력하세요 : ");
 		String searchName = scanner.next();
 
 		User user = users.get(searchName);
 		if (user != null)
 			user.toString();
 		else
+			System.out.println("검색 결과가 없습니다.");
+	}
+
+	private void searchName() {
+		System.out.print("검색 이름을 입력하세요 : ");
+		String searchName = scanner.next();
+		List<User> targets = new ArrayList<>();
+		for (User user : users.values()) {
+			if (user.getName().contains(searchName))
+				targets.add(user);
+		}
+
+		if (targets.size() > 0) {
+			System.out.println("검색 인원 : " + targets.size());
+			targets.forEach(x -> x.toString());
+		} else
 			System.out.println("검색 결과가 없습니다.");
 	}
 }
