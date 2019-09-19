@@ -48,6 +48,12 @@ public class TestMain {
 //		hn.whileTest();
 //		// hn.showSeat();
 		PCmanagement pc=new PCmanagement();
+		pc.products.add(new DrinkTest());
+		pc.products.add(new DrinkTest());
+		pc.products.add(new DrinkTest());
+		pc.products.add(new SnackTest());
+		pc.products.add(new SnackTest());
+		pc.products.add(new SnackTest());
 		pc.start();
 
 	}
