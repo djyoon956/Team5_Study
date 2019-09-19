@@ -23,7 +23,7 @@ public class User implements Serializable {
 		this.id = id;
 		this.password = password;
 		this.securitNumber = securitNumber;
-		// 나이해줘야함
+		this.age = setAge();
 		this.joinDay = setJoinDay();
 	}
 
@@ -70,7 +70,6 @@ public class User implements Serializable {
 	public double getTotalTime() {
 		return totalTime;
 	}
-	
 
 	public void setTotalTime(double totalTime) {
 		this.totalTime = totalTime;
@@ -87,10 +86,25 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "이름 : " + name + " / " + "전화번호 : " + phoneNumber + " / " + "아이디: " + id + " / " + "비밀번호 : " + password
-				+ " / " + "주민번호 : " + securitNumber;
+				+ " / " + "주민번호 : " + securitNumber + "/" + "나이 :" + age + "살";
 	}
 
 	private String setJoinDay() {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+	}
+
+	private int setAge() {
+		Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR);
+		int age = 0;
+		if (securitNumber.charAt(6) == '1' || securitNumber.charAt(6) == '2') {
+			// parInt는 ()안에 문자열이온다.
+			// Integer.parseInt() : 괄호안의 문자열을 숫자로 변환한다.
+			age = year - 1900 - Integer.parseInt(securitNumber.substring(0, 2)); // 문자열의 a번째 문자부터
+		} else {
+			age = year - 2000 - Integer.parseInt(securitNumber.substring(0, 2));
+		}
+
+		return age;
 	}
 }
