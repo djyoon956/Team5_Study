@@ -1,6 +1,7 @@
 package Team5_Final;
 
 import java.util.*;
+
 import java.io.*;
 
 public class PCmanagement {
@@ -26,7 +27,7 @@ public class PCmanagement {
 		while (true) {
 			System.out.println("1. 사용자 모드");
 			System.out.println("2. 관리자 모드");
-			int choice = validationChoiceNumber(1, 2);
+			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 			switch (choice) {
 			case 1:
 				userMode();
@@ -42,10 +43,10 @@ public class PCmanagement {
 		System.out.println("1.회원가입");
 		System.out.println("2.시간 충전");
 		System.out.println("3.PC이용");
-		int choice = validationChoiceNumber(1, 3);
+		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
 		switch (choice) {
 		case 1:
-			// 회원가입
+			signUp();
 			break;
 		case 2:
 			// 시간충전
@@ -71,7 +72,7 @@ public class PCmanagement {
 	}
 
 	void selectSeat() {
-		int seatNum = validationChoiceNumber(1, 20);
+		int seatNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 		if (!seats[seatNum]) {
 			seats[seatNum] = true;
 		} else {
@@ -126,7 +127,7 @@ public class PCmanagement {
 			System.out.println("4. 관리자 로그아웃");
 			System.out.println("5. 프로그램 종료");
 
-			int choice = validationChoiceNumber(1, 5);
+			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 5);
 			switch (choice) {
 			case 1:
 				showSearchMenu();
@@ -145,26 +146,6 @@ public class PCmanagement {
 				break;
 			}
 		}
-	}
-
-	private int validationChoiceNumber(int startNumber, int endNumber) {
-		int choice = 0;
-		String word = "입력";
-		while (true) {
-			System.out.printf("%s >> ", word);
-			if (scanner.hasNextInt()) {
-				choice = scanner.nextInt();
-				if (choice >= startNumber && choice <= endNumber)
-					break;
-				else
-					word = "재 입력";
-			} else {
-				scanner.next();
-				word = "재 입력";
-			}
-		}
-
-		return choice;
 	}
 
 	private void exitPCmanagement() {
@@ -200,7 +181,7 @@ public class PCmanagement {
 			System.out.println("3. 이름 조회");
 			System.out.println("4. 이전 메뉴로 돌아가기");
 
-			int choice = validationChoiceNumber(1, 4);
+			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
 			switch (choice) {
 			case 1:
 				searchAllUser();
@@ -315,5 +296,47 @@ public class PCmanagement {
 				// TODO: handle exception
 			}
 		}
+	}
+
+	private void signUp() {
+		System.out.println("회원가입을 시작합니다.");
+		System.out.print("이름 >> ");
+		String name = scanner.next().trim();
+
+		if (!ValidataionHelper.checkName(name)) {
+			System.out.println("이름 형식이 맞지 않습니다. 초기 메뉴로 돌아갑니다.");
+			return;
+		}
+
+		System.out.print("ID >> ");
+		String id = scanner.next().trim();
+		if (!ValidataionHelper.checkId(id)) {
+			System.out.println("ID 형식이 맞지 않습니다. 초기 메뉴로 돌아갑니다.");
+			return;
+		} else if (users.containsKey(id)) {
+			System.out.println("ID가 중복되었습니다. 초기 메뉴로 돌아갑니다.");
+			return;
+		}
+
+		System.out.print("비밀번호 >> ");
+		String password = scanner.next().trim();
+
+		System.out.print("휴대폰번호 (- 포함) >> ");
+		String phoneNumber = scanner.next().trim();
+		if (!ValidataionHelper.checkPhoneNumber(phoneNumber)) {
+			System.out.println("휴대폰번호 형식이 맞지 않습니다. 초기 메뉴로 돌아갑니다.");
+			return;
+		}
+
+		System.out.print("주민등록번호 (- 포함)>> ");
+		String securitNumber = scanner.next().trim(); // 앞뒤로 들어오는 공백을 없애기위해 trim()사용
+		if (!ValidataionHelper.checkSecurit(securitNumber)) {
+			System.out.println("주민등록번호 형식이 맞지 않습니다. 초기 메뉴로 돌아갑니다.");
+			return;
+		}
+
+		User user = new User(name, phoneNumber, id, password, securitNumber);
+		users.put(user.getId(), user);
+		System.out.println(user.getName() + "님 회원가입이 완료되었습니다.");
 	}
 }
