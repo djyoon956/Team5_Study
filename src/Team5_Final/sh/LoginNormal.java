@@ -30,31 +30,23 @@ public class LoginNormal {
 	//User(String name, String phoneNumber, String id, String password, String securitNumber
 	
 	
-	public boolean login(String id, String password) {
-		//HashMap<String, User> test = new HashMap<>();
-		//test.put("kos157" , new User("박성호", "010-5233-3208", "kos157", "15243", "900226-1081621"));
-		Iterator<String> keyId = users.keySet().iterator();       // test 가 해쉬맵 변수명이어야함 
+	public boolean login() {
 		boolean loginCheck = false;
-		while(keyId.hasNext()) {
-			String key = keyId.next();
-			if(users.get(key).getId().equals(id)){
-				if( users.get(key).getPassword().equals(password)) {
-					System.out.println("로그인 성공 하셨습니다.");
-					loginCheck = true;           //로그인 성공하면  true 집어 넣음. 혹시 나중에 로그인상태 알아보기 위해 쓸려면 쓰샘 
-				}else {
-					System.out.println("비밀번호가 틀렸습니다 다시 한 번 확인해주세요.");
-				}
+		Scanner sc  = new Scanner(System.in);
+		System.out.printf("아이뒤를 입력해 주세요 : ");
+		String id = sc.nextLine();
+		if(users.containsKey(id)) {
+			System.out.println("비밀번호를 입력해 주세요");
+			String password = sc.nextLine();
+			if ( users.get(id).getPassword().equals(password)) {
+				System.out.println("로그인 성공 하셨습니다.");
+				loginCheck = true;
 			}else {
-				System.out.println("일치하는 ID가 없습니다.");
+				System.out.println("비밀번호를 다시 한 번 확인해주세요");
 			}
-			
+		}else {
+			System.out.println("일치하는 ID가 없습니다.");
 		}
 		return loginCheck;
 	}
-	
-	
-	public LoginNormal(){
-		
-			}
-
 }

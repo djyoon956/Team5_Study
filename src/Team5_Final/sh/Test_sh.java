@@ -11,7 +11,10 @@ public class Test_sh {
 
 		
 	
-		
+			LoginNormal lo = new LoginNormal();
+			lo.login();
+			
+			
 		
 		
 		
