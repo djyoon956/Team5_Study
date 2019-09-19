@@ -77,7 +77,7 @@ public class PCmanagement {
 	}
 
 	private void showAdminMenu() {
-		while (true) {
+		adminLoop: while (true) {
 			System.out.println("1. 회원 조회");
 			System.out.println("2. 파일 저장");
 			System.out.println("3. 발주");
@@ -85,7 +85,7 @@ public class PCmanagement {
 			System.out.println("5. 프로그램 종료");
 
 			int choice = validationChoiceNumber(1, 5);
-			adminLoop: switch (choice) {
+			switch (choice) {
 			case 1:
 				showSearchMenu();
 				break;
