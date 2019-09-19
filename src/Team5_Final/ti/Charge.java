@@ -27,9 +27,9 @@ public class Charge {
 	private String userFilenName;
 
 	public Charge() { // 사용자로부터 돈을 입력 받으면, 그 만큼의 시간을 반환합니다.
-		
+
 	} // 차지함수끝
-		
+
 	public void charge() {
 		// 1. id 입력받기
 		users = new HashMap<String, User>();
@@ -60,9 +60,9 @@ public class Charge {
 				users.get(id).setSaveTime(10000);
 				System.out.println("15시간이 충전되었습니다.");
 				break;
-				
-				default : 
-					System.out.println("요금표에 맞는 금액을 충전해주세요.");
+
+			default:
+				System.out.println("요금표에 맞는 금액을 충전해주세요.");
 			}
 
 		} else {
@@ -81,11 +81,12 @@ public class Charge {
 	}
 
 	public static void main(String[] args) {
-		//users.put("taeik0303", new User("권태일", "010-3148-1088", 32, "1234", "888888-1111111"));
+		// users.put("taeik0303", new User("권태일", "010-3148-1088", 32, "1234",
+		// "888888-1111111"));
 		Charge charge = new Charge();
-		charge.users.put("taeik0303", new User("권태일", "010-3148-1088","taeik0303", "1234", "888888-1111111"));
+		charge.users.put("taeik0303", new User("권태일", "010-3148-1088", "taeik0303", "1234", "888888-1111111"));
 		charge.charge();
-	
+
 	}
 
 }
