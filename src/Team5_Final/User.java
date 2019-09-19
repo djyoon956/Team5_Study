@@ -70,6 +70,11 @@ public class User implements Serializable {
 	public double getTotalTime() {
 		return totalTime;
 	}
+	
+
+	public void setTotalTime(double totalTime) {
+		this.totalTime = totalTime;
+	}
 
 	public String getJoinDay() {
 		return joinDay;

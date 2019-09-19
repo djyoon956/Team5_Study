@@ -13,7 +13,7 @@ public class ShowTotal {
 
 	void ShowTotal() {
 
-		
+		return;
 	}
 
 	class totalSales {

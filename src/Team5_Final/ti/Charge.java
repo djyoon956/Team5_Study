@@ -13,7 +13,6 @@ import Team5_Final.User;
 
 //요금판 출력
 public class Charge {
-	
 	private final String ADMIN_ID = "admin";
 	private final String ADMIN_PW = "123";
 
@@ -26,43 +25,65 @@ public class Charge {
 	private boolean isAdmin;
 	private String userFilenName;
 
-	public int Charge() {   // 사용자로부터 돈을 입력 받으면, 그 만큼의 시간을 반환합니다. 
+	public Charge() { // 사용자로부터 돈을 입력 받으면, 그 만큼의 시간을 반환합니다.
+		
+		scanner = new Scanner(System.in);
+	} // 차지함수끝\
+		
+	public void charge() {
 		// 1. id 입력받기
-		// 2. 회원중 id 일치하는 회원 찾기
-		// 3. 시간 추가하기 o
-		// 4. 회원 saveTime에 시간 추가해주기.
-		System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
+		System.out.print("시간을 추가 할 회원ID를 입력하세요 : ");
+		String id = scanner.nextLine();
+		showMenu();
+
+		System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 		int money = scanner.nextInt();
-		
-		System.out.printf("%d 원을 받았습니다. 요금 표에 따라  %d 시간이 충전됩니다", money , money/1000 );
+		// 2. 회원중 id 일치하는 회원 찾기
+		if (users.containsKey(id)) {
 
-		return money/1000;
-		
-		switch(money){
-		case 1: 
-			System.out.println("한시간이 추가 되었습니다.");
-			break;
-		case 2:
-			System.out.println("두시간이 추가 되었습니다.");
-			break;
-		case 3:
-			System.out.println("세시간이 추가 되었습니다.");
-			break;
-		case 4:
-			System.out.println("네시간이 추가 되었습니다.");
-			break;
-			
-						
+			switch (money) {
+			case 1000:
+				users.get(id).setTotalTime(1000);
+				users.get(id).setSaveTime(1000);
+				System.out.println("한 시간이 추가 되었습니다.");
 
+				break;
+			case 5000:
+				users.get(id).setTotalTime(5000);
+				users.get(id).setSaveTime(5000);
+				System.out.println("6시간이 충전되었습니다.");
+				break;
+			case 10000:
+				users.get(id).setTotalTime(10000);
+				users.get(id).setSaveTime(10000);
+				System.out.println("15시간이 충전되었습니다.");
+				break;
+				
+				default : 
+					System.out.println("다시 입력해주세요.");
+			}
 
+		} else {
+			System.out.println("ID를 확인해주세요.");
+		}
+
+	}
+
+	public void showMenu() {
+		System.out.println("=====================");
+		System.out.println("==== 회원 시간 요금제  =====");
+		System.out.println("==== 1000원 1시간   =====");
+		System.out.println("==== 5000원 6시간   =====");
+		System.out.println("==== 10000원 15시간 ====");
+		System.out.println("=====================");
 	}
 
 	public static void main(String[] args) {
-
-	//	long time1 = System.currentTimeMillis();
-		//long time2 = System.currentTimeMillis();
-	//	System.out.println((time2 - time1) / 1000.0);
-		
-		
+		//users.put("taeik0303", new User("권태일", "010-3148-1088", 32, "1234", "888888-1111111"));
+		Charge charge = new Charge();
+		charge.users.put("taeik0303", new User("권태일", "010-3148-1088",32, "1234", "888888-1111111"));
+		charge.charge();
+	
 	}
+
 }
