@@ -7,7 +7,7 @@ public class PCmanagement {
 	private final String ADMIN_PW = "123";
 
 	private Scanner scanner;
-	private List<User> users; // 회원리스트
+	private HashMap<String,User> users; // 회원리스트 key:id, value:User
 	private int totalSales; // 매출
 	private int[][] seats; // pc 좌석
 	private 	List<Product> products;
