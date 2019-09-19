@@ -6,5 +6,5 @@ public class HnProduct {
 	protected String name;
 	protected int price;
 	protected int count;
-
+	
 }

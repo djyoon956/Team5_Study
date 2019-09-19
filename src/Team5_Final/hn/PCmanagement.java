@@ -11,11 +11,11 @@ public class PCmanagement {
 	private final String ADMIN_ID = "admin";
 	private final String ADMIN_PW = "123";
 
-	private Scanner scanner;
-	private Map<String, User> users; // 회원리스트 key:id, value:User
-	private int totalSales; // 매출
-	private List<HnProduct> products;
-	private boolean[] seats;
+	public Scanner scanner;
+	public Map<String, User> users; // 회원리스트 key:id, value:User
+	public int totalSales; // 매출
+	public List<HnProduct> products;
+	public boolean[] seats;
 	// 게임 목록
 	private boolean isAdmin;
 	private String userFilenName;
