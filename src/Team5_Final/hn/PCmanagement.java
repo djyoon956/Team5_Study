@@ -129,9 +129,6 @@ public class PCmanagement {
 	}
 
 	private void order() {
-
-		
-
 		int choice = 0;
 		while (choice != 4) {
 			showMenu();

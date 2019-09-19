@@ -20,14 +20,6 @@ public class PCmanagement {
 		scanner = new Scanner(System.in);
 		userFilenName = "PcUsers.txt";
 		users = initUsers();
-		users.put("dbsekwjdaa", new User("윤다정", "010-9411-6268", "dbsekwjdaa", "123", "950506-2222222"));
-		users.put("11", new User("윤다정", "010-9411-6268", "11", "123", "950506-2222222"));
-		users.put("22", new User("윤다정", "010-9411-6268", "22", "123", "950506-2222222"));
-		users.put("33", new User("윤다정", "010-9411-6268", "33", "123", "950506-2222222"));
-		users.put("44", new User("윤다정", "010-9411-6268", "44", "123", "950506-2222222"));
-		users.put("55", new User("윤다정", "010-9411-6268", "55", "123", "950506-2222222"));
-		users.put("66", new User("윤다정", "010-9411-6268", "66", "123", "950506-2222222"));
-		users.put("77", new User("윤다정", "010-9411-6268", "77", "123", "950506-2222222"));
 	}
 
 	public void start() {

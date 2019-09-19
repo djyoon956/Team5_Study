@@ -10,8 +10,7 @@ import Team5_Final.User;
 
 public class Membership {
 	int index = 0;
-	static Map<String, User> users ;
-	static List list = new ArrayList();
+	static Map<String, User> users;
 	static Scanner sc = new Scanner(System.in);
 
 	private String name;
@@ -31,19 +30,19 @@ public class Membership {
 
 	}
 
-	public static List addMembership() {
+	public static void addMembership() {
+		// 1. 정규식 적용
+		// 2. 중복 방지(id, 주번)
 		System.out.println("회원가입을 시작합니다.");
 		System.out.print("이름 >> ");
 		String name = sc.next();
 
 		System.out.print("ID>> ");
 		String id = sc.next();
-/*
-		 if (users.containsKey(id)) {
-			System.out.println("ID가 중복되었습니다. 초기 메뉴로 돌아갑니다.");
-			return addMembership();
-		}
-		*/
+		/*
+		 * if (users.containsKey(id)) {
+		 * System.out.println("ID가 중복되었습니다. 초기 메뉴로 돌아갑니다."); return addMembership(); }
+		 */
 
 		System.out.print("비밀번호>> ");
 		String password = sc.next();
@@ -54,27 +53,24 @@ public class Membership {
 		System.out.print("주민번호 >> ");
 		String securitNumber = sc.next();
 
-		int age=Integer.parseInt(securitNumber.substring(0,2));
-      char  ch=securitNumber.charAt(7);
-      
-      if(ch=='1' || ch=='2') {
-    	  age=2019-(1900+age)+1;
-    	  }else if(ch=='3'||ch=='4') {
-    	  age=2019-(2000+age)+1;
-      }
-      
+		int age = Integer.parseInt(securitNumber.substring(0, 2));
+		char ch = securitNumber.charAt(7);
+
+		if (ch == '1' || ch == '2') {
+			age = 2019 - (1900 + age) + 1;
+		} else if (ch == '3' || ch == '4') {
+			age = 2019 - (2000 + age) + 1;
+		}
+
 		User user = new User(name, phonenumber, age, password, securitNumber);
+		users.put(user.getId(), user);
+		System.out.println(user);
 
-System.out.println(user);
-		
-		
 		list.add(user);
-		return list;
 
 	}
 
-	}
-
+}
 
 /*
  * users.put(user.getId(), user);
