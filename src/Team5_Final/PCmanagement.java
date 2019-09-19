@@ -78,8 +78,8 @@ public class PCmanagement {
 
 	private void showAdminMenu() {
 		while (true) {
-			System.out.println("1. ");
-			System.out.println("2. ");
+			System.out.println("1. 회원 전체 조회");
+			System.out.println("2. 회원 아이디 조회");
 			System.out.println("3. ");
 			System.out.println("4. 관리자 로그아웃");
 			System.out.println("5. 프로그램 종료");
@@ -87,8 +87,10 @@ public class PCmanagement {
 			int choice = validationChoiceNumber(1, 5);
 			adminLoop: switch (choice) {
 			case 1:
+				searchAllUser();
 				break;
 			case 2:
+				searchId();
 				break;
 			case 3:
 				break;
@@ -149,5 +151,24 @@ public class PCmanagement {
 			users = new HashMap<String, User>();
 
 		return users;
+	}
+
+	private void searchAllUser() {
+		Iterator<User> iterator = users.values().iterator();
+		while (iterator.hasNext()) {
+			User user = iterator.next();
+			user.toString();
+		}
+	}
+
+	private void searchId() {
+		System.out.print("검색 이름을 입력하세요 : ");
+		String searchName = scanner.next();
+
+		User user = users.get(searchName);
+		if (user != null)
+			user.toString();
+		else
+			System.out.println("검색 결과가 없습니다.");
 	}
 }
