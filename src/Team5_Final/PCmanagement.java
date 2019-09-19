@@ -158,7 +158,7 @@ public class PCmanagement {
 			System.out.println("3. 이름 조회");
 			System.out.println("4. 이전 메뉴로 돌아가기");
 
-			int choice = validationChoiceNumber(1, 6);
+			int choice = validationChoiceNumber(1, 4);
 			switch (choice) {
 			case 1:
 				searchAllUser();
