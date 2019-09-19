@@ -1,21 +1,25 @@
 package Team5_Final;
 
 import java.util.*;
+import java.io.*;
 
 public class PCmanagement {
 	private final String ADMIN_ID = "admin";
 	private final String ADMIN_PW = "123";
 
 	private Scanner scanner;
-	private HashMap<String,User> users; // 회원리스트 key:id, value:User
+	private Map<String, User> users; // 회원리스트 key:id, value:User
 	private int totalSales; // 매출
 	private int[][] seats; // pc 좌석
-	private 	List<Product> products;
+	private List<Product> products;
 	// 게임 목록
 	private boolean isAdmin;
+	private String userFilenName;
 
 	public PCmanagement() {
 		scanner = new Scanner(System.in);
+		userFilenName = "PcUsers.txt";
+		users = initUsers();
 	}
 
 	public void start() {
@@ -36,7 +40,7 @@ public class PCmanagement {
 
 	private void adminLogin() {
 		System.out.println("관리자 로그인을 시작합니다.");
-		
+
 		isAdmin = checkLoginCount(3);
 		if (isAdmin) {
 			System.out.println("관리자 로그인 성공!");
@@ -78,8 +82,9 @@ public class PCmanagement {
 			System.out.println("2. ");
 			System.out.println("3. ");
 			System.out.println("4. 관리자 로그아웃");
+			System.out.println("5. 프로그램 종료");
 
-			int choice = validationChoiceNumber(1, 4);
+			int choice = validationChoiceNumber(1, 5);
 			adminLoop: switch (choice) {
 			case 1:
 				break;
@@ -90,6 +95,9 @@ public class PCmanagement {
 			case 4:
 				adminLogout();
 				break adminLoop;
+			case 5:
+				exitPCmanagement();
+				break;
 			}
 		}
 	}
@@ -112,5 +120,34 @@ public class PCmanagement {
 		}
 
 		return choice;
+	}
+
+	private void exitPCmanagement() {
+		BufferedOutputStream bos = null;
+		ObjectOutputStream out = null;
+
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(userFilenName))) {
+			oos.writeObject(users);
+		} catch (Exception e) {
+			System.out.println("Exception : " + e.getMessage());
+		}
+
+		System.exit(0);
+	}
+
+	private Map<String, User> initUsers() {
+		Map<String, User> users = null;
+		File file = new File(userFilenName);
+
+		if (file.exists()) {
+			try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream(file))) {
+				users = (HashMap<String, User>) oos.readObject();
+			} catch (Exception e) {
+				System.out.println("Exception : " + e.getMessage());
+			}
+		} else
+			users = new HashMap<String, User>();
+
+		return users;
 	}
 }
