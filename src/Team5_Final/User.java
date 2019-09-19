@@ -63,4 +63,29 @@ public class User implements Serializable {
 		return "이름 : " + name + " / " + "전화번호 : " + phoneNumber + " / " + "나이: " + id + " / " + "비밀번호 : " + password + 
 				" / " + "주민번호 : " + securitNumber;
 	}
+
+	public void setName(String nextLine) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setIndex(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setId(String nextLine) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPassword(String nextLine) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPhoneNumber(String nextLine) {
+		// TODO Auto-generated method stub
+		
+	}
 }
