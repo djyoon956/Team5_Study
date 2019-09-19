@@ -26,8 +26,9 @@ public class Charge {
 			System.out.println("세시간이 추가 되었습니다.");
 			break;
 		case 4:
-			System.out.println();
+			System.out.println("네시간이 추가 되었습니다.");
 			break;
+			
 		}
 
 	}
