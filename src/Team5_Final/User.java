@@ -8,6 +8,7 @@ public class User implements Serializable {
 	private String id;
 	private String password;
 	private String securitNumber;
+	private int money;
 	private int age;
 
 	private boolean isLogin;
@@ -35,6 +36,10 @@ public class User implements Serializable {
 		return id;
 	}
 
+	public void setSaveTime(double saveTime) {
+		this.saveTime = saveTime;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -45,6 +50,11 @@ public class User implements Serializable {
 
 	public int getAge() {
 		return age;
+	}
+
+	
+	public void setLogin(boolean isLogin) {
+		this.isLogin = isLogin;
 	}
 
 	public boolean isLogin() {

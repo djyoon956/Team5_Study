@@ -20,6 +20,14 @@ public class PCmanagement {
 		scanner = new Scanner(System.in);
 		userFilenName = "PcUsers.txt";
 		users = initUsers();
+		users.put("dbsekwjdaa", new User("윤다정", "010-9411-6268", "dbsekwjdaa", "123", "950506-2222222"));
+		users.put("11", new User("윤다정", "010-9411-6268", "11", "123", "950506-2222222"));
+		users.put("22", new User("윤다정", "010-9411-6268", "22", "123", "950506-2222222"));
+		users.put("33", new User("윤다정", "010-9411-6268", "33", "123", "950506-2222222"));
+		users.put("44", new User("윤다정", "010-9411-6268", "44", "123", "950506-2222222"));
+		users.put("55", new User("윤다정", "010-9411-6268", "55", "123", "950506-2222222"));
+		users.put("66", new User("윤다정", "010-9411-6268", "66", "123", "950506-2222222"));
+		users.put("77", new User("윤다정", "010-9411-6268", "77", "123", "950506-2222222"));
 	}
 
 	public void start() {
@@ -77,22 +85,23 @@ public class PCmanagement {
 	}
 
 	private void showAdminMenu() {
-		while (true) {
-			System.out.println("1. 회원 전체 조회");
-			System.out.println("2. 회원 아이디 조회");
-			System.out.println("3. ");
+		adminLoop: while (true) {
+			System.out.println("1. 회원 조회");
+			System.out.println("2. 파일 저장");
+			System.out.println("3. 발주");
 			System.out.println("4. 관리자 로그아웃");
 			System.out.println("5. 프로그램 종료");
 
 			int choice = validationChoiceNumber(1, 5);
-			adminLoop: switch (choice) {
+			switch (choice) {
 			case 1:
-				searchAllUser();
+				showSearchMenu();
 				break;
 			case 2:
-				searchId();
+
 				break;
 			case 3:
+
 				break;
 			case 4:
 				adminLogout();
@@ -150,22 +159,94 @@ public class PCmanagement {
 		return users;
 	}
 
-	private void searchAllUser() {
-		Iterator<User> iterator = users.values().iterator();
-		while (iterator.hasNext()) {
-			User user = iterator.next();
-			user.toString();
+	private void showSearchMenu() {
+		searchLoop: while (true) {
+			System.out.println("1. 전체 조회");
+			System.out.println("2. ID 조회");
+			System.out.println("3. 이름 조회");
+			System.out.println("4. 이전 메뉴로 돌아가기");
+
+			int choice = validationChoiceNumber(1, 4);
+			switch (choice) {
+			case 1:
+				searchAllUser();
+				break;
+			case 2:
+				searchId();
+				break;
+			case 3:
+				searchName();
+				break;
+			case 4:
+				break searchLoop;
+			}
 		}
 	}
 
+	public void searchAllUser() {
+		List<User> targets = new ArrayList<User>(users.values());
+		showSearchUsers(targets);
+	}
+
 	private void searchId() {
+		System.out.print("검색 ID를 입력하세요 : ");
+		String searchName = scanner.next();
+		List<User> targets = new ArrayList<>();
+		targets.add(users.get(searchName));
+
+		showSearchUsers(targets);
+	}
+
+	private void searchName() {
 		System.out.print("검색 이름을 입력하세요 : ");
 		String searchName = scanner.next();
+		List<User> targets = new ArrayList<>();
+		for (User user : users.values()) {
+			if (user.getName().contains(searchName))
+				targets.add(user);
+		}
 
-		User user = users.get(searchName);
-		if (user != null)
-			user.toString();
-		else
+		showSearchUsers(targets);
+	}
+
+	private void showSearchUsers(List<User> users) {
+		if (users.size() > 0) {
+			System.out.println("번호\t이름\t아이디\t전화번호\t나이\t주민 번호");
+			System.out.println("─────────────────────────────────");
+			for (int i = 0; i < users.size(); i++) {
+				User user = users.get(i);
+				System.out.printf("%02d\t%s\t%s\t%s\t%d\t%s\n", (i + 1), user.getName(), user.getId(),
+						user.getPhoneNumber(), user.getAge(), user.getSecuritNumber().split("-")[0]);
+			}
+		} else
 			System.out.println("검색 결과가 없습니다.");
+	}
+
+	public boolean login() {
+		int tryCount = 3;
+		boolean loginCheck = false;
+
+		for (int i = tryCount; i > 0; i--) {
+			System.out.print("ID를 입력해 주세요 : ");
+			String id = scanner.next();
+			User target = users.get(id);
+			if (target != null) {
+				System.out.print("비밀번호를 입력해 주세요 : ");
+				String password = scanner.next();
+				if (target.getPassword().equals(password)) {
+					System.out.println("로그인 성공 하셨습니다.");
+					loginCheck = true;
+					break;
+				} else {
+					System.out.println("비밀번호를 다시 한 번 확인해주세요");
+					System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
+				}
+			} else {
+				System.out.println("일치하는 ID가 없습니다.");
+				System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
+			}
+		}
+		
+		return loginCheck;
 	}
 }
