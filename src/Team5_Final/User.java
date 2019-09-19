@@ -90,7 +90,7 @@ public class User implements Serializable {
 	}
 
 	private String setJoinDay() {
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
 	}
 
 	private int setAge() {
