@@ -130,10 +130,11 @@ public class PCmanagement {
 
 	private void order() {
 
-		showMenu();
+		
 
 		int choice = 0;
-		cartLoop: while (choice != 4) {
+		while (choice != 4) {
+			showMenu();
 			choice = validationChoiceNumber(1, 4);
 			switch (choice) {
 			case 1: // 음료수 장바구니에 담음
@@ -146,11 +147,13 @@ public class PCmanagement {
 				break;
 			case 3: // 결제
 				checkChange();
-				break cartLoop;
+				choice=0;
+				break;
 			case 4: // 주문취소
 				System.out.println("주문이 취소되었습니다.");
 				totalPrice = 0;
 				products.clear();
+				break;
 			}
 		}
 	}
@@ -159,10 +162,10 @@ public class PCmanagement {
 		System.out.println("주문확인");
 		System.out.println("===========================");
 		for (HnProduct hnProduct : products) {
-			System.out.println(hnProduct.name + "\t" + hnProduct.price);
+			System.out.println(hnProduct.name + "\t" + hnProduct.price+ "원");
 		}
 		System.out.println("===========================");
-		System.out.println("총 금액: "+ totalPrice);
+		System.out.println("총 금액: "+ totalPrice+"원");
 		System.out.println("[1]결제    [2]주문취소");
 		
 		int choice = validationChoiceNumber(1, 2);
@@ -182,7 +185,7 @@ public class PCmanagement {
 			}
 			break;
 		case 2:
-			
+			System.out.println("결제가 취소되었습니다.");
 			break;
 		}
 	}
@@ -190,7 +193,7 @@ public class PCmanagement {
 
 	private void showMenu() {
 		System.out.println("메뉴를 선택해주세요.");
-		System.out.println("[1]" + drink.toString() + "//[2]" + snack.toString() + "[3]결재//[4]주문취소");
+		System.out.println("[1]" + drink.toString() + "//[2]" + snack.toString() + "[3]결제//[4]주문취소");
 	}
 
 	void selectSeat(int seatNum) {
@@ -218,16 +221,5 @@ public class PCmanagement {
 		}
 	}
 
-	void whileTest() {
 
-		while (true) {
-			showSeat();
-			System.out.println("좌석을 선택해주세요.");
-			int select = scanner.nextInt();
-			selectSeat(select);
-			if (isSeats) {
-
-			}
-		}
-	}
 }
