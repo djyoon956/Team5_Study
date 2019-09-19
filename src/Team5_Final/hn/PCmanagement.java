@@ -14,9 +14,10 @@ public class PCmanagement {
 	private int totalSales; // 매출
 	private boolean[] seats;
 	private boolean isSeats;
-	private List<HnProduct> products;
-	private Drink drink;
-	private Snack snack;
+	public List<HnProduct> products;
+	public DrinkTest drink;
+	public SnackTest snack;
+	public int totalPrice=0;
 	
 	// 게임 목록
 	private boolean isAdmin;
@@ -24,8 +25,8 @@ public class PCmanagement {
 	public PCmanagement() {
 		scanner = new Scanner(System.in);
 		products = new ArrayList<HnProduct>(); // 장바구니
-		drink=new Drink("음료수", 1000, 100);
-		snack=new Snack("과자", 1500, 100);
+		drink=new DrinkTest("음료수", 1000, 100);
+		snack=new SnackTest("과자", 1500, 100);
 		seats = new boolean[21];
 	}
 
@@ -36,7 +37,7 @@ public class PCmanagement {
 			int choice = validationChoiceNumber(1, 2);
 			switch (choice) {
 			case 1:
-				whileTest();
+				order();
 				break;
 			case 2:
 				adminLogin();
@@ -126,16 +127,16 @@ public class PCmanagement {
 	}
 
 	private void order() {
-		int totalPrice=0;
+		
 		showMenu();
 		int choice = validationChoiceNumber(1, 3);
 		switch (choice) {
 		case 1: //음료수 장바구니에 담음
-			products.add(new Drink());
+			products.add(new DrinkTest());
 			totalPrice+=drink.price;
 			break;
 		case 2: //과자 장바구니에 담음
-			products.add(new Snack());
+			products.add(new SnackTest());
 			totalPrice+=snack.price;
 			break;
 		case 3: //결제
@@ -150,7 +151,7 @@ public class PCmanagement {
 
 	private void showMenu() {
 		System.out.println("메뉴를 선택해주세요.");
-		System.out.println("[1]음료수  [2]과자");
+		System.out.println(drink.toString() + "//" + drink.toString());
 	}
 	
 	void selectSeat(int seatNum) {
