@@ -10,8 +10,8 @@ public class PCmanagement {
 	private Scanner scanner;
 	private Map<String, User> users; // 회원리스트 key:id, value:User
 	private int totalSales; // 매출
-	private int[][] seats; // pc 좌석
 	private List<Product> products;
+	private boolean[] seats;
 	// 게임 목록
 	private boolean isAdmin;
 	private String userFilenName;
@@ -29,13 +29,55 @@ public class PCmanagement {
 			int choice = validationChoiceNumber(1, 2);
 			switch (choice) {
 			case 1:
-
+				userMode();
 				break;
 			case 2:
 				adminLogin();
 				break;
 			}
 		}
+	}
+
+	private void userMode() {
+		System.out.println("1.회원가입");
+		System.out.println("2.시간 충전");
+		System.out.println("3.PC이용");
+		int choice = validationChoiceNumber(1, 3);
+		switch (choice) {
+		case 1:
+			// 회원가입
+			break;
+		case 2:
+			// 시간충전
+			break;
+		case 3:
+			showSeat(); // 현재 좌석상태 출력
+			break;
+		}
+	}
+
+	private void showSeat() {
+		for (int i = 1; i <= seats.length - 1; i++) {
+			if (seats[i]) {
+				System.out.print("■");
+			} else {
+				System.out.print("□");
+			}
+			if ((i % 5) == 0) {
+				System.out.println();
+			}
+		}
+		selectSeat();
+	}
+
+	void selectSeat() {
+		int seatNum = validationChoiceNumber(1, 20);
+		if (!seats[seatNum]) {
+			seats[seatNum] = true;
+		} else {
+			System.out.println("사용중인 좌석입니다.");
+		}
+		System.out.println();
 	}
 
 	private void adminLogin() {
@@ -238,7 +280,7 @@ public class PCmanagement {
 				System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
 			}
 		}
-		
+
 		return loginCheck;
 	}
 }
