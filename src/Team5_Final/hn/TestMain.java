@@ -44,16 +44,10 @@ class Test_hn {
 
 public class TestMain {
 	public static void main(String[] args) {
-		PCmanagement hn = new PCmanagement();
-		hn.showSeat();
-//		PCmanagement pc=new PCmanagement();
-//		pc.products.add(new DrinkTest());
-//		pc.products.add(new DrinkTest());
-//		pc.products.add(new DrinkTest());
-//		pc.products.add(new SnackTest());
-//		pc.products.add(new SnackTest());
-//		pc.products.add(new SnackTest());
-//		pc.start();
+//		PCmanagement hn = new PCmanagement();
+//		hn.showSeat();
+		PCmanagement pc=new PCmanagement();
+		pc.start();
 
 	}
 

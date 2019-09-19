@@ -17,16 +17,16 @@ public class PCmanagement {
 	public List<HnProduct> products;
 	public DrinkTest drink;
 	public SnackTest snack;
-	public int totalPrice=0;
-	
+	public int totalPrice = 0;
+
 	// 게임 목록
 	private boolean isAdmin;
 
 	public PCmanagement() {
 		scanner = new Scanner(System.in);
 		products = new ArrayList<HnProduct>(); // 장바구니
-		drink=new DrinkTest("음료수", 1000, 100);
-		snack=new SnackTest("과자", 1500, 100);
+		drink = new DrinkTest(100);
+		snack = new SnackTest(100);
 		seats = new boolean[21];
 	}
 
@@ -38,6 +38,7 @@ public class PCmanagement {
 			switch (choice) {
 			case 1:
 				order();
+				checkChange();
 				break;
 			case 2:
 				adminLogin();
@@ -45,6 +46,7 @@ public class PCmanagement {
 			}
 		}
 	}
+
 
 	private void adminLogin() {
 		System.out.println("관리자 로그인을 시작합니다.");
@@ -85,14 +87,14 @@ public class PCmanagement {
 	}
 
 	private void showAdminMenu() {
-		while (true) {
+		adminLoop: while (true) {
 			System.out.println("1. ");
 			System.out.println("2. ");
 			System.out.println("3. ");
 			System.out.println("4. 관리자 로그아웃");
 
 			int choice = validationChoiceNumber(1, 4);
-			adminLoop: switch (choice) {
+			switch (choice) {
 			case 1:
 				break;
 			case 2:
@@ -106,7 +108,7 @@ public class PCmanagement {
 		}
 	}
 
-	private int validationChoiceNumber(int startNumber, int endNumber) { //천재...
+	private int validationChoiceNumber(int startNumber, int endNumber) { // 천재...
 		int choice = 0;
 		String word = "입력";
 		while (true) {
@@ -127,33 +129,70 @@ public class PCmanagement {
 	}
 
 	private void order() {
-		
+
 		showMenu();
-		int choice = validationChoiceNumber(1, 3);
-		switch (choice) {
-		case 1: //음료수 장바구니에 담음
-			products.add(new DrinkTest());
-			totalPrice+=drink.price;
-			break;
-		case 2: //과자 장바구니에 담음
-			products.add(new SnackTest());
-			totalPrice+=snack.price;
-			break;
-		case 3: //결제
-			System.out.println("총 금액은 " + totalPrice + "원 입니다.");
-			break;
+
+		int choice = 0;
+		cartLoop: while (choice != 4) {
+			choice = validationChoiceNumber(1, 4);
+			switch (choice) {
+			case 1: // 음료수 장바구니에 담음
+				products.add(new DrinkTest());
+				totalPrice += drink.price;
+				break;
+			case 2: // 과자 장바구니에 담음
+				products.add(new SnackTest());
+				totalPrice += snack.price;
+				break;
+			case 3: // 결제
+				checkChange();
+				break cartLoop;
+			case 4: // 주문취소
+				System.out.println("주문이 취소되었습니다.");
+				totalPrice = 0;
+				products.clear();
+			}
+		}
+	}
+	
+	private void checkChange() {
+		System.out.println("주문확인");
+		System.out.println("===========================");
+		for (HnProduct hnProduct : products) {
+			System.out.println(hnProduct.name + "\t" + hnProduct.price);
+		}
+		System.out.println("===========================");
+		System.out.println("총 금액: "+ totalPrice);
+		System.out.println("[1]결제    [2]주문취소");
 		
-		default:
+		int choice = validationChoiceNumber(1, 2);
+		payLoop: switch (choice) {
+		case 1:
+			System.out.println("지불 금액을 입력해주세요.");
+			int payout=scanner.nextInt();
+			if (payout < totalPrice) {
+				payout = 0;
+				System.out.println("다시 입력해주세요.");
+				System.out.print(">> ");
+				break payLoop;
+			} else {
+				totalSales+=totalPrice;
+				System.out.println("거스름돈: "+ (payout - totalPrice));
+				System.out.println("주문이 완료되었습니다.");
+			}
+			break;
+		case 2:
+			
 			break;
 		}
-
 	}
+
 
 	private void showMenu() {
 		System.out.println("메뉴를 선택해주세요.");
-		System.out.println(drink.toString() + "//" + drink.toString());
+		System.out.println("[1]" + drink.toString() + "//[2]" + snack.toString() + "[3]결재//[4]주문취소");
 	}
-	
+
 	void selectSeat(int seatNum) {
 		if (seatNum != 0 && seatNum < seats.length) {
 			if (!seats[seatNum]) {
@@ -165,7 +204,7 @@ public class PCmanagement {
 			System.out.println("잘못된 좌석번호입니다.");
 		}
 	}
-	
+
 	void showSeat() {
 		for (int i = 1; i <= seats.length - 1; i++) {
 			if (seats[i]) {
@@ -178,16 +217,16 @@ public class PCmanagement {
 			}
 		}
 	}
-	
+
 	void whileTest() {
-		
+
 		while (true) {
 			showSeat();
 			System.out.println("좌석을 선택해주세요.");
 			int select = scanner.nextInt();
 			selectSeat(select);
-			if(isSeats) {
-				
+			if (isSeats) {
+
 			}
 		}
 	}
