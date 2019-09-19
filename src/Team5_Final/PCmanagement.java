@@ -20,6 +20,14 @@ public class PCmanagement {
 		scanner = new Scanner(System.in);
 		userFilenName = "PcUsers.txt";
 		users = initUsers();
+		users.put("dbsekwjdaa", new User("윤다정", "010-9411-6268", "dbsekwjdaa", "123", "950506-2222222"));
+		users.put("11", new User("윤다정", "010-9411-6268", "11", "123", "950506-2222222"));
+		users.put("22", new User("윤다정", "010-9411-6268", "22", "123", "950506-2222222"));
+		users.put("33", new User("윤다정", "010-9411-6268", "33", "123", "950506-2222222"));
+		users.put("44", new User("윤다정", "010-9411-6268", "44", "123", "950506-2222222"));
+		users.put("55", new User("윤다정", "010-9411-6268", "55", "123", "950506-2222222"));
+		users.put("66", new User("윤다정", "010-9411-6268", "66", "123", "950506-2222222"));
+		users.put("77", new User("윤다정", "010-9411-6268", "77", "123", "950506-2222222"));
 	}
 
 	public void start() {
@@ -175,23 +183,18 @@ public class PCmanagement {
 		}
 	}
 
-	private void searchAllUser() {
-		Iterator<User> iterator = users.values().iterator();
-		while (iterator.hasNext()) {
-			User user = iterator.next();
-			user.toString();
-		}
+	public void searchAllUser() {
+		List<User> targets = new ArrayList<User>(users.values());
+		showSearchUsers(targets);
 	}
 
 	private void searchId() {
 		System.out.print("검색 ID를 입력하세요 : ");
 		String searchName = scanner.next();
+		List<User> targets = new ArrayList<>();
+		targets.add(users.get(searchName));
 
-		User user = users.get(searchName);
-		if (user != null)
-			user.toString();
-		else
-			System.out.println("검색 결과가 없습니다.");
+		showSearchUsers(targets);
 	}
 
 	private void searchName() {
@@ -203,9 +206,18 @@ public class PCmanagement {
 				targets.add(user);
 		}
 
-		if (targets.size() > 0) {
-			System.out.println("검색 인원 : " + targets.size());
-			targets.forEach(x -> x.toString());
+		showSearchUsers(targets);
+	}
+
+	private void showSearchUsers(List<User> users) {
+		if (users.size() > 0) {
+			System.out.println("번호\t이름\t아이디\t전화번호\t나이\t주민 번호");
+			System.out.println("─────────────────────────────────");
+			for (int i = 0; i < users.size(); i++) {
+				User user = users.get(i);
+				System.out.printf("%02d\t%s\t%s\t%s\t%d\t%s\n", (i + 1), user.getName(), user.getId(),
+						user.getPhoneNumber(), user.getAge(), user.getSecuritNumber().split("-")[0]);
+			}
 		} else
 			System.out.println("검색 결과가 없습니다.");
 	}
