@@ -10,7 +10,7 @@ import vending.Drink;
 
 //재고 확인 기능
 
-private String ShowStock(Drink drink) { // 옵션 추가
+private String ShowStock(int count) { // 옵션 추가
 	private void addSub(Product drink) { 
 		System.out.println("선택해주세요.");
 		System.out.println("1. 넣기\t2. 빼기");
@@ -38,10 +38,6 @@ private String ShowStock(Drink drink) { // 옵션 추가
 
 	
 
-	public static void main(String[] args) {
-		
-		System.out.println();
 
-	}
 
-}
+

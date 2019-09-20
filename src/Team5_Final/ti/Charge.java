@@ -70,9 +70,9 @@ public class Charge {
 					System.out.println("6시간이 충전되었습니다.");
 					int change = money2 - 5000;
 					System.out.println("거스름 돈은 " + change + "원 입니다.");
-				} else if (money2 == 5000){
+				} else if (money2 == 5000) {
 					System.out.println("6시간이 충전되었습니다.");
-				} else {	
+				} else {
 					System.out.println("투입한 금액이 부족합니다.");
 				}
 				break;
@@ -86,9 +86,9 @@ public class Charge {
 					System.out.println("15시간이 충전되었습니다.");
 					int change = money3 - 10000;
 					System.out.println("거스름 돈은 " + change + "원 입니다.");
-				} else if (money3 == 10000){
+				} else if (money3 == 10000) {
 					System.out.println("15시간이 충전되었습니다.");
-				} else { 	
+				} else {
 					System.out.println("투입한 금액이 부족합니다.");
 				}
 
