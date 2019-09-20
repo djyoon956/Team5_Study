@@ -21,13 +21,14 @@ public class Admin {
 	private String userFilenName;
 	private Map<String, User> users;
 
-	public Admin() {
+	public Admin(Scanner scanner) {
 		userFilenName = "PcUsers.txt";
-		scanner = new Scanner(System.in);
+		this.scanner = scanner;
 	}
 
 	public void adminStart(Map<String, User> users) {
 		this.users = users;
+
 		adminLogin();
 		showAdminMenu();
 	}

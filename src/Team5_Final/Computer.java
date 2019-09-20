@@ -7,11 +7,12 @@ public class Computer {
 	int number;
 	boolean isUse;
 	Scanner scanner;
-	
-	public Computer() {
-		scanner=new Scanner(System.in);
+
+	public Computer(int number) {
+		this.number = number;
+		scanner = new Scanner(System.in);
 	}
-	
+
 	public boolean login(List<User> users) {
 		int tryCount = 3;
 		boolean loginCheck = false;
@@ -39,8 +40,8 @@ public class Computer {
 
 		return loginCheck;
 	}
-	
+
 	public void logout() {
-		
+
 	}
 }
