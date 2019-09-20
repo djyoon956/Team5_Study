@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class PCmanagement {
-
 	private Scanner scanner;
 	private Map<String, User> users;
 	private Computer[] computers;
@@ -121,9 +120,15 @@ public class PCmanagement {
 				String password = scanner.next();
 				if (target.getPassword().equals(password)) {
 					if (target.getIsLogin()) {
-
+						for (Computer computer : computers) {
+							if (computer.getUser() != null && computer.getUser().equals(target)) {
+								computer.powerOff();
+							}
+						}
+					} else {
+						System.out.println("미 사용중인 사용자입니다.");
 					}
-
+					break;
 				} else {
 					System.out.println("비밀번호를 다시 한 번 확인해주세요");
 					System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
