@@ -90,7 +90,7 @@ public class Computer {
 		timer.schedule(timeThread, 1000, 1000); // timeThread 작업을 delay없이 1초씩 반복한다.
 	}
 
-	private void powerOff() {
+	public void powerOff() {
 		if (user != null) {
 			System.out.println(user.getName() + "님 사용을 종료합니다.");
 			timer.cancel();
@@ -98,6 +98,6 @@ public class Computer {
 			user = null;
 			isUse = false;
 		} else
-			System.out.println("미 사용중인 컴퓨터 입니다.");
+			System.out.println("미 사용중인 컴퓨터입니다.");
 	}
 }
