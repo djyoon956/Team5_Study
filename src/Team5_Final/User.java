@@ -66,11 +66,11 @@ public class User implements Serializable {
 		return isLogin;
 	}
 
-	public double getSaveTime() {
+	public long getSaveTime() {
 		return saveTime;
 	}
 
-	public double getTotalTime() {
+	public int getTotalTime() {
 		return totalTime;
 	}
 

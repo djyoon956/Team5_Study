@@ -19,80 +19,54 @@ public class Computer {
 		scanner = new Scanner(System.in);
 		timer = new Timer();
 	}
-	
-	
 
 	public Scanner getScanner() {
 		return scanner;
 	}
 
-
-
 	public void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}
-
-
 
 	public int getNumber() {
 		return number;
 	}
 
-
-
 	public void setNumber(int number) {
 		this.number = number;
 	}
-
-
 
 	public boolean getIsUse() {
 		return isUse;
 	}
 
-
-
 	public void setIsUse(boolean isUse) {
 		this.isUse = isUse;
 	}
-
-
 
 	public User getUser() {
 		return user;
 	}
 
-
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
 
 	public Timer getTimer() {
 		return timer;
 	}
 
-
-
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 	}
-
-
 
 	public double getTestCount() {
 		return testCount;
 	}
 
-
-
 	public void setTestCount(double testCount) {
 		this.testCount = testCount;
 	}
-
-
 
 	public void powerOn(User user) {
 		this.user = user;
@@ -108,7 +82,7 @@ public class Computer {
 			@Override
 			public void run() {
 				System.out.println(user.getId() + "//SaveTime : " + user.getSaveTime());
-				double result = (user.getSaveTime() - 1);
+				long result = (user.getSaveTime() - 1);
 				System.out.println(user.getId() + "result : " + result);
 				user.setSaveTime(result);
 				System.err.println(user.getId() + "//result saveTime : " + user.getSaveTime());
