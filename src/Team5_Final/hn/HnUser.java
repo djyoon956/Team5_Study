@@ -1,11 +1,12 @@
-package Team5_Final;
+package Team5_Final.hn;
+
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class User implements Serializable {
+public class HnUser implements Serializable {
 	private String name;
 	private String phoneNumber;
 	private String id;
@@ -17,13 +18,13 @@ public class User implements Serializable {
 	private double totalTime; // 누적시간
 	private String joinDay; // 가입일
 
-	public User(String name, String phoneNumber, String id, String password, String securitNumber) {
+	public HnUser(String name, String phoneNumber, String id, String password, String securitNumber) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.id = id;
 		this.password = password;
 		this.securitNumber = securitNumber;
-		this.age = setAge();
+		// 나이해줘야함
 		this.joinDay = setJoinDay();
 	}
 
@@ -70,6 +71,7 @@ public class User implements Serializable {
 	public double getTotalTime() {
 		return totalTime;
 	}
+	
 
 	public void setTotalTime(double totalTime) {
 		this.totalTime = totalTime;
@@ -85,26 +87,11 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "이름 : " + name + " / " + "전화번호 : " + phoneNumber + " / " + "아이디: " + id + " / " + "비밀번호 : " + password
-				+ " / " + "주민번호 : " + securitNumber + "/" + "나이 :" + age + "살";
+		return "이름 : " + name + " / " + "전화번호 : " + phoneNumber + " / " + "나이: " + id + " / " + "비밀번호 : " + password
+				+ " / " + "주민번호 : " + securitNumber;
 	}
 
 	private String setJoinDay() {
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
-	}
-
-	private int setAge() {
-		Calendar calendar = Calendar.getInstance();
-		int year = calendar.get(Calendar.YEAR);
-		int age = 0;
-		if (securitNumber.charAt(6) == '1' || securitNumber.charAt(6) == '2') {
-			// parInt는 ()안에 문자열이온다.
-			// Integer.parseInt() : 괄호안의 문자열을 숫자로 변환한다.
-			age = year - 1900 - Integer.parseInt(securitNumber.substring(0, 2)); // 문자열의 a번째 문자부터
-		} else {
-			age = year - 2000 - Integer.parseInt(securitNumber.substring(0, 2));
-		}
-
-		return age;
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 	}
 }

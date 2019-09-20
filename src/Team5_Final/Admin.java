@@ -1,90 +1,37 @@
-package Team5_Final.hn;
+package Team5_Final;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
-import java.util.*;
-
-import Team5_Final.User;
-
-import java.io.*;
-
-public class PCmanagement {
+public class Admin {
 	private final String ADMIN_ID = "admin";
 	private final String ADMIN_PW = "123";
-
-	public Scanner scanner;
-	public Map<String, User> users; // 회원리스트 key:id, value:User
-	public int totalSales; // 매출
-	public List<HnProduct> products;
-	public boolean[] seats;
-	// 게임 목록
 	private boolean isAdmin;
 	private String userFilenName;
+	private Map<String, User> users; // 회원리스트 key:id, value:User
+	private Scanner scanner;
 
-	public PCmanagement() {
+	public Admin() {
+		users = initUsers();
 		scanner = new Scanner(System.in);
 		userFilenName = "PcUsers.txt";
-		users = initUsers();
 	}
-
-	public void start() {
-		while (true) {
-			System.out.println("1. 사용자 모드");
-			System.out.println("2. 관리자 모드");
-			int choice = validationChoiceNumber(1, 2);
-			switch (choice) {
-			case 1:
-				userMode();
-				break;
-			case 2:
-				adminLogin();
-				break;
-			}
-		}
+	
+	
+	public void adminStart() {
+		adminLogin();
 	}
-
-	private void userMode() {
-		System.out.println("1.회원가입");
-		System.out.println("2.시간 충전");
-		System.out.println("3.PC이용");
-		int choice = validationChoiceNumber(1, 3);
-		switch (choice) {
-		case 1:
-			// 회원가입
-			break;
-		case 2:
-			// 시간충전
-			break;
-		case 3:
-			showSeat(); // 현재 좌석상태 출력
-			break;
-		}
-	}
-
-	private void showSeat() {
-		for (int i = 1; i <= seats.length - 1; i++) {
-			if (seats[i]) {
-				System.out.print("■");
-			} else {
-				System.out.print("□");
-			}
-			if ((i % 5) == 0) {
-				System.out.println();
-			}
-		}
-		selectSeat();
-	}
-
-	void selectSeat() {
-		int seatNum = validationChoiceNumber(1, 20);
-		if (!seats[seatNum]) {
-			seats[seatNum] = true;
-		} else {
-			System.out.println("사용중인 좌석입니다.");
-		}
-		System.out.println();
-	}
-
-	private void adminLogin() {
+	public void adminLogin() {
 		System.out.println("관리자 로그인을 시작합니다.");
 
 		isAdmin = checkLoginCount(3);
@@ -130,13 +77,13 @@ public class PCmanagement {
 			System.out.println("4. 관리자 로그아웃");
 			System.out.println("5. 프로그램 종료");
 
-			int choice = validationChoiceNumber(1, 5);
+			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 5);
 			switch (choice) {
 			case 1:
 				showSearchMenu();
 				break;
 			case 2:
-
+				saveUserInfoFile();
 				break;
 			case 3:
 
@@ -149,26 +96,6 @@ public class PCmanagement {
 				break;
 			}
 		}
-	}
-
-	private int validationChoiceNumber(int startNumber, int endNumber) {
-		int choice = 0;
-		String word = "입력";
-		while (true) {
-			System.out.printf("%s >> ", word);
-			if (scanner.hasNextInt()) {
-				choice = scanner.nextInt();
-				if (choice >= startNumber && choice <= endNumber)
-					break;
-				else
-					word = "재 입력";
-			} else {
-				scanner.next();
-				word = "재 입력";
-			}
-		}
-
-		return choice;
 	}
 
 	private void exitPCmanagement() {
@@ -204,7 +131,7 @@ public class PCmanagement {
 			System.out.println("3. 이름 조회");
 			System.out.println("4. 이전 메뉴로 돌아가기");
 
-			int choice = validationChoiceNumber(1, 4);
+			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
 			switch (choice) {
 			case 1:
 				searchAllUser();
@@ -259,32 +186,37 @@ public class PCmanagement {
 		} else
 			System.out.println("검색 결과가 없습니다.");
 	}
+	
+	private void saveUserInfoFile() {
+		String userCsv = "users.csv";
+		FileOutputStream fos = null;
+		OutputStreamWriter osw = null;
+		BufferedWriter bw = null;
+		try {
+			fos = new FileOutputStream(userCsv);
+			osw = new OutputStreamWriter(fos, "EUC-KR");
+			bw = new BufferedWriter(osw);
 
-	public boolean login() {
-		int tryCount = 3;
-		boolean loginCheck = false;
-
-		for (int i = tryCount; i > 0; i--) {
-			System.out.print("ID를 입력해 주세요 : ");
-			String id = scanner.next();
-			User target = users.get(id);
-			if (target != null) {
-				System.out.print("비밀번호를 입력해 주세요 : ");
-				String password = scanner.next();
-				if (target.getPassword().equals(password)) {
-					System.out.println("로그인 성공 하셨습니다.");
-					loginCheck = true;
-					break;
-				} else {
-					System.out.println("비밀번호를 다시 한 번 확인해주세요");
-					System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
-				}
-			} else {
-				System.out.println("일치하는 ID가 없습니다.");
-				System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
+			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,누적 시간,가입일");
+			bw.newLine();
+			int index = 0;
+			for (User user : users.values()) {
+				bw.write(++index + "," + user.getName() + "," + user.getId() + "," + user.getPhoneNumber() + ","
+						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getTotalTime() + ","
+						+ user.getJoinDay());
+				bw.newLine();
+			}
+			System.out.println("파일 저장을 완료했습니다.");
+		} catch (Exception e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			try {
+				bw.close();
+				osw.close();
+				fos.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
 			}
 		}
-
-		return loginCheck;
 	}
 }

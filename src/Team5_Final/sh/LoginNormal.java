@@ -29,8 +29,6 @@ public class LoginNormal {
 	
 	
 	public boolean login() {
-		users = new HashMap();
-		users.put("kos157", new User("psh","010","id","123","900"));
 		
 		int tryCount = 3;
 		boolean loginCheck = false;

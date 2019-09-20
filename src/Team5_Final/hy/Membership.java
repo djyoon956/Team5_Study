@@ -75,19 +75,6 @@ public class Membership {
 		System.out.print("주민번호('-' 없이)>> ");
 		String securitNumber = sc.next().trim(); // 앞뒤로 들어오는 공백을 없애기위해 trim()사용
 
-		Calendar calendar = Calendar.getInstance();
-		int year = calendar.get(Calendar.YEAR);
-		if (securitNumber.charAt(6) == '1' || securitNumber.charAt(6) == '2') {
-			// parInt는 ()안에 문자열이온다.
-			// Integer.parseInt() : 괄호안의 문자열을 숫자로 변환한다.
-			System.out.println(year - 1900 - Integer.parseInt(securitNumber.substring(0, 2)) + "살");// substring(a, b) :
-																									// 문자열의 a번째 문자부터
-																									// b-1번째 까지의 문자를
-																									// 뽑아낸다.
-		} else {
-			System.out.println(year - 2000 - Integer.parseInt(securitNumber.substring(0, 2)) + "살");
-		}
-
 		User user = new User(name, phonenumber, id, password, securitNumber);
 		users.put(user.getId(), user);
 		System.out.println(user);
