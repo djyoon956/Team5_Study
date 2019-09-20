@@ -24,7 +24,7 @@ public class PCmanagement {
 	
 	void showSeat() {
 		for (int i = 1; i <= computers.length - 1; i++) {
-			if (computers[i].isUse) {
+			if (computers[i].getIsUse()) {
 				System.out.print("■");
 			} else {
 				System.out.print("□");
@@ -37,8 +37,8 @@ public class PCmanagement {
 
 	void selectSeat() {
 		int seatNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
-		if (!computers[seatNum].isUse) {
-			computers[seatNum].isUse = true;
+		if (!computers[seatNum].getIsUse()) {
+			computers[seatNum].setIsUse(true);
 			showSeat();
 			System.out.println("좌석선택 완료");
 		}
