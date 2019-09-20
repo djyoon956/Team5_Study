@@ -1,14 +1,10 @@
 package Team5_Final;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,6 +12,7 @@ import java.util.Scanner;
 public class Admin {
 	private final String ADMIN_ID = "admin";
 	private final String ADMIN_PW = "123";
+	private final int COUNT = 100; // 음료, 과자는 초기값 100개가 있는 상태이다.
 	private boolean isAdmin;
 	private Scanner scanner;
 	private String userFilenName;
@@ -88,7 +85,7 @@ public class Admin {
 				saveUserInfoFile();
 				break;
 			case 3:
-
+				stockManagement();
 				break;
 			case 4:
 				adminLogout();
@@ -203,6 +200,64 @@ public class Admin {
 				fos.close();
 			} catch (Exception e2) {
 				System.out.println("Exception : " + e2.getMessage());
+			}
+		}
+	}
+
+	private void stockManagement() { // 음료,과자 재고관리
+		scanner = new Scanner(System.in);
+		Drink drink = new Drink();
+
+		System.out.println("관리할 품목을 선택해주세요.");
+		System.out.println("1. 음료\t2. 과자");
+		System.out.print(">> ");
+		int num = scanner.nextInt();
+
+		// 음료
+		if (num == 1) {
+			System.out.println("1. 발주\t2. 반품");
+			System.out.print(">> ");
+			int num1 = scanner.nextInt();
+			if (num1 == 1) {// 발주
+				System.out.println("몇 개를 발주넣으겠습니까?");
+				System.out.print(">> ");
+				int nb = scanner.nextInt();
+				int add = COUNT + nb;
+				System.out.println("현재 음료 재고" + add + "개 있습니다.");
+			} else if (num1 == 2) {// 반품
+				System.out.println("몇 개를 반품하시겠습니까?");
+				System.out.print(">> ");
+				int nb = scanner.nextInt();
+				if (COUNT > nb) {
+					int sub = COUNT - nb;
+					System.out.println("현재 음료 재고" + sub + "개 있습니다.");
+				} else {
+					System.out.println("갯수가 부족합니다. 다시 입력해주세요.");
+					stockManagement();
+				}
+			}
+		}
+		if (num == 2) {
+			System.out.println("1. 발주\t2. 반품");
+			System.out.print(">> ");
+			int num1 = scanner.nextInt();
+			if (num1 == 1) {// 발주
+				System.out.println("몇 개를 발주넣으겠습니까?");
+				System.out.print(">> ");
+				int nb = scanner.nextInt();
+				int add = COUNT + nb;
+				System.out.println("현재 과자 재고" + add + "개 있습니다.");
+			} else if (num1 == 2) {// 반품
+				System.out.println("몇 개를 반품하시겠습니까?");
+				System.out.print(">> ");
+				int nb = scanner.nextInt();
+				if (COUNT > nb) {
+					int sub = COUNT - nb;
+					System.out.println("현재 과자 재고" + sub + "개 있습니다.");
+				} else {
+					System.out.println("갯수가 부족합니다. 다시 입력해주세요.");
+					stockManagement();
+				}
 			}
 		}
 	}
