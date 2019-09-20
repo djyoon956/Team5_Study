@@ -140,7 +140,7 @@ public class PCRoom {
 			switch (choicenum) {
 			case 1:
 				users.get(id).setTotalTime(1);
-				users.get(id).setSaveTime(1);
+				users.get(id).setSaveTime(10);
 				System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money1 = scanner.nextInt();
 				System.out.println("1시간이 추가 되었습니다.");
@@ -151,7 +151,7 @@ public class PCRoom {
 				break;
 			case 2:
 				users.get(id).setTotalTime(6);
-				users.get(id).setSaveTime(6);
+				users.get(id).setSaveTime(60);
 				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money2 = scanner.nextInt();
 				System.out.println("6시간이 충전되었습니다.");
@@ -162,7 +162,7 @@ public class PCRoom {
 				break;
 			case 3:
 				users.get(id).setTotalTime(15);
-				users.get(id).setSaveTime(15);
+				users.get(id).setSaveTime(150);
 				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money3 = scanner.nextInt();
 				System.out.println("15시간이 충전되었습니다.");
