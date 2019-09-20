@@ -106,11 +106,11 @@ public class Charge {
 
 	public void showMenu() {
 		System.out.println("=====================");
-		System.out.println("==== 회원 시간 요금제  =====");
-		System.out.println("==== 1.1000원 1시간   =====");
-		System.out.println("==== 2.5000원 6시간   =====");
-		System.out.println("==== 3.10000원 15시간 ====");
-		System.out.println("=======================");
+		System.out.println("======== 회원 시간 요금제  ========");
+		System.out.println("======= 1.1000원 1시간  ========");
+		System.out.println("====== 2.5000원 6시간  =========");
+		System.out.println("====== 3.10000원 15시간  =======");
+		System.out.println("============================");
 		System.out.println("1~3번중에 맞는 요금으로 선택해 주세요.");
 
 	}
@@ -120,12 +120,10 @@ public class Charge {
 	}
 
 	public static void main(String[] args) {
-		// users.put("taeik0303", new User("권태일", "010-3148-1088", 32, "1234",
-		// "888888-1111111"));
 		Charge charge = new Charge();
 		charge.users.put("taeik0303", new User("권태일", "010-3148-1088", "taeik0303", "1234", "888888-1111111"));
 		charge.charge();
-
+		
 	}
 
 }
