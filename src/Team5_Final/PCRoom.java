@@ -20,14 +20,13 @@ public class PCRoom {
 	private int totalSales;
 	private Drink drink;
 	private Snack snack;
-	
 
 	public PCRoom() {
 		userFilenName = "PcUsers.txt";
 		scanner = new Scanner(System.in);
-		products= new ArrayList<Product>();
-		drink=new Drink(100);
-		snack=new Snack(100);
+		products = new ArrayList<Product>();
+		drink = new Drink(100);
+		snack = new Snack(100);
 		admin = new Admin(scanner);
 		pcm = new PCmanagement(scanner);
 		users = initUsers();
@@ -85,9 +84,8 @@ public class PCRoom {
 			order();
 			break;
 		}
-	} 
-	
-	
+	}
+
 	private void signUp() {
 		System.out.println("회원가입을 시작합니다.");
 		System.out.print("이름 >> ");
@@ -141,8 +139,8 @@ public class PCRoom {
 
 			switch (choicenum) {
 			case 1:
-				users.get(id).setTotalTime(1.0);
-				users.get(id).setSaveTime(1.0);
+				users.get(id).setTotalTime(1);
+				users.get(id).setSaveTime(1);
 				System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money1 = scanner.nextInt();
 				System.out.println("1시간이 추가 되었습니다.");
@@ -152,8 +150,8 @@ public class PCRoom {
 				}
 				break;
 			case 2:
-				users.get(id).setTotalTime(6.0);
-				users.get(id).setSaveTime(6.0);
+				users.get(id).setTotalTime(6);
+				users.get(id).setSaveTime(6);
 				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money2 = scanner.nextInt();
 				System.out.println("6시간이 충전되었습니다.");
@@ -163,8 +161,8 @@ public class PCRoom {
 				}
 				break;
 			case 3:
-				users.get(id).setTotalTime(15.0);
-				users.get(id).setSaveTime(15.0);
+				users.get(id).setTotalTime(15);
+				users.get(id).setSaveTime(15);
 				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money3 = scanner.nextInt();
 				System.out.println("15시간이 충전되었습니다.");
@@ -193,12 +191,12 @@ public class PCRoom {
 		System.out.println("=======================");
 		System.out.println("1~3번중에 맞는 요금으로 선택해 주세요.");
 	}
-	
+
 	private void order() {
 		int choice = 0;
-		int drinkCount=0;
-		int snackCount=0;
-		Orderloop:while (choice != 4) {
+		int drinkCount = 0;
+		int snackCount = 0;
+		Orderloop: while (choice != 4) {
 			showMenu();
 			choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
 			switch (choice) {
@@ -215,11 +213,11 @@ public class PCRoom {
 				productsPrint();
 				break;
 			case 3: // 결제
-				if(products.size()>0) {
+				if (products.size() > 0) {
 					checkChange();
-					choice=0;
-					drink.count-=drinkCount;
-					snack.count-=snackCount;
+					choice = 0;
+					drink.count -= drinkCount;
+					snack.count -= snackCount;
 				} else {
 					System.out.println("제품을 선택해주세요.");
 				}
@@ -232,37 +230,37 @@ public class PCRoom {
 			}
 		}
 	}
-	
+
 	private void showMenu() {
 		System.out.println("메뉴를 선택해주세요.");
 		System.out.println("[1] " + drink.toString());
 		System.out.println("[2] " + snack.toString());
 		System.out.println("[3] 결제하기");
 		System.out.println("[4] 주문취소");
-		
+
 	}
-	
+
 	private void checkChange() {
 		System.out.println("주문확인");
-		
+
 		productsPrint();
 
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 		payLoop: switch (choice) {
 		case 1:
 			System.out.println("지불 금액을 입력해주세요.");
-			int payout=scanner.nextInt();
+			int payout = scanner.nextInt();
 			if (payout < totalPrice) {
 				payout = 0;
 				System.out.println("다시 입력해주세요.");
 				System.out.print(">> ");
 				break payLoop;
 			} else {
-				totalSales+=totalPrice;
-				System.out.println("거스름돈: "+ (payout - totalPrice));
+				totalSales += totalPrice;
+				System.out.println("거스름돈: " + (payout - totalPrice));
 				System.out.println("주문이 완료되었습니다.");
 			}
-			
+
 			break;
 		case 2:
 			System.out.println("결제가 취소되었습니다.");
@@ -271,15 +269,15 @@ public class PCRoom {
 			break;
 		}
 	}
-	
+
 	public void productsPrint() {
 		System.out.println("===========================");
 		System.out.println("주문목록");
 		for (Product product : products) {
-			System.out.println(product.name + "\t" + product.price+ "원");
+			System.out.println(product.name + "\t" + product.price + "원");
 		}
 		System.out.println("===========================");
-		System.out.println("총 금액: "+ totalPrice+"원");
+		System.out.println("총 금액: " + totalPrice + "원");
 		System.out.println("[1]결제    [2]주문취소");
 	}
 }
