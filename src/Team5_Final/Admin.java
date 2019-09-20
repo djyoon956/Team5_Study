@@ -17,20 +17,21 @@ public class Admin {
 	private final String ADMIN_ID = "admin";
 	private final String ADMIN_PW = "123";
 	private boolean isAdmin;
-	private String userFilenName;
-	private Map<String, User> users; // 회원리스트 key:id, value:User
 	private Scanner scanner;
+	private String userFilenName;
+	private Map<String, User> users;
 
-	public Admin() {
-		users = initUsers();
-		scanner = new Scanner(System.in);
+	public Admin(Scanner scanner) {
 		userFilenName = "PcUsers.txt";
+		this.scanner = scanner;
 	}
-	
-	
-	public void adminStart() {
+
+	public void adminStart(Map<String, User> users) {
+		this.users = users;
+
 		adminLogin();
 	}
+
 	public void adminLogin() {
 		System.out.println("관리자 로그인을 시작합니다.");
 
@@ -70,6 +71,7 @@ public class Admin {
 	}
 
 	private void showAdminMenu() {
+		System.out.println("in");
 		adminLoop: while (true) {
 			System.out.println("1. 회원 조회");
 			System.out.println("2. 파일 저장");
@@ -96,6 +98,7 @@ public class Admin {
 				break;
 			}
 		}
+		System.out.println("탈출");
 	}
 
 	private void exitPCmanagement() {
@@ -106,22 +109,6 @@ public class Admin {
 		}
 
 		System.exit(0);
-	}
-
-	private Map<String, User> initUsers() {
-		Map<String, User> users = null;
-		File file = new File(userFilenName);
-
-		if (file.exists()) {
-			try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream(file))) {
-				users = (HashMap<String, User>) oos.readObject();
-			} catch (Exception e) {
-				System.out.println("Exception : " + e.getMessage());
-			}
-		} else
-			users = new HashMap<String, User>();
-
-		return users;
 	}
 
 	private void showSearchMenu() {
@@ -186,7 +173,7 @@ public class Admin {
 		} else
 			System.out.println("검색 결과가 없습니다.");
 	}
-	
+
 	private void saveUserInfoFile() {
 		String userCsv = "users.csv";
 		FileOutputStream fos = null;
@@ -215,7 +202,7 @@ public class Admin {
 				osw.close();
 				fos.close();
 			} catch (Exception e2) {
-				// TODO: handle exception
+				System.out.println("Exception : " + e2.getMessage());
 			}
 		}
 	}
