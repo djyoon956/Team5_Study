@@ -62,7 +62,7 @@ public class User implements Serializable {
 		this.isLogin = isLogin;
 	}
 
-	public boolean isLogin() {
+	public boolean getIsLogin() {
 		return isLogin;
 	}
 

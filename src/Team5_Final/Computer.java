@@ -70,30 +70,29 @@ public class Computer {
 
 	public void powerOn(User user) {
 		this.user = user;
+		isUse = true;
 		start();
 	}
 
 	private void start() {
-		testCount = user.getSaveTime();
 		TimerTask timeThread = new TimerTask() {
-			int time = 0;
-			int test = 1000;
-
 			@Override
 			public void run() {
-				System.out.println(user.getId() + "//SaveTime : " + user.getSaveTime());
-				long result = (user.getSaveTime() - 1);
-				System.out.println(user.getId() + "result : " + result);
-				user.setSaveTime(result);
-				System.err.println(user.getId() + "//result saveTime : " + user.getSaveTime());
+				long currentSaveTime = user.getSaveTime();
+				if (currentSaveTime > 0) {
+					long result = (currentSaveTime - 1);
+					user.setSaveTime(result);
+				} else
+					powerOff();
 			};
 		};
-		timer.schedule(timeThread, 0, 1000);
-		// end후...
+
+		timer.schedule(timeThread, 1000, 1000); // timeThread 작업을 delay없이 1초씩 반복한다.
 	}
 
 	private void powerOff() {
 		if (user != null) {
+			System.out.println(user.getName() + "님 사용을 종료합니다.");
 			timer.cancel();
 			user.setLogin(false);
 			user = null;

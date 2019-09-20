@@ -78,7 +78,7 @@ public class PCRoom {
 			addTime();
 			break;
 		case 3:
-			pcm.pcStart(); // 현재 좌석상태 출력
+			pcm.showMenu(users); // 현재 좌석상태 출력
 			break;
 		case 4:
 			order();
