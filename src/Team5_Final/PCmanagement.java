@@ -11,7 +11,7 @@ public class PCmanagement {
 
 	public PCmanagement(Scanner scanner) {
 		this.scanner = scanner;
-		computers = new Computer[] {};
+		computers = new Computer[20];
 
 		for (int i = 0; i < 20; i++)
 			computers[i] = new Computer(i + 1);

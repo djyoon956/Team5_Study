@@ -1,6 +1,7 @@
 package Team5_Final;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Computer {
@@ -13,7 +14,7 @@ public class Computer {
 		scanner = new Scanner(System.in);
 	}
 
-	public boolean login(List<User> users) {
+	public boolean login(Map<String, User> users) {
 		int tryCount = 3;
 		boolean loginCheck = false;
 

@@ -9,37 +9,20 @@ import java.util.Scanner;
 
 public class PCRoom {
 	private Map<String, User> users; // 회원리스트 key:id, value:User
-
-	Admin admin;
-	PCmanagement pcm;
-	User user;
-	Scanner scanner;
+	private Admin admin;
+	private PCmanagement pcm;
+	private Scanner scanner;
 	private String userFilenName;
+
 	public PCRoom() {
-		pcm=new PCmanagement();
-		user=new User();
-		users = initUsers();
-		admin=new Admin();
-		scanner=new Scanner(System.in);
 		userFilenName = "PcUsers.txt";
-	}
-	
-	private Map<String, User> initUsers() {
-		Map<String, User> users = null;
-		File file = new File(userFilenName);
+		scanner = new Scanner(System.in);
 
-		if (file.exists()) {
-			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-				users = (HashMap<String, User>) ois.readObject();
-			} catch (Exception e) {
-				System.out.println("Exception : " + e.getMessage());
-			}
-		} else
-			users = new HashMap<String, User>();
-
-		return users;
+		admin = new Admin(scanner);
+		pcm = new PCmanagement(scanner);
+		users = initUsers();
 	}
-	
+
 	public void start() {
 		while (true) {
 			System.out.println("1. 사용자 모드");
@@ -55,7 +38,23 @@ public class PCRoom {
 			}
 		}
 	}
-	
+
+	private Map<String, User> initUsers() {
+		Map<String, User> users = null;
+		File file = new File(userFilenName);
+
+		if (file.exists()) {
+			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+				users = (HashMap<String, User>) ois.readObject();
+			} catch (Exception e) {
+				System.out.println("Exception : " + e.getMessage());
+			}
+		} else
+			users = new HashMap<String, User>();
+
+		return users;
+	}
+
 	private void userMode() {
 		System.out.println("1.회원가입");
 		System.out.println("2.시간 충전");
@@ -73,7 +72,7 @@ public class PCRoom {
 			break;
 		}
 	}
-	
+
 	private void signUp() {
 		System.out.println("회원가입을 시작합니다.");
 		System.out.print("이름 >> ");
@@ -115,5 +114,4 @@ public class PCRoom {
 		users.put(user.getId(), user);
 		System.out.println(user.getName() + "님 회원가입이 완료되었습니다.");
 	}
-	
 }
