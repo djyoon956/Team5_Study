@@ -30,7 +30,6 @@ public class Admin {
 		this.users = users;
 
 		adminLogin();
-		showAdminMenu();
 	}
 
 	public void adminLogin() {
@@ -72,6 +71,7 @@ public class Admin {
 	}
 
 	private void showAdminMenu() {
+		System.out.println("in");
 		adminLoop: while (true) {
 			System.out.println("1. 회원 조회");
 			System.out.println("2. 파일 저장");
@@ -98,6 +98,7 @@ public class Admin {
 				break;
 			}
 		}
+		System.out.println("탈출");
 	}
 
 	private void exitPCmanagement() {
