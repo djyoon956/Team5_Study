@@ -13,13 +13,13 @@ public class User implements Serializable {
 	private String securitNumber;
 	private int age;
 	private boolean isLogin;
-	private double saveTime; // 잔여시간
-	private double totalTime; // 누적시간
+	private long saveTime; // 잔여시간
+	private int totalTime; // 누적시간
 	private String joinDay; // 가입일
-	
 
 	public User() {
 	}
+
 	public User(String name, String phoneNumber, String id, String password, String securitNumber) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
@@ -42,7 +42,7 @@ public class User implements Serializable {
 		return id;
 	}
 
-	public void setSaveTime(double saveTime) {
+	public void setSaveTime(long saveTime) {
 		this.saveTime = saveTime;
 	}
 
@@ -66,15 +66,15 @@ public class User implements Serializable {
 		return isLogin;
 	}
 
-	public double getSaveTime() {
+	public long getSaveTime() {
 		return saveTime;
 	}
 
-	public double getTotalTime() {
+	public int getTotalTime() {
 		return totalTime;
 	}
 
-	public void setTotalTime(double totalTime) {
+	public void setTotalTime(int totalTime) {
 		this.totalTime = totalTime;
 	}
 
