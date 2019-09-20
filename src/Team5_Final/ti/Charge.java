@@ -51,33 +51,45 @@ public class Charge {
 				users.get(id).setSaveTime(1000);
 				System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money1 = scanner.nextInt();
-				System.out.println("1시간이 추가 되었습니다.");
 				if (money1 > 1000) {
+					System.out.println("1시간이 추가 되었습니다.");
 					int change = money1 - 1000;
-					System.out.println("거스름 돈 입니다. " + change + "원 입니다.");
+					System.out.println("거스름 돈은 " + change + "원 입니다.");
+				} else if (money1 == 1000) {
+					System.out.println("1시간이 추가 되었습니다.");
+				} else {
+					System.out.println("투입한 금액이 부족합니다.");
 				}
 				break;
 			case 2:
 				users.get(id).setTotalTime(5000);
 				users.get(id).setSaveTime(5000);
-				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
+				System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money2 = scanner.nextInt();
-				System.out.println("6시간이 충전되었습니다.");
 				if (money2 > 5000) {
+					System.out.println("6시간이 충전되었습니다.");
 					int change = money2 - 5000;
-					System.out.println("거스름 돈 입니다. " + change + "원 입니다.");
+					System.out.println("거스름 돈은 " + change + "원 입니다.");
+				} else if (money2 == 5000){
+					System.out.println("6시간이 충전되었습니다.");
+				} else {	
+					System.out.println("투입한 금액이 부족합니다.");
 				}
 				break;
 			case 3:
 				users.get(id).setTotalTime(10000);
 				users.get(id).setSaveTime(10000);
-				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
+				System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money3 = scanner.nextInt();
-				System.out.println("15시간이 충전되었습니다.");
 
 				if (money3 > 10000) {
+					System.out.println("15시간이 충전되었습니다.");
 					int change = money3 - 10000;
 					System.out.println("거스름 돈은 " + change + "원 입니다.");
+				} else if (money3 == 10000){
+					System.out.println("15시간이 충전되었습니다.");
+				} else { 	
+					System.out.println("투입한 금액이 부족합니다.");
 				}
 
 				break;
