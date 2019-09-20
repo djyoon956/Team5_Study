@@ -3,21 +3,31 @@ package Team5_Final;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class PCRoom {
 	private Map<String, User> users; // 회원리스트 key:id, value:User
+	private List<Product> products;
 	private Admin admin;
 	private PCmanagement pcm;
 	private Scanner scanner;
 	private String userFilenName;
+	private int totalPrice;
+	private int totalSales;
+	private Drink drink;
+	private Snack snack;
+	
 
 	public PCRoom() {
 		userFilenName = "PcUsers.txt";
 		scanner = new Scanner(System.in);
-
+		products= new ArrayList<Product>();
+		drink=new Drink(100);
+		snack=new Snack(100);
 		admin = new Admin(scanner);
 		pcm = new PCmanagement(scanner);
 		users = initUsers();
@@ -59,7 +69,8 @@ public class PCRoom {
 		System.out.println("1.회원가입");
 		System.out.println("2.시간 충전");
 		System.out.println("3.PC이용");
-		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
+		System.out.println("4.매점이용");
+		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
 		switch (choice) {
 		case 1:
 			signUp();
@@ -70,9 +81,13 @@ public class PCRoom {
 		case 3:
 			pcm.pcStart(); // 현재 좌석상태 출력
 			break;
+		case 4:
+			order();
+			break;
 		}
-	}
-
+	} 
+	
+	
 	private void signUp() {
 		System.out.println("회원가입을 시작합니다.");
 		System.out.print("이름 >> ");
@@ -177,6 +192,94 @@ public class PCRoom {
 		System.out.println("==== 3.10000원 15시간 ====");
 		System.out.println("=======================");
 		System.out.println("1~3번중에 맞는 요금으로 선택해 주세요.");
+	}
+	
+	private void order() {
+		int choice = 0;
+		int drinkCount=0;
+		int snackCount=0;
+		Orderloop:while (choice != 4) {
+			showMenu();
+			choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
+			switch (choice) {
+			case 1: // 음료수 장바구니에 담음
+				products.add(new Drink());
+				totalPrice += drink.price;
+				drinkCount++;
+				productsPrint();
+				break;
+			case 2: // 과자 장바구니에 담음
+				products.add(new Snack());
+				totalPrice += snack.price;
+				snackCount++;
+				productsPrint();
+				break;
+			case 3: // 결제
+				if(products.size()>0) {
+					checkChange();
+					choice=0;
+					drink.count-=drinkCount;
+					snack.count-=snackCount;
+				} else {
+					System.out.println("제품을 선택해주세요.");
+				}
+				break;
+			case 4: // 주문취소
+				System.out.println("주문이 취소되었습니다.");
+				totalPrice = 0;
+				products.clear();
+				break Orderloop;
+			}
+		}
+	}
+	
+	private void showMenu() {
+		System.out.println("메뉴를 선택해주세요.");
+		System.out.println("[1] " + drink.toString());
+		System.out.println("[2] " + snack.toString());
+		System.out.println("[3] 결제하기");
+		System.out.println("[4] 주문취소");
+		
+	}
+	
+	private void checkChange() {
+		System.out.println("주문확인");
+		
+		productsPrint();
 
+		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
+		payLoop: switch (choice) {
+		case 1:
+			System.out.println("지불 금액을 입력해주세요.");
+			int payout=scanner.nextInt();
+			if (payout < totalPrice) {
+				payout = 0;
+				System.out.println("다시 입력해주세요.");
+				System.out.print(">> ");
+				break payLoop;
+			} else {
+				totalSales+=totalPrice;
+				System.out.println("거스름돈: "+ (payout - totalPrice));
+				System.out.println("주문이 완료되었습니다.");
+			}
+			
+			break;
+		case 2:
+			System.out.println("결제가 취소되었습니다.");
+			totalPrice = 0;
+			products.clear();
+			break;
+		}
+	}
+	
+	public void productsPrint() {
+		System.out.println("===========================");
+		System.out.println("주문목록");
+		for (Product product : products) {
+			System.out.println(product.name + "\t" + product.price+ "원");
+		}
+		System.out.println("===========================");
+		System.out.println("총 금액: "+ totalPrice+"원");
+		System.out.println("[1]결제    [2]주문취소");
 	}
 }
