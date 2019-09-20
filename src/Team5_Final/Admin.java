@@ -19,27 +19,26 @@ public class Admin {
 	private boolean isAdmin;
 	private Scanner scanner;
 	private String userFilenName;
-	
+	private Map<String, User> users;
 
-	public Admin() {
-		scanner = new Scanner(System.in);
+	public Admin(Scanner scanner) {
 		userFilenName = "PcUsers.txt";
-		
+		this.scanner = scanner;
 	}
-	
-	
+
 	public void adminStart(Map<String, User> users) {
-		adminLogin(users);
-		showAdminMenu(users);
+		this.users = users;
+
+		adminLogin();
 	}
-	
-	public void adminLogin(Map<String, User> users) {
+
+	public void adminLogin() {
 		System.out.println("관리자 로그인을 시작합니다.");
 
 		isAdmin = checkLoginCount(3);
 		if (isAdmin) {
 			System.out.println("관리자 로그인 성공!");
-			showAdminMenu(users);
+			showAdminMenu();
 		} else
 			System.out.println("관리자 로그인에 실패했습니다. 초기화면으로 이동합니다.");
 	}
@@ -71,7 +70,8 @@ public class Admin {
 		System.out.println("관리자 모드를 종료합니다.");
 	}
 
-	private void showAdminMenu(Map<String, User> users) {
+	private void showAdminMenu() {
+		System.out.println("in");
 		adminLoop: while (true) {
 			System.out.println("1. 회원 조회");
 			System.out.println("2. 파일 저장");
@@ -82,10 +82,10 @@ public class Admin {
 			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 5);
 			switch (choice) {
 			case 1:
-				showSearchMenu(users);
+				showSearchMenu();
 				break;
 			case 2:
-				saveUserInfoFile(users);
+				saveUserInfoFile();
 				break;
 			case 3:
 
@@ -94,13 +94,14 @@ public class Admin {
 				adminLogout();
 				break adminLoop;
 			case 5:
-				exitPCmanagement(users);
+				exitPCmanagement();
 				break;
 			}
 		}
+		System.out.println("탈출");
 	}
 
-	private void exitPCmanagement(Map<String, User> users) {
+	private void exitPCmanagement() {
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(userFilenName))) {
 			oos.writeObject(users);
 		} catch (Exception e) {
@@ -110,7 +111,7 @@ public class Admin {
 		System.exit(0);
 	}
 
-	private void showSearchMenu(Map<String, User> users) {
+	private void showSearchMenu() {
 		searchLoop: while (true) {
 			System.out.println("1. 전체 조회");
 			System.out.println("2. ID 조회");
@@ -120,13 +121,13 @@ public class Admin {
 			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
 			switch (choice) {
 			case 1:
-				searchAllUser(users);
+				searchAllUser();
 				break;
 			case 2:
-				searchId(users);
+				searchId();
 				break;
 			case 3:
-				searchName(users);
+				searchName();
 				break;
 			case 4:
 				break searchLoop;
@@ -134,12 +135,12 @@ public class Admin {
 		}
 	}
 
-	public void searchAllUser(Map<String, User> users) {
+	public void searchAllUser() {
 		List<User> targets = new ArrayList<User>(users.values());
 		showSearchUsers(targets);
 	}
 
-	private void searchId(Map<String, User> users) {
+	private void searchId() {
 		System.out.print("검색 ID를 입력하세요 : ");
 		String searchName = scanner.next();
 		List<User> targets = new ArrayList<>();
@@ -148,7 +149,7 @@ public class Admin {
 		showSearchUsers(targets);
 	}
 
-	private void searchName(Map<String, User> users) {
+	private void searchName() {
 		System.out.print("검색 이름을 입력하세요 : ");
 		String searchName = scanner.next();
 		List<User> targets = new ArrayList<>();
@@ -172,8 +173,8 @@ public class Admin {
 		} else
 			System.out.println("검색 결과가 없습니다.");
 	}
-	
-	private void saveUserInfoFile(Map<String, User> users) {
+
+	private void saveUserInfoFile() {
 		String userCsv = "users.csv";
 		FileOutputStream fos = null;
 		OutputStreamWriter osw = null;
@@ -201,9 +202,8 @@ public class Admin {
 				osw.close();
 				fos.close();
 			} catch (Exception e2) {
+				System.out.println("Exception : " + e2.getMessage());
 			}
 		}
 	}
-	
-
 }

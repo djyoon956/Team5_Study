@@ -9,37 +9,20 @@ import java.util.Scanner;
 
 public class PCRoom {
 	private Map<String, User> users; // 회원리스트 key:id, value:User
-
-	Admin admin;
-	PCmanagement pcm;
-	User user;
-	Scanner scanner;
+	private Admin admin;
+	private PCmanagement pcm;
+	private Scanner scanner;
 	private String userFilenName;
+
 	public PCRoom() {
-		pcm=new PCmanagement();
-		user=new User();
-		users = initUsers();
-		admin=new Admin();
-		scanner=new Scanner(System.in);
 		userFilenName = "PcUsers.txt";
-	}
-	
-	private Map<String, User> initUsers() {
-		Map<String, User> users = null;
-		File file = new File(userFilenName);
+		scanner = new Scanner(System.in);
 
-		if (file.exists()) {
-			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-				users = (HashMap<String, User>) ois.readObject();
-			} catch (Exception e) {
-				System.out.println("Exception : " + e.getMessage());
-			}
-		} else
-			users = new HashMap<String, User>();
-
-		return users;
+		admin = new Admin(scanner);
+		pcm = new PCmanagement(scanner);
+		users = initUsers();
 	}
-	
+
 	public void start() {
 		while (true) {
 			System.out.println("1. 사용자 모드");
@@ -55,7 +38,23 @@ public class PCRoom {
 			}
 		}
 	}
-	
+
+	private Map<String, User> initUsers() {
+		Map<String, User> users = null;
+		File file = new File(userFilenName);
+
+		if (file.exists()) {
+			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+				users = (HashMap<String, User>) ois.readObject();
+			} catch (Exception e) {
+				System.out.println("Exception : " + e.getMessage());
+			}
+		} else
+			users = new HashMap<String, User>();
+
+		return users;
+	}
+
 	private void userMode() {
 		System.out.println("1.회원가입");
 		System.out.println("2.시간 충전");
@@ -66,14 +65,14 @@ public class PCRoom {
 			signUp();
 			break;
 		case 2:
-			// 시간충전
+			addTime();
 			break;
 		case 3:
 			pcm.pcStart(); // 현재 좌석상태 출력
 			break;
 		}
 	}
-	
+
 	private void signUp() {
 		System.out.println("회원가입을 시작합니다.");
 		System.out.print("이름 >> ");
@@ -115,5 +114,69 @@ public class PCRoom {
 		users.put(user.getId(), user);
 		System.out.println(user.getName() + "님 회원가입이 완료되었습니다.");
 	}
-	
+
+	private void addTime() {
+		System.out.print("시간을 추가 할 회원 ID를 입력하세요 : ");
+		String id = scanner.next();
+		if (users.containsKey(id)) {
+			showPcMenu();
+
+			System.out.print("번호를 선택해주세요 : ");
+			int choicenum = scanner.nextInt();
+
+			switch (choicenum) {
+			case 1:
+				users.get(id).setTotalTime(1.0);
+				users.get(id).setSaveTime(1.0);
+				System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
+				int money1 = scanner.nextInt();
+				System.out.println("1시간이 추가 되었습니다.");
+				if (money1 > 1000) {
+					int change = money1 - 1000;
+					System.out.println("거스름 돈 입니다. " + change + "원 입니다.");
+				}
+				break;
+			case 2:
+				users.get(id).setTotalTime(6.0);
+				users.get(id).setSaveTime(6.0);
+				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
+				int money2 = scanner.nextInt();
+				System.out.println("6시간이 충전되었습니다.");
+				if (money2 > 5000) {
+					int change = money2 - 5000;
+					System.out.println("거스름 돈 입니다. " + change + "원 입니다.");
+				}
+				break;
+			case 3:
+				users.get(id).setTotalTime(15.0);
+				users.get(id).setSaveTime(15.0);
+				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
+				int money3 = scanner.nextInt();
+				System.out.println("15시간이 충전되었습니다.");
+
+				if (money3 > 10000) {
+					int change = money3 - 10000;
+					System.out.println("거스름 돈은 " + change + "원 입니다.");
+				}
+				break;
+			default:
+				System.out.println("요금표에 맞는 금액을 충전해주세요.");
+			}
+
+		} else {
+			System.out.println("ID를 확인해주세요.");
+		}
+
+	}
+
+	public void showPcMenu() {
+		System.out.println("=====================");
+		System.out.println("==== 회원 시간 요금제  =====");
+		System.out.println("==== 1.1000원 1시간   =====");
+		System.out.println("==== 2.5000원 6시간   =====");
+		System.out.println("==== 3.10000원 15시간 ====");
+		System.out.println("=======================");
+		System.out.println("1~3번중에 맞는 요금으로 선택해 주세요.");
+
+	}
 }
