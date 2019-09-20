@@ -11,13 +11,18 @@ public class PCmanagement {
 
 	public PCmanagement(Scanner scanner) {
 		this.scanner = scanner;
-		computers = new Computer[20];
+		computers = new Computer[21];
 
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < computers.length; i++)
 			computers[i] = new Computer(i + 1);
 	}
 
 	public void pcStart() {
+		showSeat();
+		selectSeat();
+	}
+	
+	void showSeat() {
 		for (int i = 1; i <= computers.length - 1; i++) {
 			if (computers[i].isUse) {
 				System.out.print("■");
@@ -28,13 +33,16 @@ public class PCmanagement {
 				System.out.println();
 			}
 		}
-		selectSeat();
 	}
 
 	void selectSeat() {
 		int seatNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
-		if (!computers[seatNum].isUse)
+		if (!computers[seatNum].isUse) {
 			computers[seatNum].isUse = true;
+			showSeat();
+			System.out.println("좌석선택 완료");
+		}
+		
 		else
 			System.out.println("사용중인 좌석입니다.");
 
