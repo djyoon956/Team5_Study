@@ -17,27 +17,29 @@ public class Admin {
 	private final String ADMIN_ID = "admin";
 	private final String ADMIN_PW = "123";
 	private boolean isAdmin;
-	private String userFilenName;
-	private Map<String, User> users; // 회원리스트 key:id, value:User
 	private Scanner scanner;
+	private String userFilenName;
+	
 
 	public Admin() {
-		users = initUsers();
 		scanner = new Scanner(System.in);
 		userFilenName = "PcUsers.txt";
+		
 	}
 	
 	
-	public void adminStart() {
-		adminLogin();
+	public void adminStart(Map<String, User> users) {
+		adminLogin(users);
+		showAdminMenu(users);
 	}
-	public void adminLogin() {
+	
+	public void adminLogin(Map<String, User> users) {
 		System.out.println("관리자 로그인을 시작합니다.");
 
 		isAdmin = checkLoginCount(3);
 		if (isAdmin) {
 			System.out.println("관리자 로그인 성공!");
-			showAdminMenu();
+			showAdminMenu(users);
 		} else
 			System.out.println("관리자 로그인에 실패했습니다. 초기화면으로 이동합니다.");
 	}
@@ -69,7 +71,7 @@ public class Admin {
 		System.out.println("관리자 모드를 종료합니다.");
 	}
 
-	private void showAdminMenu() {
+	private void showAdminMenu(Map<String, User> users) {
 		adminLoop: while (true) {
 			System.out.println("1. 회원 조회");
 			System.out.println("2. 파일 저장");
@@ -80,10 +82,10 @@ public class Admin {
 			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 5);
 			switch (choice) {
 			case 1:
-				showSearchMenu();
+				showSearchMenu(users);
 				break;
 			case 2:
-				saveUserInfoFile();
+				saveUserInfoFile(users);
 				break;
 			case 3:
 
@@ -92,13 +94,13 @@ public class Admin {
 				adminLogout();
 				break adminLoop;
 			case 5:
-				exitPCmanagement();
+				exitPCmanagement(users);
 				break;
 			}
 		}
 	}
 
-	private void exitPCmanagement() {
+	private void exitPCmanagement(Map<String, User> users) {
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(userFilenName))) {
 			oos.writeObject(users);
 		} catch (Exception e) {
@@ -108,23 +110,7 @@ public class Admin {
 		System.exit(0);
 	}
 
-	private Map<String, User> initUsers() {
-		Map<String, User> users = null;
-		File file = new File(userFilenName);
-
-		if (file.exists()) {
-			try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream(file))) {
-				users = (HashMap<String, User>) oos.readObject();
-			} catch (Exception e) {
-				System.out.println("Exception : " + e.getMessage());
-			}
-		} else
-			users = new HashMap<String, User>();
-
-		return users;
-	}
-
-	private void showSearchMenu() {
+	private void showSearchMenu(Map<String, User> users) {
 		searchLoop: while (true) {
 			System.out.println("1. 전체 조회");
 			System.out.println("2. ID 조회");
@@ -134,13 +120,13 @@ public class Admin {
 			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
 			switch (choice) {
 			case 1:
-				searchAllUser();
+				searchAllUser(users);
 				break;
 			case 2:
-				searchId();
+				searchId(users);
 				break;
 			case 3:
-				searchName();
+				searchName(users);
 				break;
 			case 4:
 				break searchLoop;
@@ -148,12 +134,12 @@ public class Admin {
 		}
 	}
 
-	public void searchAllUser() {
+	public void searchAllUser(Map<String, User> users) {
 		List<User> targets = new ArrayList<User>(users.values());
 		showSearchUsers(targets);
 	}
 
-	private void searchId() {
+	private void searchId(Map<String, User> users) {
 		System.out.print("검색 ID를 입력하세요 : ");
 		String searchName = scanner.next();
 		List<User> targets = new ArrayList<>();
@@ -162,7 +148,7 @@ public class Admin {
 		showSearchUsers(targets);
 	}
 
-	private void searchName() {
+	private void searchName(Map<String, User> users) {
 		System.out.print("검색 이름을 입력하세요 : ");
 		String searchName = scanner.next();
 		List<User> targets = new ArrayList<>();
@@ -187,7 +173,7 @@ public class Admin {
 			System.out.println("검색 결과가 없습니다.");
 	}
 	
-	private void saveUserInfoFile() {
+	private void saveUserInfoFile(Map<String, User> users) {
 		String userCsv = "users.csv";
 		FileOutputStream fos = null;
 		OutputStreamWriter osw = null;
@@ -215,8 +201,9 @@ public class Admin {
 				osw.close();
 				fos.close();
 			} catch (Exception e2) {
-				// TODO: handle exception
 			}
 		}
 	}
+	
+
 }

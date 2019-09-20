@@ -17,6 +17,8 @@ public class User implements Serializable {
 	private double totalTime; // 누적시간
 	private String joinDay; // 가입일
 
+	public User() {
+	}
 	public User(String name, String phoneNumber, String id, String password, String securitNumber) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
