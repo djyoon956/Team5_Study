@@ -9,19 +9,19 @@ import java.util.Calendar;
 import java.util.List;
 
 public class SalesInfo {
-	private String buyer;
+	private User buyer;
 	private String productName;
-	private String price;
+	private int price;
 	private String date;
 
-	public SalesInfo(String buyer, String productName, String price) {
+	public SalesInfo(User buyer, String productName, int price) {
 		this.buyer = buyer;
 		this.productName = productName;
 		this.price = price;
 		this.date = setDate();
 	}
 
-	public String getBuyer() {
+	public User getBuyer() {
 		return buyer;
 	}
 
@@ -29,7 +29,7 @@ public class SalesInfo {
 		return productName;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 

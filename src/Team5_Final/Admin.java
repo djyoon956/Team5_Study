@@ -17,14 +17,16 @@ public class Admin {
 	private Scanner scanner;
 	private String userFilenName;
 	private Map<String, User> users;
+	List<SalesInfo> salesInfos;
 
 	public Admin(Scanner scanner) {
 		userFilenName = "PcUsers.txt";
 		this.scanner = scanner;
 	}
 
-	public void adminStart(Map<String, User> users) {
+	public void adminStart(Map<String, User> users, List<SalesInfo> salesInfos) {
 		this.users = users;
+		this.salesInfos = salesInfos;
 
 		adminLogin();
 	}
@@ -82,7 +84,7 @@ public class Admin {
 				showSearchMenu();
 				break;
 			case 2:
-				saveUserInfoFile();
+				showFileMenu();
 				break;
 			case 3:
 				stockManagement();
@@ -171,6 +173,20 @@ public class Admin {
 			System.out.println("검색 결과가 없습니다.");
 	}
 
+	private void showFileMenu() {
+		System.out.println("1. 회원 파일 저장");
+		System.out.println("2. 매출 파일 저장");
+		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
+		switch (choice) {
+		case 1:
+			saveUserInfoFile();
+			break;
+		case 2:
+
+			break;
+		}
+	}
+
 	private void saveUserInfoFile() {
 		String userCsv = "users.csv";
 		FileOutputStream fos = null;
@@ -204,8 +220,39 @@ public class Admin {
 		}
 	}
 
+	private void saveSalesInfoFile() {
+		String userCsv = "users.csv";
+		FileOutputStream fos = null;
+		OutputStreamWriter osw = null;
+		BufferedWriter bw = null;
+		try {
+			fos = new FileOutputStream(userCsv);
+			osw = new OutputStreamWriter(fos, "EUC-KR");
+			bw = new BufferedWriter(osw);
+
+			bw.write("번호,제품명,구매자,구매자 아이디,가격,구매 날짜,구매 시간");
+			bw.newLine();
+			int index = 0;
+			for (SalesInfo salesInfo : salesInfos) {
+				bw.write(++index + "," + salesInfo.getProductName() + "," + salesInfo.getBuyer().getName() + ","
+						+ salesInfo.getBuyer().getId() + "," + salesInfo.getPrice() + "," + salesInfo.getDate());
+				bw.newLine();
+			}
+			System.out.println("파일 저장을 완료했습니다.");
+		} catch (Exception e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			try {
+				bw.close();
+				osw.close();
+				fos.close();
+			} catch (Exception e2) {
+				System.out.println("Exception : " + e2.getMessage());
+			}
+		}
+	}
+
 	private void stockManagement() { // 음료,과자 재고관리
-		scanner = new Scanner(System.in);
 		Drink drink = new Drink();
 
 		System.out.println("관리할 품목을 선택해주세요.");

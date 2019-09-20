@@ -99,7 +99,7 @@ public class User implements Serializable {
 	private int setAge() {
 		Calendar calendar = Calendar.getInstance();
 		int year = calendar.get(Calendar.YEAR);
-		int age = 0;
+		int age = 0;//950506-2222222
 		if (securitNumber.charAt(6) == '1' || securitNumber.charAt(6) == '2') {
 			// parInt는 ()안에 문자열이온다.
 			// Integer.parseInt() : 괄호안의 문자열을 숫자로 변환한다.

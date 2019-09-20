@@ -67,7 +67,7 @@ public class PCmanagement {
 			System.out.print("ID를 입력해 주세요 : ");
 			String id = scanner.next();
 			User target = users.get(id);
-			target.setSaveTime(30); // 테스트 용 코드
+			//target.setSaveTime(30); // 테스트 용 코드
 			if (target != null) {
 				System.out.print("비밀번호를 입력해 주세요 : ");
 				String password = scanner.next();

@@ -20,11 +20,13 @@ public class PCRoom {
 	private int totalSales;
 	private Drink drink;
 	private Snack snack;
+	private List<SalesInfo> salesInfos;
 
 	public PCRoom() {
 		userFilenName = "PcUsers.txt";
 		scanner = new Scanner(System.in);
 		products = new ArrayList<Product>();
+		salesInfos = new ArrayList<SalesInfo>();
 		drink = new Drink(100);
 		snack = new Snack(100);
 		admin = new Admin(scanner);
@@ -42,7 +44,7 @@ public class PCRoom {
 				userMode();
 				break;
 			case 2:
-				admin.adminStart(users);
+				admin.adminStart(users, salesInfos);
 				break;
 			}
 		}
@@ -131,7 +133,8 @@ public class PCRoom {
 	private void addTime() {
 		System.out.print("시간을 추가 할 회원 ID를 입력하세요 : ");
 		String id = scanner.next();
-		if (users.containsKey(id)) {
+		User targetUser = users.get(id);
+		if (targetUser != null) {
 			showPcMenu();
 
 			System.out.print("번호를 선택해주세요 : ");
@@ -139,34 +142,36 @@ public class PCRoom {
 
 			switch (choicenum) {
 			case 1:
-				users.get(id).setTotalTime(1);
-				users.get(id).setSaveTime(10);
+				targetUser.setTotalTime(1);
+				targetUser.setSaveTime(10);
 				System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money1 = scanner.nextInt();
 				System.out.println("1시간이 추가 되었습니다.");
+				addSalesInfos(targetUser, "Pc 시간 추가", 1000);
 				if (money1 > 1000) {
 					int change = money1 - 1000;
 					System.out.println("거스름 돈 입니다. " + change + "원 입니다.");
 				}
 				break;
 			case 2:
-				users.get(id).setTotalTime(6);
-				users.get(id).setSaveTime(60);
+				targetUser.setTotalTime(6);
+				targetUser.setSaveTime(60);
 				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money2 = scanner.nextInt();
 				System.out.println("6시간이 충전되었습니다.");
+				addSalesInfos(targetUser, "Pc 시간 추가", 5000);
 				if (money2 > 5000) {
 					int change = money2 - 5000;
 					System.out.println("거스름 돈 입니다. " + change + "원 입니다.");
 				}
 				break;
 			case 3:
-				users.get(id).setTotalTime(15);
-				users.get(id).setSaveTime(150);
+				targetUser.setTotalTime(15);
+				targetUser.setSaveTime(150);
 				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money3 = scanner.nextInt();
 				System.out.println("15시간이 충전되었습니다.");
-
+				addSalesInfos(targetUser, "Pc 시간 추가", 10000);
 				if (money3 > 10000) {
 					int change = money3 - 10000;
 					System.out.println("거스름 돈은 " + change + "원 입니다.");
@@ -180,6 +185,10 @@ public class PCRoom {
 			System.out.println("ID를 확인해주세요.");
 		}
 
+	}
+
+	private void addSalesInfos(User buyer, String productName, int price) {
+		salesInfos.add(new SalesInfo(buyer, productName, price));
 	}
 
 	public void showPcMenu() {
