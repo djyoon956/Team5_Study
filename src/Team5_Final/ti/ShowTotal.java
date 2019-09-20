@@ -18,7 +18,7 @@ public class ShowTotal {
 
 	class totalSales {
 		public totalSales(int showTotal) {
-			this.showTotal = showTotal;
+			//this.showTotal = showTotal;
 		}
 		
 
