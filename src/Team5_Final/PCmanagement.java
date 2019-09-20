@@ -26,7 +26,7 @@ public class PCmanagement {
 			selectSeat();
 			break;
 		case 2:
-
+			logout();
 			break;
 		}
 	}
@@ -68,7 +68,7 @@ public class PCmanagement {
 			System.out.print("ID를 입력해 주세요 : ");
 			String id = scanner.next();
 			User target = users.get(id);
-			target.setSaveTime(1000);
+			target.setSaveTime(30); // 테스트 용 코드
 			if (target != null) {
 				System.out.print("비밀번호를 입력해 주세요 : ");
 				String password = scanner.next();
@@ -107,5 +107,31 @@ public class PCmanagement {
 			computers[i] = new Computer(i + 1);
 
 		return computers;
+	}
+
+	private void logout() {
+		int tryCount = 3;
+
+		for (int i = tryCount; i > 0; i--) {
+			System.out.print("ID를 입력해 주세요 : ");
+			String id = scanner.next();
+			User target = users.get(id);
+			if (target != null) {
+				System.out.print("비밀번호를 입력해 주세요 : ");
+				String password = scanner.next();
+				if (target.getPassword().equals(password)) {
+					if (target.getIsLogin()) {
+
+					}
+
+				} else {
+					System.out.println("비밀번호를 다시 한 번 확인해주세요");
+					System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
+				}
+			} else {
+				System.out.println("일치하는 ID가 없습니다.");
+				System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
+			}
+		}
 	}
 }
