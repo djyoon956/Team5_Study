@@ -11,12 +11,11 @@ import java.util.Scanner;
 
 public class PCRoom {
 	private Map<String, User> users; // 회원리스트 key:id, value:User
-	private List<Product> products;
+	private List<Product> orders; // 장바구니
 	private Admin admin;
 	private PCmanagement pcm;
 	private Scanner scanner;
 	private String userFilenName;
-	private int totalPrice;
 	private int totalSales;
 	private Drink drink;
 	private Snack snack;
@@ -25,7 +24,7 @@ public class PCRoom {
 	public PCRoom() {
 		userFilenName = "PcUsers.txt";
 		scanner = new Scanner(System.in);
-		products = new ArrayList<Product>();
+		orders = new ArrayList<Product>();
 		salesInfos = new ArrayList<SalesInfo>();
 		drink = new Drink(100);
 		snack = new Snack(100);
@@ -205,28 +204,30 @@ public class PCRoom {
 		int choice = 0;
 		int drinkCount = 0;
 		int snackCount = 0;
+		int totalPrice = 0;
 		Orderloop: while (choice != 4) {
 			showMenu();
 			choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
 			switch (choice) {
 			case 1: // 음료수 장바구니에 담음
-				products.add(new Drink());
+				orders.add(new Drink());
 				totalPrice += drink.price;
 				drinkCount++;
-				productsPrint();
+				productsPrint(totalPrice);
 				break;
 			case 2: // 과자 장바구니에 담음
-				products.add(new Snack());
+				orders.add(new Snack());
 				totalPrice += snack.price;
 				snackCount++;
-				productsPrint();
+				productsPrint(totalPrice);
 				break;
 			case 3: // 결제
-				if (products.size() > 0) {
-					checkChange();
+				if (orders.size() > 0) {
+					checkChange(totalPrice);
 					choice = 0;
 					drink.count -= drinkCount;
 					snack.count -= snackCount;
+
 				} else {
 					System.out.println("제품을 선택해주세요.");
 				}
@@ -234,7 +235,7 @@ public class PCRoom {
 			case 4: // 주문취소
 				System.out.println("주문이 취소되었습니다.");
 				totalPrice = 0;
-				products.clear();
+				orders.clear();
 				break Orderloop;
 			}
 		}
@@ -249,10 +250,10 @@ public class PCRoom {
 
 	}
 
-	private void checkChange() {
+	private void checkChange(int totalPrice) {
 		System.out.println("주문확인");
 
-		productsPrint();
+		productsPrint(totalPrice);
 
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 		payLoop: switch (choice) {
@@ -274,15 +275,15 @@ public class PCRoom {
 		case 2:
 			System.out.println("결제가 취소되었습니다.");
 			totalPrice = 0;
-			products.clear();
+			orders.clear();
 			break;
 		}
 	}
 
-	public void productsPrint() {
+	private void productsPrint(int totalPrice) {
 		System.out.println("===========================");
 		System.out.println("주문목록");
-		for (Product product : products) {
+		for (Product product : orders) {
 			System.out.println(product.name + "\t" + product.price + "원");
 		}
 		System.out.println("===========================");
