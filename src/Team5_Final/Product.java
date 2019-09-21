@@ -13,7 +13,7 @@ class Drink extends Product {
 	public Drink() {
 		this.name = "음료수";
 		this.price = 1000;
-		count--;
+		this.count--;
 	}
 
 	public Drink(int count) {
