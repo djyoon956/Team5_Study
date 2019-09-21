@@ -157,8 +157,8 @@ public class PCmanagement {
 				System.out.println("이동하실 자리번호를 입력해주세요.");
 				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 				if (!computers[comNum - 1].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
-					computer.powerOff();
 					computers[comNum - 1].setUser(computer.getUser());
+					computer.powerOff();
 					computers[comNum - 1].powerOn(user);
 					break;
 				} else {
