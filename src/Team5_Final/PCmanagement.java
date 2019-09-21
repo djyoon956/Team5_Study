@@ -40,13 +40,13 @@ public class PCmanagement {
 	}
 
 	public void showSeat() { // 접근제어자
-		for (int i = 1; i <= computers.length - 1; i++) {
+		for (int i = 0; i < computers.length; i++) {
 			if (computers[i].getIsUse()) {
 				System.out.print("■");
 			} else {
 				System.out.print("□");
 			}
-			if ((i % 5) == 0) {
+			if (((i + 1) % 5) == 0) {
 				System.out.println();
 			}
 		}
@@ -55,7 +55,7 @@ public class PCmanagement {
 
 	private void selectSeat() {
 		int seatNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
-		Computer selectComputer = computers[seatNum + 1];
+		Computer selectComputer = computers[seatNum - 1];
 		if (!selectComputer.getIsUse()) {
 			if (login(selectComputer)) {
 				showSeat();
@@ -108,7 +108,7 @@ public class PCmanagement {
 	}
 
 	private Computer[] initComputers() {
-		Computer[] computers = new Computer[21];
+		Computer[] computers = new Computer[20];
 
 		for (int i = 0; i < computers.length; i++)
 			computers[i] = new Computer(i + 1);
@@ -156,10 +156,10 @@ public class PCmanagement {
 			if (computer.getIsUse() && computer.getUser().getId().equals(id)) {
 				System.out.println("이동하실 자리번호를 입력해주세요.");
 				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
-				if (!computers[comNum-1].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
+				if (!computers[comNum - 1].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
+					computers[comNum - 1].setUser(computer.getUser());
 					computer.powerOff();
-					computers[comNum-1].setUser(computer.getUser());
-					computers[comNum-1].powerOn(user);
+					computers[comNum - 1].powerOn(user);
 					break;
 				} else {
 					System.out.println("사용중인 좌석입니다.");
