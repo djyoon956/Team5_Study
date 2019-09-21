@@ -9,6 +9,8 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 public class Computer {
 	private int number;
 	private boolean isUse;
@@ -65,7 +67,7 @@ public class Computer {
 		this.user = user;
 		this.user.setLogin(true);
 		isUse = true;
-		test("Login");
+		writeInfo("Login", false);
 		start();
 	}
 
@@ -95,9 +97,7 @@ public class Computer {
 			user.setLogin(false);
 			if (!isAuto)
 				System.out.println(user.getName() + "님 사용을 종료합니다.");
-			System.out.println("test 함ㅅ 수 시작");
-			test("Logout");
-			System.out.println("test 함ㅅ 수 끝");
+			writeInfo("Logout", isAuto);
 			user = null;
 			// computer.showSeat(); 시간 끝날때마다 자리 출력. . .
 		} else {
@@ -125,9 +125,11 @@ public class Computer {
 		return isAge;
 	}
 
-	private void test(String status) {
+	private void writeInfo(String status, boolean isAuto) {
+		String auto = isAuto ? "시스템 자동" : "사용자";
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(a + File.separator + number + ".txt", true))) {
-			bw.write(user.getName() + "님 " + status);
+			bw.write(user.getName() + "님 " + auto + " " + status + " " + CustomCalendar.date() + " "
+					+ CustomCalendar.time());
 			bw.newLine();
 		} catch (Exception e) {
 			e.printStackTrace();
