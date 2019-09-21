@@ -165,8 +165,8 @@ public class PCRoom {
 				}
 				break;
 			case 3:
-				targetUser.setTotalTime(15);
-				targetUser.setSaveTime(150);
+				targetUser.setTotalTime(150); //테스트
+				targetUser.setSaveTime(1500);
 				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money3 = scanner.nextInt();
 				System.out.println("15시간이 충전되었습니다.");
