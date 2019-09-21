@@ -21,9 +21,9 @@ public class PCmanagement {
 		System.out.println("1. 로그인");
 		System.out.println("2. 로그아웃");
 		System.out.println("3. 자리이동");
-		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
-		System.out.println(choice);
-		switch (choice) {
+		System.out.println("4. 이전 메뉴로 이동");
+		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
+		menuLoop: switch (choice) {
 		case 1:
 			showSeat();
 			selectSeat();
@@ -34,6 +34,8 @@ public class PCmanagement {
 		case 3:
 			move();
 			break;
+		case 4:
+			break menuLoop;
 		}
 	}
 

@@ -1,6 +1,7 @@
 package Team5_Final;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
@@ -74,7 +75,6 @@ public class Admin {
 	}
 
 	private void showAdminMenu() {
-		System.out.println("in");
 		adminLoop: while (true) {
 			System.out.println("1. 회원 조회");
 			System.out.println("2. 파일 저장");
@@ -101,7 +101,6 @@ public class Admin {
 				break;
 			}
 		}
-		System.out.println("탈출");
 	}
 
 	private void exitPCmanagement() {
@@ -184,36 +183,40 @@ public class Admin {
 		System.out.println("1. 회원 파일 저장");
 		System.out.println("2. 매출 파일 저장");
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
+		String savePath = "";
 		switch (choice) {
 		case 1:
-			saveUserInfoFile();
+			savePath = saveUserInfoFile();
 			break;
 		case 2:
-
+			savePath = saveSalesInfoFile();
 			break;
 		}
+
+		System.out.println("파일 저장을 완료했습니다.");
+		System.out.println("파일 경로 : " + savePath);
 	}
 
-	private void saveUserInfoFile() {
-		String userCsv = "users.csv";
+	private String saveUserInfoFile() {
+		File file = new File("usersInfo.csv");
 		FileOutputStream fos = null;
 		OutputStreamWriter osw = null;
 		BufferedWriter bw = null;
 		try {
-			fos = new FileOutputStream(userCsv);
+			fos = new FileOutputStream(file);
 			osw = new OutputStreamWriter(fos, "EUC-KR");
 			bw = new BufferedWriter(osw);
 
-			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,누적 시간,가입일");
+			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,누적 시간,가입일,가입 시간");
 			bw.newLine();
 			int index = 0;
 			for (User user : users.values()) {
+				String[] date = user.getJoinDay().split(" ");
 				bw.write(++index + "," + user.getName() + "," + user.getId() + "," + user.getPhoneNumber() + ","
-						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getTotalTime() + ","
-						+ user.getJoinDay());
+						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getTotalTime() + "," + date[0]
+						+ "," + date[1]);
 				bw.newLine();
 			}
-			System.out.println("파일 저장을 완료했습니다.");
 		} catch (Exception e) {
 			System.out.println("Exception : " + e.getMessage());
 		} finally {
@@ -225,15 +228,17 @@ public class Admin {
 				System.out.println("Exception : " + e2.getMessage());
 			}
 		}
+
+		return file.getPath();
 	}
 
-	private void saveSalesInfoFile() {
-		String userCsv = "users.csv";
+	private String saveSalesInfoFile() {
+		File file = new File("salesInfos.csv");
 		FileOutputStream fos = null;
 		OutputStreamWriter osw = null;
 		BufferedWriter bw = null;
 		try {
-			fos = new FileOutputStream(userCsv);
+			fos = new FileOutputStream(file);
 			osw = new OutputStreamWriter(fos, "EUC-KR");
 			bw = new BufferedWriter(osw);
 
@@ -241,11 +246,11 @@ public class Admin {
 			bw.newLine();
 			int index = 0;
 			for (SalesInfo salesInfo : salesInfos) {
+				String[] date = salesInfo.getDate().split(" ");
 				bw.write(++index + "," + salesInfo.getProductName() + "," + salesInfo.getBuyer().getName() + ","
-						+ salesInfo.getBuyer().getId() + "," + salesInfo.getPrice() + "," + salesInfo.getDate());
+						+ salesInfo.getBuyer().getId() + "," + salesInfo.getPrice() + "," + date[0] + "," + date[1]);
 				bw.newLine();
 			}
-			System.out.println("파일 저장을 완료했습니다.");
 		} catch (Exception e) {
 			System.out.println("Exception : " + e.getMessage());
 		} finally {
@@ -257,6 +262,8 @@ public class Admin {
 				System.out.println("Exception : " + e2.getMessage());
 			}
 		}
+
+		return file.getPath();
 	}
 
 	private void stockManagement() { // 음료,과자 재고관리

@@ -165,7 +165,7 @@ public class PCRoom {
 				}
 				break;
 			case 3:
-				targetUser.setTotalTime(150); //테스트
+				targetUser.setTotalTime(150); // 테스트
 				targetUser.setSaveTime(1500);
 				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
 				int money3 = scanner.nextInt();
@@ -183,7 +183,6 @@ public class PCRoom {
 		} else {
 			System.out.println("ID를 확인해주세요.");
 		}
-
 	}
 
 	private void addSalesInfos(User buyer, String productName, int price) {
@@ -201,43 +200,50 @@ public class PCRoom {
 	}
 
 	private void order() {
-		int choice = 0;
-		int drinkCount = 0;
-		int snackCount = 0;
-		int totalPrice = 0;
-		Orderloop: while (choice != 4) {
-			showMenu();
-			choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
-			switch (choice) {
-			case 1: // 음료수 장바구니에 담음
-				orders.add(new Drink());
-				totalPrice += drink.price;
-				drinkCount++;
-				productsPrint(totalPrice);
-				break;
-			case 2: // 과자 장바구니에 담음
-				orders.add(new Snack());
-				totalPrice += snack.price;
-				snackCount++;
-				productsPrint(totalPrice);
-				break;
-			case 3: // 결제
-				if (orders.size() > 0) {
-					checkChange(totalPrice);
-					choice = 0;
-					drink.count -= drinkCount;
-					snack.count -= snackCount;
-
-				} else {
-					System.out.println("제품을 선택해주세요.");
+		System.out.print("매점 이용 회원 ID를 입력하세요 : ");
+		String id = scanner.next();
+		User targetUser = users.get(id);
+		if (targetUser != null) {
+			int choice = 0;
+			int drinkCount = 0;
+			int snackCount = 0;
+			int totalPrice = 0;
+			Orderloop: while (choice != 4) {
+				showMenu();
+				choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
+				switch (choice) {
+				case 1: // 음료수 장바구니에 담음
+					orders.add(new Drink());
+					totalPrice += drink.price;
+					drinkCount++;
+					productsPrint(totalPrice);
+					break;
+				case 2: // 과자 장바구니에 담음
+					orders.add(new Snack());
+					totalPrice += snack.price;
+					snackCount++;
+					productsPrint(totalPrice);
+					break;
+				case 3: // 결제
+					if (orders.size() > 0) {
+						checkChange(totalPrice);
+						choice = 0;
+						drink.count -= drinkCount;
+						snack.count -= snackCount;
+						addSalesInfos(targetUser, "매점 이용", 5000);
+					} else {
+						System.out.println("제품을 선택해주세요.");
+					}
+					break;
+				case 4: // 주문취소
+					System.out.println("주문이 취소되었습니다.");
+					totalPrice = 0;
+					orders.clear();
+					break Orderloop;
 				}
-				break;
-			case 4: // 주문취소
-				System.out.println("주문이 취소되었습니다.");
-				totalPrice = 0;
-				orders.clear();
-				break Orderloop;
 			}
+		} else {
+			System.out.println("ID를 확인해주세요.");
 		}
 	}
 
@@ -247,7 +253,6 @@ public class PCRoom {
 		System.out.println("[2] " + snack.toString());
 		System.out.println("[3] 결제하기");
 		System.out.println("[4] 주문취소");
-
 	}
 
 	private void checkChange(int totalPrice) {
