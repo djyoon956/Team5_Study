@@ -12,21 +12,25 @@ import java.util.Scanner;
 public class Admin {
 	private final String ADMIN_ID = "admin";
 	private final String ADMIN_PW = "123";
-	private final int COUNT = 100; // 음료, 과자는 초기값 100개가 있는 상태이다.
+	private final int PRODUCT_MAX_COUNT = 100; // 음료, 과자는 초기값 100개가 있는 상태이다.
 	private boolean isAdmin;
 	private Scanner scanner;
 	private String userFilenName;
 	private Map<String, User> users;
-	List<SalesInfo> salesInfos;
+	private List<SalesInfo> salesInfos;
+	private Drink drink;
+	private Snack snack;
 
 	public Admin(Scanner scanner) {
 		userFilenName = "PcUsers.txt";
 		this.scanner = scanner;
 	}
 
-	public void adminStart(Map<String, User> users, List<SalesInfo> salesInfos) {
+	public void adminStart(Map<String, User> users, List<SalesInfo> salesInfos, Drink drink, Snack snack) {
 		this.users = users;
 		this.salesInfos = salesInfos;
+		this.drink = drink;
+		this.snack = snack;
 
 		adminLogin();
 	}
@@ -256,58 +260,42 @@ public class Admin {
 	}
 
 	private void stockManagement() { // 음료,과자 재고관리
-		Drink drink = new Drink();
-
 		System.out.println("관리할 품목을 선택해주세요.");
-		System.out.println("1. 음료\t2. 과자");
+		System.out.println("번호\t품명\t개수");
+		System.out.printf("1\t%s\t%s", drink.name, drink.count);
+		System.out.printf("2\t%s\t%s", snack.name, snack.count);
 		System.out.print(">> ");
-		int num = scanner.nextInt();
+		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 
-		// 음료
-		if (num == 1) {
-			System.out.println("1. 발주\t2. 반품");
+		Product selectProduct = null;
+		if (choice == 1)
+			selectProduct = drink;
+		else
+			selectProduct = snack;
+
+		System.out.println("1. 발주\t2. 반품");
+		System.out.print(">> ");
+		int num1 = scanner.nextInt();
+		if (num1 == 1) {// 발주
+			System.out.println("몇 개를 발주넣으겠습니까?");
 			System.out.print(">> ");
-			int num1 = scanner.nextInt();
-			if (num1 == 1) {// 발주
-				System.out.println("몇 개를 발주넣으겠습니까?");
-				System.out.print(">> ");
-				int nb = scanner.nextInt();
-				int add = COUNT + nb;
-				System.out.println("현재 음료 재고" + add + "개 있습니다.");
-			} else if (num1 == 2) {// 반품
-				System.out.println("몇 개를 반품하시겠습니까?");
-				System.out.print(">> ");
-				int nb = scanner.nextInt();
-				if (COUNT > nb) {
-					int sub = COUNT - nb;
-					System.out.println("현재 음료 재고" + sub + "개 있습니다.");
-				} else {
-					System.out.println("갯수가 부족합니다. 다시 입력해주세요.");
-					stockManagement();
-				}
+			int addCount = scanner.nextInt();
+			if (addCount + selectProduct.count > PRODUCT_MAX_COUNT) {
+				System.out.println("음료 재고 최대 갯수는 100개 입니다. 다시 입력해 주세요.");
+			} else {
+				drink.count += addCount;
+				System.out.println("현재 " + selectProduct.name + " 재고" + selectProduct.count + "개 있습니다.");
 			}
-		}
-		if (num == 2) {
-			System.out.println("1. 발주\t2. 반품");
+		} else if (num1 == 2) {// 반품
+			System.out.println("몇 개를 반품하시겠습니까?");
 			System.out.print(">> ");
-			int num1 = scanner.nextInt();
-			if (num1 == 1) {// 발주
-				System.out.println("몇 개를 발주넣으겠습니까?");
-				System.out.print(">> ");
-				int nb = scanner.nextInt();
-				int add = COUNT + nb;
-				System.out.println("현재 과자 재고" + add + "개 있습니다.");
-			} else if (num1 == 2) {// 반품
-				System.out.println("몇 개를 반품하시겠습니까?");
-				System.out.print(">> ");
-				int nb = scanner.nextInt();
-				if (COUNT > nb) {
-					int sub = COUNT - nb;
-					System.out.println("현재 과자 재고" + sub + "개 있습니다.");
-				} else {
-					System.out.println("갯수가 부족합니다. 다시 입력해주세요.");
-					stockManagement();
-				}
+			int subCount = scanner.nextInt();
+			if (selectProduct.count - subCount >= 0) {
+				selectProduct.count -= subCount;
+				System.out.println("현재 " + selectProduct.name + " 재고" + selectProduct.count + "개 있습니다.");
+			} else {
+				System.out.println("갯수가 부족합니다. 다시 입력해주세요.");
+				stockManagement();
 			}
 		}
 	}

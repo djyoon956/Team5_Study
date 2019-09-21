@@ -43,7 +43,7 @@ public class PCRoom {
 				userMode();
 				break;
 			case 2:
-				admin.adminStart(users, salesInfos);
+				admin.adminStart(users, salesInfos, drink, snack);
 				break;
 			}
 		}
