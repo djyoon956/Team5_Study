@@ -229,7 +229,7 @@ public class Admin {
 			}
 		}
 
-		return file.getPath();
+		return file.getAbsolutePath();
 	}
 
 	private String saveSalesInfoFile() {
@@ -263,7 +263,7 @@ public class Admin {
 			}
 		}
 
-		return file.getPath();
+		return file.getAbsolutePath();
 	}
 
 	private void stockManagement() { // 음료,과자 재고관리

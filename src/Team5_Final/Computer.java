@@ -22,14 +22,6 @@ public class Computer {
 		// pcm=new PCmanagement(scanner);
 	}
 
-	public Scanner getScanner() {
-		return scanner;
-	}
-
-	public void setScanner(Scanner scanner) {
-		this.scanner = scanner;
-	}
-
 	public int getNumber() {
 		return number;
 	}
@@ -90,7 +82,7 @@ public class Computer {
 			};
 		};
 
-		timer.schedule(timeThread, 1000, 1000); // timeThread 작업을 delay없이 1초씩 반복한다.
+		timer.schedule(timeThread, 1000, 1000); // timeThread 작업을 delay 1초 후 없이 1초씩 반복한다.
 	}
 
 	public void powerOff() {

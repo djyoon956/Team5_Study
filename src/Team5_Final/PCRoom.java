@@ -66,24 +66,29 @@ public class PCRoom {
 	}
 
 	private void userMode() {
-		System.out.println("1.회원가입");
-		System.out.println("2.시간 충전");
-		System.out.println("3.PC이용");
-		System.out.println("4.매점이용");
-		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
-		switch (choice) {
-		case 1:
-			signUp();
-			break;
-		case 2:
-			addTime();
-			break;
-		case 3:
-			pcm.showMenu(users); // 현재 좌석상태 출력
-			break;
-		case 4:
-			order();
-			break;
+		userLoop: while (true) {
+			System.out.println("1. 회원가입");
+			System.out.println("2. 시간 충전");
+			System.out.println("3. PC이용");
+			System.out.println("4. 매점이용");
+			System.out.println("5. 이전 메뉴로 이동");
+			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 5);
+			switch (choice) {
+			case 1:
+				signUp();
+				break;
+			case 2:
+				addTime();
+				break;
+			case 3:
+				pcm.showMenu(users); // 현재 좌석상태 출력
+				break;
+			case 4:
+				order();
+				break;
+			case 5:
+				break userLoop;
+			}
 		}
 	}
 
