@@ -12,7 +12,7 @@ public class PCmanagement {
 	public PCmanagement(Scanner scanner) {
 		this.scanner = scanner;
 		computers = initComputers();
-		user=new User();
+		user = new User();
 	}
 
 	public void showMenu(Map<String, User> users) {
@@ -36,7 +36,7 @@ public class PCmanagement {
 		}
 	}
 
-	public void showSeat() { //접근제어자
+	public void showSeat() { // 접근제어자
 		for (int i = 1; i <= computers.length - 1; i++) {
 			if (computers[i].getIsUse()) {
 				System.out.print("■");
@@ -73,7 +73,7 @@ public class PCmanagement {
 			System.out.print("ID를 입력해 주세요 : ");
 			String id = scanner.next();
 			User target = users.get(id);
-			//target.setSaveTime(30); // 테스트 용 코드
+			// target.setSaveTime(30); // 테스트 용 코드
 			if (target != null) {
 				System.out.print("비밀번호를 입력해 주세요 : ");
 				String password = scanner.next();
@@ -145,24 +145,27 @@ public class PCmanagement {
 			}
 		}
 	}
-	
+
 	private void move() {
 		System.out.println("ID를 입력해주세요.");
-		String id=scanner.nextLine();
+		String id = scanner.nextLine();
 		scanner.next();
 		
 		for (Computer computer : computers) {
-			if(computer.getUser().getId().equals(id)) {//컴퓨터에 id가 로그인돼있다면
+			if (computer.getIsUse() && computer.getUser().getId().equals(id)) { 
+				System.out.println(computer.toString());// 컴퓨터가 사용중이고 컴퓨터에 user 아이디가 같다면
 				System.out.println("이동하실 자리번호를 입력해주세요.");
-				int comNum =ValidataionHelper.checkChoiceNumber(scanner,1,20);
-				if(!computers[comNum].getIsUse()) { //선택한 좌석이 사용중이지 않다면
-					computers[comNum]=computer;
+				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
+				if (!computers[comNum].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
 					computer.powerOff();
+					computers[comNum].setUser(computer.getUser());
+					computer.powerOn(user);
+					break;
 				} else {
 					System.out.println("사용중인 좌석입니다.");
+					break;
 				}
-			}
-			System.out.println("로그인 먼저 해주세요.");
+			} System.out.println("로그인을 먼저 해주세요.");
 		}
 	}
 }
