@@ -13,13 +13,13 @@ public class Computer {
 	private User user;
 	private Timer timer;
 	private double testCount;
-	//PCmanagement pcm; 
+	// PCmanagement pcm;
 
 	public Computer(int number) {
 		this.number = number;
 		scanner = new Scanner(System.in);
 		timer = new Timer();
-	//	pcm=new PCmanagement(scanner);
+		// pcm=new PCmanagement(scanner);
 	}
 
 	public Scanner getScanner() {
@@ -72,6 +72,7 @@ public class Computer {
 
 	public void powerOn(User user) {
 		this.user = user;
+		this.user.setLogin(true);
 		isUse = true;
 		start();
 	}
@@ -99,7 +100,7 @@ public class Computer {
 			user.setLogin(false);
 			user = null;
 			isUse = false;
-			//computer.showSeat(); 시간 끝날때마다 자리 출력. . .
+			// computer.showSeat(); 시간 끝날때마다 자리 출력. . .
 		} else
 			System.out.println("미 사용중인 컴퓨터입니다.");
 	}

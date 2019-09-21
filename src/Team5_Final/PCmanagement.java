@@ -87,7 +87,6 @@ public class PCmanagement {
 					}
 
 					System.out.println("로그인 성공 하셨습니다.");
-					target.setLogin(true);
 					selectComputer.powerOn(target);
 
 					loginCheck = true;
