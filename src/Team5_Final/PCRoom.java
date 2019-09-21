@@ -142,47 +142,42 @@ public class PCRoom {
 			showPcMenu();
 
 			System.out.print("번호를 선택해주세요 : ");
-			int choicenum = scanner.nextInt();
+			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
 
-			switch (choicenum) {
+			System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
+			int inputMoney = scanner.nextInt();
+
+			switch (choice) {
 			case 1:
-				targetUser.setTotalTime(1);
-				targetUser.setSaveTime(10);
-				System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
-				int money1 = scanner.nextInt();
-				System.out.println("1시간이 추가 되었습니다.");
-				addSalesInfos(targetUser, "Pc 시간 추가", 1000);
-				if (money1 > 1000) {
-					int change = money1 - 1000;
+				if (inputMoney > 1000) {
+					targetUser.setTotalTime(1);
+					targetUser.setSaveTime(10);
+					System.out.println("1시간이 추가 되었습니다.");
+					addSalesInfos(targetUser, "Pc 시간 추가", 1000);
+					int change = inputMoney - 1000;
 					System.out.println("거스름 돈 입니다. " + change + "원 입니다.");
 				}
 				break;
 			case 2:
-				targetUser.setTotalTime(6);
-				targetUser.setSaveTime(60);
-				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
-				int money2 = scanner.nextInt();
-				System.out.println("6시간이 충전되었습니다.");
-				addSalesInfos(targetUser, "Pc 시간 추가", 5000);
-				if (money2 > 5000) {
-					int change = money2 - 5000;
+				if (inputMoney > 5000) {
+					targetUser.setTotalTime(6);
+					targetUser.setSaveTime(60);
+					System.out.println("6시간이 충전되었습니다.");
+					addSalesInfos(targetUser, "Pc 시간 추가", 5000);
+					int change = inputMoney - 5000;
 					System.out.println("거스름 돈 입니다. " + change + "원 입니다.");
 				}
 				break;
 			case 3:
-				targetUser.setTotalTime(150); // 테스트
-				targetUser.setSaveTime(1500);
-				System.out.println("시간 추가를 위해 지불할 돈을 입력하세요 : ");
-				int money3 = scanner.nextInt();
-				System.out.println("15시간이 충전되었습니다.");
-				addSalesInfos(targetUser, "Pc 시간 추가", 10000);
-				if (money3 > 10000) {
-					int change = money3 - 10000;
+				if (inputMoney > 10000) {
+					targetUser.setTotalTime(150); // 테스트
+					targetUser.setSaveTime(1500);
+					System.out.println("15시간이 충전되었습니다.");
+					addSalesInfos(targetUser, "Pc 시간 추가", 10000);
+					int change = inputMoney - 10000;
 					System.out.println("거스름 돈은 " + change + "원 입니다.");
 				}
 				break;
-			default:
-				System.out.println("요금표에 맞는 금액을 충전해주세요.");
 			}
 
 		} else {
