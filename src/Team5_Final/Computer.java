@@ -101,7 +101,10 @@ public class Computer {
 			user = null;
 			// computer.showSeat(); 시간 끝날때마다 자리 출력. . .
 		} else
+		{
 			System.out.println("미 사용중인 컴퓨터입니다.");
+			isUse=false;
+		}
 	}
 
 	boolean ageCheck() { // 시간이 안흐름..
