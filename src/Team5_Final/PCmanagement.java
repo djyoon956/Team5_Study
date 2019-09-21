@@ -154,7 +154,6 @@ public class PCmanagement {
 
 		for (Computer computer : computers) {
 			if (computer.getIsUse() && computer.getUser().getId().equals(id)) {
-				System.out.println(computer.toString());
 				System.out.println("이동하실 자리번호를 입력해주세요.");
 				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 				if (!computers[comNum].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
