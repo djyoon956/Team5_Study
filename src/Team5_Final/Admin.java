@@ -75,7 +75,6 @@ public class Admin {
 	}
 
 	private void showAdminMenu() {
-		System.out.println("in");
 		adminLoop: while (true) {
 			System.out.println("1. 회원 조회");
 			System.out.println("2. 파일 저장");
@@ -102,7 +101,6 @@ public class Admin {
 				break;
 			}
 		}
-		System.out.println("탈출");
 	}
 
 	private void exitPCmanagement() {
@@ -194,7 +192,7 @@ public class Admin {
 			savePath = saveSalesInfoFile();
 			break;
 		}
-		
+
 		System.out.println("파일 저장을 완료했습니다.");
 		System.out.println("파일 경로 : " + savePath);
 	}
@@ -209,13 +207,14 @@ public class Admin {
 			osw = new OutputStreamWriter(fos, "EUC-KR");
 			bw = new BufferedWriter(osw);
 
-			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,누적 시간,가입일");
+			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,누적 시간,가입일,가입 시간");
 			bw.newLine();
 			int index = 0;
 			for (User user : users.values()) {
+				String[] date = user.getJoinDay().split(" ");
 				bw.write(++index + "," + user.getName() + "," + user.getId() + "," + user.getPhoneNumber() + ","
-						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getTotalTime() + ","
-						+ user.getJoinDay());
+						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getTotalTime() + "," + date[0]
+						+ "," + date[1]);
 				bw.newLine();
 			}
 		} catch (Exception e) {
@@ -247,8 +246,9 @@ public class Admin {
 			bw.newLine();
 			int index = 0;
 			for (SalesInfo salesInfo : salesInfos) {
+				String[] date = salesInfo.getDate().split(" ");
 				bw.write(++index + "," + salesInfo.getProductName() + "," + salesInfo.getBuyer().getName() + ","
-						+ salesInfo.getBuyer().getId() + "," + salesInfo.getPrice() + "," + salesInfo.getDate());
+						+ salesInfo.getBuyer().getId() + "," + salesInfo.getPrice() + "," + date[0] + "," + date[1]);
 				bw.newLine();
 			}
 		} catch (Exception e) {
