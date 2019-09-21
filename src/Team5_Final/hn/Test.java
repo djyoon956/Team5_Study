@@ -19,13 +19,13 @@ public class Test {
 //		computer2.powerOn(new User("다정", "010", "다정", "950506-2222222", "950506-2222222"));
 
 		Computer computer = new Computer(1);
-		computer.powerOn(new User("형남", "010", "형남", "960506-2222222", "030506-2222222"));
+		computer.powerOn(new User("형남", "010", "형남", "960506-2222222", "9605062222222"));
 	}
 
 }
 
 class Computer {
-	static Calendar cal = Calendar.getInstance();
+	
 	private Scanner scanner;
 	private int number;
 	private boolean isUse;
@@ -33,15 +33,13 @@ class Computer {
 	private Timer timer;
 	private double testCount;
 	private boolean offCheck;
+	static Calendar cal = Calendar.getInstance();
 
 	public Computer(int number) {
 		this.number = number;
 		scanner = new Scanner(System.in);
 		timer = new Timer();
 
-		cal.set(Calendar.HOUR, 9);
-		cal.set(Calendar.MINUTE, 59);
-		cal.set(Calendar.SECOND, 50);
 	}
 
 	public Scanner getScanner() {
@@ -101,18 +99,12 @@ class Computer {
 		user.setSaveTime(30);
 
 		TimerTask timeThread = new TimerTask() {
-			int time = 0;
 
 			@Override
 			public void run() {
-				System.out.println(++time);
 				long currentSaveTime = user.getSaveTime();
 
-				if (!ageCheck()) {
-					powerOff();
-					System.out.println("사용종료");
-				}
-				if (!offCheck || currentSaveTime > 0) {
+				if (ageCheck() && currentSaveTime > 0) { //컴퓨터가 켜져있을 때
 					long result = (currentSaveTime - 1);
 					user.setSaveTime(result);
 					System.err.println(result);
@@ -127,7 +119,6 @@ class Computer {
 
 	private void powerOff() {
 		if (user != null) {
-			System.out.println("123");
 			timer.cancel();
 			user.setLogin(false);
 			user = null;
@@ -138,17 +129,23 @@ class Computer {
 			System.out.println("미 사용중인 컴퓨터 입니다.");
 	}
 
-	boolean ageCheck() {
-		// Calendar cal=Calendar.getInstance();
+	boolean ageCheck() { //시간이 안흐름..
+		long cur=System.currentTimeMillis();
+		// (2) 출력 형태를 지정하기 위해 Formatter를 얻는다.
+		SimpleDateFormat sdf2 = new SimpleDateFormat("hh");
+		// (3) 출력 형태에 맞는 문자열을 얻는다.
+		String datetime2 = sdf2.format(new Date(cur));
 		boolean isAge = false;
-		System.err.println("현재 시간 : " + cal.get(Calendar.HOUR));
-		if (cal.get(Calendar.HOUR) > 9) {
+		System.err.println("현재 시간 : " + datetime2);
+		System.out.println("Edu_Date:" + Edu_Date.DateString(Calendar.getInstance()));
+		if (Integer.parseInt(datetime2) > 9) {
 			if (user.getAge() < 20) {
 				System.out.println("청소년 보호법으로 사용을 종료합니다.");
 			} else {
-				System.out.println("성인입니다.");
 				isAge = true;
 			}
+		} else {
+			isAge=true;
 		}
 		return isAge;
 	}

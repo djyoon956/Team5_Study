@@ -96,11 +96,11 @@ public class User implements Serializable {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
 	}
 
-	private int setAge() {
+	private int setAge() { //유효성검사?
 		Calendar calendar = Calendar.getInstance();
 		int year = calendar.get(Calendar.YEAR);
-		int age = 0;//950506-2222222
-		if (securitNumber.charAt(6) == '1' || securitNumber.charAt(6) == '2') {
+		int age = 0;// 950506-2222222
+		if (securitNumber.charAt(6) == '1' || securitNumber.charAt(6) == '2') { //대쉬
 			// parInt는 ()안에 문자열이온다.
 			// Integer.parseInt() : 괄호안의 문자열을 숫자로 변환한다.
 			age = year - 1900 - Integer.parseInt(securitNumber.substring(0, 2)); // 문자열의 a번째 문자부터
@@ -109,5 +109,9 @@ public class User implements Serializable {
 		}
 
 		return age;
+	}
+	
+	private void move() {
+		
 	}
 }

@@ -18,6 +18,7 @@ public class PCmanagement {
 
 		System.out.println("1. 로그인");
 		System.out.println("2. 로그아웃");
+		System.out.println("3. 자리이동");
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 		switch (choice) {
 		case 1:
@@ -26,6 +27,9 @@ public class PCmanagement {
 			break;
 		case 2:
 			logout();
+			break;
+		case 3:
+			//move();
 			break;
 		}
 	}
