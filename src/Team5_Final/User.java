@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 public class User implements Serializable {
+	Scanner scanner;
 	private String name;
 	private String phoneNumber;
 	private String id;
@@ -18,6 +20,7 @@ public class User implements Serializable {
 	private String joinDay; // 가입일
 
 	public User() {
+		scanner=new Scanner(System.in);
 	}
 
 	public User(String name, String phoneNumber, String id, String password, String securitNumber) {
@@ -111,7 +114,4 @@ public class User implements Serializable {
 		return age;
 	}
 	
-	private void move() {
-		
-	}
 }
