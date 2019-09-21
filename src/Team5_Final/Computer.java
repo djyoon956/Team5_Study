@@ -27,14 +27,6 @@ public class Computer {
 		// pcm=new PCmanagement(scanner);
 	}
 
-	public Scanner getScanner() {
-		return scanner;
-	}
-
-	public void setScanner(Scanner scanner) {
-		this.scanner = scanner;
-	}
-
 	public int getNumber() {
 		return number;
 	}
@@ -97,7 +89,7 @@ public class Computer {
 			};
 		};
 
-		timer.schedule(timeThread, 1000, 1000); // timeThread 작업을 delay없이 1초씩 반복한다.
+		timer.schedule(timeThread, 1000, 1000); // timeThread 작업을 delay 1초 후 없이 1초씩 반복한다.
 	}
 
 	public void powerOff() {
@@ -119,8 +111,6 @@ public class Computer {
 		// (3) 출력 형태에 맞는 문자열을 얻는다.
 		String datetime2 = sdf2.format(new Date(cur));
 		boolean isAge = false;
-		System.err.println("현재 시간 : " + datetime2);
-		System.out.println("Edu_Date:" + Edu_Date.DateString(Calendar.getInstance()));
 		if (Integer.parseInt(datetime2) > 9) {
 			if (user.getAge() < 20) {
 				System.out.println("청소년 보호법으로 사용을 종료합니다.");

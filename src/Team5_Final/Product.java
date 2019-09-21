@@ -1,7 +1,5 @@
 package Team5_Final;
 
-import java.util.List;
-
 public class Product {
 	protected int price;
 	protected int count;
@@ -13,7 +11,7 @@ class Drink extends Product {
 	public Drink() {
 		this.name = "음료수";
 		this.price = 1000;
-		count--;
+		this.count--;
 	}
 
 	public Drink(int count) {

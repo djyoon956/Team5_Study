@@ -182,7 +182,8 @@ public class Admin {
 	private void showFileMenu() {
 		System.out.println("1. 회원 파일 저장");
 		System.out.println("2. 매출 파일 저장");
-		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
+		System.out.println("3. 이전 메뉴로 돌아가기");
+		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
 		String savePath = "";
 		switch (choice) {
 		case 1:
@@ -190,6 +191,8 @@ public class Admin {
 			break;
 		case 2:
 			savePath = saveSalesInfoFile();
+			break;
+		case 3:
 			break;
 		}
 
@@ -229,7 +232,7 @@ public class Admin {
 			}
 		}
 
-		return file.getPath();
+		return file.getAbsolutePath();
 	}
 
 	private String saveSalesInfoFile() {
@@ -263,7 +266,7 @@ public class Admin {
 			}
 		}
 
-		return file.getPath();
+		return file.getAbsolutePath();
 	}
 
 	private void stockManagement() { // 음료,과자 재고관리
@@ -271,7 +274,7 @@ public class Admin {
 		System.out.println("번호\t품명\t개수");
 		System.out.printf("1\t%s\t%s", drink.name, drink.count);
 		System.out.printf("2\t%s\t%s", snack.name, snack.count);
-		System.out.print(">> ");
+
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 
 		Product selectProduct = null;
@@ -281,9 +284,9 @@ public class Admin {
 			selectProduct = snack;
 
 		System.out.println("1. 발주\t2. 반품");
-		System.out.print(">> ");
-		int num1 = scanner.nextInt();
-		if (num1 == 1) {// 발주
+		choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
+
+		if (choice == 1) {// 발주
 			System.out.println("몇 개를 발주넣으겠습니까?");
 			System.out.print(">> ");
 			int addCount = scanner.nextInt();
@@ -293,7 +296,7 @@ public class Admin {
 				drink.count += addCount;
 				System.out.println("현재 " + selectProduct.name + " 재고" + selectProduct.count + "개 있습니다.");
 			}
-		} else if (num1 == 2) {// 반품
+		} else if (choice == 2) {// 반품
 			System.out.println("몇 개를 반품하시겠습니까?");
 			System.out.print(">> ");
 			int subCount = scanner.nextInt();
