@@ -90,8 +90,10 @@ public class Computer {
 				if (currentSaveTime > 0) {
 					long result = (currentSaveTime - 1);
 					user.setSaveTime(result);
-				} else
-					powerOff();
+				} else {
+					if (isUse)
+						powerOff();
+				}
 			};
 		};
 
@@ -99,19 +101,19 @@ public class Computer {
 	}
 
 	public void powerOff() {
-		if (user != null) {
+		if (user.getId() != null) {
+			isUse = false;
 			System.out.println(user.getName() + "님 사용을 종료합니다.");
 			timer.cancel();
 			user.setLogin(false);
 			user = null;
-			isUse = false;
 			// computer.showSeat(); 시간 끝날때마다 자리 출력. . .
 		} else
 			System.out.println("미 사용중인 컴퓨터입니다.");
 	}
-	
-	boolean ageCheck() { //시간이 안흐름..
-		long cur=System.currentTimeMillis();
+
+	boolean ageCheck() { // 시간이 안흐름..
+		long cur = System.currentTimeMillis();
 		// (2) 출력 형태를 지정하기 위해 Formatter를 얻는다.
 		SimpleDateFormat sdf2 = new SimpleDateFormat("hh");
 		// (3) 출력 형태에 맞는 문자열을 얻는다.
@@ -126,7 +128,7 @@ public class Computer {
 				isAge = true;
 			}
 		} else {
-			isAge=true;
+			isAge = true;
 		}
 		return isAge;
 	}
