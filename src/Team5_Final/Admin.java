@@ -143,7 +143,9 @@ public class Admin {
 		System.out.print("검색 ID를 입력하세요 : ");
 		String searchName = scanner.next();
 		List<User> targets = new ArrayList<>();
-		targets.add(users.get(searchName));
+		User target = users.get(searchName);
+		if (target != null)
+			targets.add(target);
 
 		showSearchUsers(targets);
 	}
