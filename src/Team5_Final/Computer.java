@@ -1,30 +1,24 @@
 package Team5_Final;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import Team5_Final.hn.Edu_Date;
-
 public class Computer {
-	private Scanner scanner;
 	private int number;
 	private boolean isUse;
 	private User user;
 	private Timer timer;
 	private double testCount;
-	// PCmanagement pcm;
+	private String a = "ComputerInfo";
 
 	public Computer(int number) {
 		this.number = number;
-		scanner = new Scanner(System.in);
-		timer = new Timer();
-		// pcm=new PCmanagement(scanner);
 	}
 
 	public int getNumber() {
@@ -71,6 +65,7 @@ public class Computer {
 		this.user = user;
 		this.user.setLogin(true);
 		isUse = true;
+		test("Login");
 		start();
 	}
 
@@ -84,26 +79,30 @@ public class Computer {
 					user.setSaveTime(result);
 				} else {
 					if (isUse)
-						powerOff();
+						powerOff(true);
 				}
 			};
 		};
 
-		timer.schedule(timeThread, 1000, 1000); // timeThread 작업을 delay 1초 후 없이 1초씩 반복한다.
+		timer = new Timer();
+		timer.schedule(timeThread, 0, 1000); // timeThread 작업을 delay 1초 후 없이 1초씩 반복한다.
 	}
 
-	public void powerOff() {
+	public void powerOff(boolean isAuto) {
 		if (user.getId() != null) {
 			isUse = false;
-			System.out.println(user.getName() + "님 사용을 종료합니다.");
 			timer.cancel();
 			user.setLogin(false);
+			if (!isAuto)
+				System.out.println(user.getName() + "님 사용을 종료합니다.");
+			System.out.println("test 함ㅅ 수 시작");
+			test("Logout");
+			System.out.println("test 함ㅅ 수 끝");
 			user = null;
 			// computer.showSeat(); 시간 끝날때마다 자리 출력. . .
-		} else
-		{
+		} else {
 			System.out.println("미 사용중인 컴퓨터입니다.");
-			isUse=false;
+			isUse = false;
 		}
 	}
 
@@ -124,5 +123,14 @@ public class Computer {
 			isAge = true;
 		}
 		return isAge;
+	}
+
+	private void test(String status) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(a + File.separator + number + ".txt", true))) {
+			bw.write(user.getName() + "님 " + status);
+			bw.newLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

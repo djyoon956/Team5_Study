@@ -33,6 +33,6 @@ public class SalesInfo {
 	}
 
 	private String setDateFormat() {
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+		return CustomCalendar.date() + " " + CustomCalendar.time();
 	}
 }

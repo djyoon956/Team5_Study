@@ -96,12 +96,11 @@ public class User implements Serializable {
 	}
 
 	private String setJoinDay() {
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+		return CustomCalendar.date() + " " + CustomCalendar.time();
 	}
 
 	private int setAge() {
-		Calendar calendar = Calendar.getInstance();
-		int year = calendar.get(Calendar.YEAR);
+		int year = CustomCalendar.calendar.get(Calendar.YEAR);
 		int age = 0;
 		if (securitNumber.charAt(7) == '1' || securitNumber.charAt(7) == '2') {
 			age = year - 1900 - Integer.parseInt(securitNumber.substring(0, 2)); // 문자열의 a번째 문자부터

@@ -1,5 +1,6 @@
 package Team5_Final;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -113,6 +114,10 @@ public class PCmanagement {
 		for (int i = 0; i < computers.length; i++)
 			computers[i] = new Computer(i + 1);
 
+		File computerDirectory = new File("ComputerInfo");
+		if (!computerDirectory.exists())
+			computerDirectory.mkdir();
+
 		return computers;
 	}
 
@@ -130,7 +135,7 @@ public class PCmanagement {
 					if (target.getIsLogin()) {
 						for (Computer computer : computers) {
 							if (computer.getUser() != null && computer.getUser().equals(target)) {
-								computer.powerOff();
+								computer.powerOff(false);
 							}
 						}
 					} else {
@@ -158,7 +163,7 @@ public class PCmanagement {
 				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 				if (!computers[comNum - 1].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
 					computers[comNum - 1].setUser(computer.getUser());
-					computer.powerOff();
+					computer.powerOff(false);
 					computers[comNum - 1].powerOn(user);
 					break;
 				} else {
