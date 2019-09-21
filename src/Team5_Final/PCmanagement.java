@@ -22,6 +22,7 @@ public class PCmanagement {
 		System.out.println("2. 로그아웃");
 		System.out.println("3. 자리이동");
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
+		System.out.println(choice);
 		switch (choice) {
 		case 1:
 			showSeat();
@@ -52,7 +53,7 @@ public class PCmanagement {
 
 	private void selectSeat() {
 		int seatNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
-		Computer selectComputer = computers[seatNum];
+		Computer selectComputer = computers[seatNum + 1];
 		if (!selectComputer.getIsUse()) {
 			if (login(selectComputer)) {
 				showSeat();
@@ -146,14 +147,12 @@ public class PCmanagement {
 	}
 
 	private void move() {
-		System.out.println("ID를 입력해주세요.");
-		String id = scanner.nextLine();
-		scanner.next();
-		
+		System.out.print("ID를 입력해주세요. : ");
+		String id = scanner.next();
+
 		for (Computer computer : computers) {
-			System.out.println(computer.toString());
-			if (computer.getIsUse() && computer.getUser().getId().equals(id)) { 
-				// 컴퓨터가 사용중이고 컴퓨터에 user 아이디가 같다면
+			if (computer.getIsUse() && computer.getUser().getId().equals(id)) {
+				System.out.println(computer.toString());
 				System.out.println("이동하실 자리번호를 입력해주세요.");
 				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 				if (!computers[comNum].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
@@ -165,6 +164,8 @@ public class PCmanagement {
 					System.out.println("사용중인 좌석입니다.");
 					break;
 				}
+			} else {
+				continue;
 			}
 		}
 	}

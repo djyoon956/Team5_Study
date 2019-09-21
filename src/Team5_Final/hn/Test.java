@@ -129,24 +129,4 @@ class Computer {
 			System.out.println("미 사용중인 컴퓨터 입니다.");
 	}
 
-	boolean ageCheck() { //시간이 안흐름..
-		long cur=System.currentTimeMillis();
-		// (2) 출력 형태를 지정하기 위해 Formatter를 얻는다.
-		SimpleDateFormat sdf2 = new SimpleDateFormat("hh");
-		// (3) 출력 형태에 맞는 문자열을 얻는다.
-		String datetime2 = sdf2.format(new Date(cur));
-		boolean isAge = false;
-		System.err.println("현재 시간 : " + datetime2);
-		System.out.println("Edu_Date:" + Edu_Date.DateString(Calendar.getInstance()));
-		if (Integer.parseInt(datetime2) > 9) {
-			if (user.getAge() < 20) {
-				System.out.println("청소년 보호법으로 사용을 종료합니다.");
-			} else {
-				isAge = true;
-			}
-		} else {
-			isAge=true;
-		}
-		return isAge;
-	}
 }
