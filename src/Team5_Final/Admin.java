@@ -271,7 +271,7 @@ public class Admin {
 		System.out.println("번호\t품명\t개수");
 		System.out.printf("1\t%s\t%s", drink.name, drink.count);
 		System.out.printf("2\t%s\t%s", snack.name, snack.count);
-		System.out.print(">> ");
+
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 
 		Product selectProduct = null;

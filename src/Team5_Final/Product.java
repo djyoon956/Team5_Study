@@ -1,7 +1,5 @@
 package Team5_Final;
 
-import java.util.List;
-
 public class Product {
 	protected int price;
 	protected int count;
