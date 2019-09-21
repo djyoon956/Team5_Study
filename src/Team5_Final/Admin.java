@@ -281,7 +281,7 @@ public class Admin {
 			System.out.print(">> ");
 			int addCount = scanner.nextInt();
 			if (addCount + selectProduct.count > PRODUCT_MAX_COUNT) {
-				System.out.println("음료 재고 최대 갯수는 100개 입니다. 다시 입력해 주세요.");
+				System.out.println("재고 최대 갯수는 100개 입니다. 다시 입력해 주세요.");
 			} else {
 				drink.count += addCount;
 				System.out.println("현재 " + selectProduct.name + " 재고" + selectProduct.count + "개 있습니다.");
