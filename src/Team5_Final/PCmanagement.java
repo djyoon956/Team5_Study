@@ -151,8 +151,9 @@ public class PCmanagement {
 		scanner.next();
 		
 		for (Computer computer : computers) {
+			System.out.println(computer.toString());
 			if (computer.getIsUse() && computer.getUser().getId().equals(id)) { 
-				System.out.println(computer.toString());// 컴퓨터가 사용중이고 컴퓨터에 user 아이디가 같다면
+				// 컴퓨터가 사용중이고 컴퓨터에 user 아이디가 같다면
 				System.out.println("이동하실 자리번호를 입력해주세요.");
 				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 				if (!computers[comNum].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
@@ -164,7 +165,7 @@ public class PCmanagement {
 					System.out.println("사용중인 좌석입니다.");
 					break;
 				}
-			} System.out.println("로그인을 먼저 해주세요.");
+			}
 		}
 	}
 }
