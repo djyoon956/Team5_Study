@@ -72,11 +72,11 @@ public class ValidataionHelper {
 	public static boolean ageCheck(User user) {
 		long cur = System.currentTimeMillis();
 		// (2) 출력 형태를 지정하기 위해 Formatter를 얻는다.
-		SimpleDateFormat sdf = new SimpleDateFormat("hh");
+		SimpleDateFormat sdf = new SimpleDateFormat("HH");
 		// (3) 출력 형태에 맞는 문자열을 얻는다.
 		String dateTime = sdf.format(new Date(cur));
 		boolean isAdult = true;
-		if (Integer.parseInt(dateTime) > 9 && user.getAge() < 20) {
+		if (Integer.parseInt(dateTime) > 21 && user.getAge() < 20) {
 			isAdult = false;
 		} 
 		return isAdult;
