@@ -151,7 +151,7 @@ public class PCRoom {
 			case 1:
 				if (inputMoney >= 1000) {
 					targetUser.setTotalTime(1);
-					targetUser.setSaveTime(10);
+					targetUser.setSaveTime(60);
 					System.out.println("1시간이 추가 되었습니다.");
 					addSalesInfos(targetUser, "Pc 시간 추가", 1000);
 					int change = inputMoney - 1000;
@@ -163,7 +163,7 @@ public class PCRoom {
 			case 2:
 				if (inputMoney >= 5000) {
 					targetUser.setTotalTime(6);
-					targetUser.setSaveTime(60);
+					targetUser.setSaveTime(6 * 60);
 					System.out.println("6시간이 충전되었습니다.");
 					addSalesInfos(targetUser, "Pc 시간 추가", 5000);
 					int change = inputMoney - 5000;
@@ -173,8 +173,8 @@ public class PCRoom {
 				break;
 			case 3:
 				if (inputMoney >= 10000) {
-					targetUser.setTotalTime(150); // 테스트
-					targetUser.setSaveTime(1500);
+					targetUser.setTotalTime(15); // 테스트
+					targetUser.setSaveTime(15 * 60);
 					System.out.println("15시간이 충전되었습니다.");
 					addSalesInfos(targetUser, "Pc 시간 추가", 10000);
 					int change = inputMoney - 10000;
