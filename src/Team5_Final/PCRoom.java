@@ -196,11 +196,9 @@ public class PCRoom {
 	}
 
 	public void showPcMenu() {
-		System.out.println("==== 회원 시간 요금제  =====");
-		System.out.println("==== 1.1000원 1시간   =====");
-		System.out.println("==== 2.5000원 6시간   =====");
-		System.out.println("==== 3.10000원 15시간 ====");
-		System.out.println("=======================");
+		System.out.println("[1] 1시간\t가격  : 1000원 ");
+		System.out.println("[2] 6시간\t가격  : 5000원 ");
+		System.out.println("[3] 15시간\t가격 : 10000원 ");
 		System.out.println("1~3번중에 맞는 요금으로 선택해 주세요.");
 	}
 
