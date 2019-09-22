@@ -1,6 +1,8 @@
 package Team5_Final;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -88,6 +90,9 @@ public class PCmanagement {
 					} else if (target.getSaveTime() < 1) {
 						System.out.println("사용가능한 시간이 없습니다.");
 						break;
+					} else if(!ValidataionHelper.ageCheck(user)) {
+						System.out.println("청소년보호법에 의해 로그인을 제한합니다.");
+						break;
 					}
 
 					System.out.println("로그인 성공 하셨습니다.");
@@ -135,7 +140,7 @@ public class PCmanagement {
 					if (target.getIsLogin()) {
 						for (Computer computer : computers) {
 							if (computer.getUser() != null && computer.getUser().equals(target)) {
-								computer.powerOff(false);
+								computer.powerOff(false, "");
 							}
 						}
 					} else {
@@ -163,7 +168,7 @@ public class PCmanagement {
 				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 				if (!computers[comNum - 1].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
 					computers[comNum - 1].setUser(computer.getUser());
-					computer.powerOff(false);
+					computer.powerOff(false, "자리이동");
 					computers[comNum - 1].powerOn(user);
 					break;
 				} else {
@@ -175,4 +180,5 @@ public class PCmanagement {
 			}
 		}
 	}
+	
 }

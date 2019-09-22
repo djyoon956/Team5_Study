@@ -17,7 +17,7 @@ public class Computer {
 	private User user;
 	private Timer timer;
 	private double testCount;
-	private String a = "ComputerInfo";
+	private String root = "ComputerInfo";
 
 	public Computer(int number) {
 		this.number = number;
@@ -67,7 +67,7 @@ public class Computer {
 		this.user = user;
 		this.user.setLogin(true);
 		isUse = true;
-		writeInfo("Login", false);
+		writeInfo("Login", false, "");
 		start();
 	}
 
@@ -75,13 +75,17 @@ public class Computer {
 		TimerTask timeThread = new TimerTask() {
 			@Override
 			public void run() {
-				long currentSaveTime = user.getSaveTime();
-				if (currentSaveTime > 0) {
-					long result = (currentSaveTime - 1);
-					user.setSaveTime(result);
+				if (ValidataionHelper.ageCheck(user)) {
+					long currentSaveTime = user.getSaveTime();
+					if (currentSaveTime > 0) {
+						long result = (currentSaveTime - 1);
+						user.setSaveTime(result);
+					} else {
+						if (isUse)
+							powerOff(true, "");
+					}
 				} else {
-					if (isUse)
-						powerOff(true);
+					powerOff(true, "청소년 보호법으로 사용을 종료합니다.");
 				}
 			};
 		};
@@ -90,46 +94,27 @@ public class Computer {
 		timer.schedule(timeThread, 0, 1000); // timeThread 작업을 delay 1초 후 없이 1초씩 반복한다.
 	}
 
-	public void powerOff(boolean isAuto) {
+	public void powerOff(boolean isAuto, String memo) {
 		if (user.getId() != null) {
 			isUse = false;
 			timer.cancel();
 			user.setLogin(false);
 			if (!isAuto)
 				System.out.println(user.getName() + "님 사용을 종료합니다.");
-			writeInfo("Logout", isAuto);
+			writeInfo("Logout", isAuto, memo);
 			user = null;
-			// computer.showSeat(); 시간 끝날때마다 자리 출력. . .
+			// computer.showSe0at(); 시간 끝날때마다 자리 출력. . .
 		} else {
 			System.out.println("미 사용중인 컴퓨터입니다.");
 			isUse = false;
 		}
 	}
 
-	boolean ageCheck() { // 시간이 안흐름..
-		long cur = System.currentTimeMillis();
-		// (2) 출력 형태를 지정하기 위해 Formatter를 얻는다.
-		SimpleDateFormat sdf2 = new SimpleDateFormat("hh");
-		// (3) 출력 형태에 맞는 문자열을 얻는다.
-		String datetime2 = sdf2.format(new Date(cur));
-		boolean isAge = false;
-		if (Integer.parseInt(datetime2) > 9) {
-			if (user.getAge() < 20) {
-				System.out.println("청소년 보호법으로 사용을 종료합니다.");
-			} else {
-				isAge = true;
-			}
-		} else {
-			isAge = true;
-		}
-		return isAge;
-	}
-
-	private void writeInfo(String status, boolean isAuto) {
+	private void writeInfo(String status, boolean isAuto, String memo) {
 		String auto = isAuto ? "시스템 자동" : "사용자";
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(a + File.separator + number + ".txt", true))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(root + File.separator + number + ".txt", true))) {
 			bw.write(user.getName() + "님 " + auto + " " + status + " " + CustomCalendar.date() + " "
-					+ CustomCalendar.time());
+					+ CustomCalendar.time() + " " + memo);
 			bw.newLine();
 		} catch (Exception e) {
 			e.printStackTrace();
