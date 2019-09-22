@@ -289,7 +289,7 @@ public class Admin {
 		if (choice == 1) {// 발주
 			System.out.println("몇 개를 발주넣으겠습니까?");
 			System.out.print(">> ");
-			int addCount = scanner.nextInt();
+			int addCount = ValidataionHelper.checkChoiceNumber(scanner);
 			if (addCount + selectProduct.count > PRODUCT_MAX_COUNT) {
 				System.out.println("재고 최대 갯수는 100개 입니다. 다시 입력해 주세요.");
 			} else {
@@ -299,7 +299,7 @@ public class Admin {
 		} else if (choice == 2) {// 반품
 			System.out.println("몇 개를 반품하시겠습니까?");
 			System.out.print(">> ");
-			int subCount = scanner.nextInt();
+			int subCount = ValidataionHelper.checkChoiceNumber(scanner);
 			if (selectProduct.count - subCount >= 0) {
 				selectProduct.count -= subCount;
 				System.out.println("현재 " + selectProduct.name + " 재고" + selectProduct.count + "개 있습니다.");
