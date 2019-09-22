@@ -272,8 +272,8 @@ public class Admin {
 	private void stockManagement() { // 음료,과자 재고관리
 		System.out.println("관리할 품목을 선택해주세요.");
 		System.out.println("번호\t품명\t개수");
-		System.out.printf("1\t%s\t%s", drink.name, drink.count);
-		System.out.printf("2\t%s\t%s", snack.name, snack.count);
+		System.out.printf("1\t%s\t%s\n", drink.name, drink.count);
+		System.out.printf("2\t%s\t%s\n", snack.name, snack.count);
 
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 
@@ -288,7 +288,6 @@ public class Admin {
 
 		if (choice == 1) {// 발주
 			System.out.println("몇 개를 발주넣으겠습니까?");
-			System.out.print(">> ");
 			int addCount = ValidataionHelper.checkChoiceNumber(scanner);
 			if (addCount + selectProduct.count > PRODUCT_MAX_COUNT) {
 				System.out.println("재고 최대 갯수는 100개 입니다. 다시 입력해 주세요.");
@@ -298,7 +297,6 @@ public class Admin {
 			}
 		} else if (choice == 2) {// 반품
 			System.out.println("몇 개를 반품하시겠습니까?");
-			System.out.print(">> ");
 			int subCount = ValidataionHelper.checkChoiceNumber(scanner);
 			if (selectProduct.count - subCount >= 0) {
 				selectProduct.count -= subCount;

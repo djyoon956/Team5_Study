@@ -213,20 +213,26 @@ public class PCRoom {
 			int snackCount = 0;
 			int totalPrice = 0;
 			Orderloop: while (choice != 4) {
-				showMenu();
+				showMenu(drinkCount, snackCount);
 				choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 4);
 				switch (choice) {
 				case 1: // 음료수 장바구니에 담음
-					orders.add(new Drink());
-					totalPrice += drink.price;
-					drinkCount++;
-					productsPrint(totalPrice);
+					if (drink.count - drinkCount > 0) {
+						orders.add(new Drink());
+						totalPrice += drink.price;
+						drinkCount++;
+						productsPrint(totalPrice);
+					} else
+						System.out.println("품절된 상품입니다.");
 					break;
 				case 2: // 과자 장바구니에 담음
-					orders.add(new Snack());
-					totalPrice += snack.price;
-					snackCount++;
-					productsPrint(totalPrice);
+					if (snack.count - snackCount > 0) {
+						orders.add(new Snack());
+						totalPrice += snack.price;
+						snackCount++;
+						productsPrint(totalPrice);
+					} else
+						System.out.println("품절된 상품입니다.");
 					break;
 				case 3: // 결제
 					if (orders.size() > 0) {
@@ -235,9 +241,9 @@ public class PCRoom {
 						drink.count -= drinkCount;
 						snack.count -= snackCount;
 						addSalesInfos(targetUser, "매점 이용", 5000);
-					} else {
+						break Orderloop;
+					} else
 						System.out.println("제품을 선택해주세요.");
-					}
 					break;
 				case 4: // 주문취소
 					System.out.println("주문이 취소되었습니다.");
@@ -246,15 +252,18 @@ public class PCRoom {
 					break Orderloop;
 				}
 			}
-		} else {
+		} else
 			System.out.println("ID를 확인해주세요.");
-		}
 	}
 
-	private void showMenu() {
+	private void showMenu(int orderDrink, int orderSnack) {
 		System.out.println("메뉴를 선택해주세요.");
-		System.out.println("[1] " + drink.toString());
-		System.out.println("[2] " + snack.toString());
+		String isSoldout = drink.count - orderDrink < 1 ? " (품절)" : "";
+		System.out.println("[1] " + drink.toString() + isSoldout);
+
+		isSoldout = snack.count - orderSnack < 1 ? " (품절)" : "";
+		System.out.println("[2] " + snack.toString() + isSoldout);
+
 		System.out.println("[3] 결제하기");
 		System.out.println("[4] 주문취소");
 	}
@@ -268,7 +277,7 @@ public class PCRoom {
 		payLoop: switch (choice) {
 		case 1:
 			System.out.println("지불 금액을 입력해주세요.");
-			int payout = scanner.nextInt();
+			int payout = ValidataionHelper.checkChoiceNumber(scanner);
 			if (payout < totalPrice) {
 				payout = 0;
 				System.out.println("다시 입력해주세요.");
@@ -279,7 +288,6 @@ public class PCRoom {
 				System.out.println("거스름돈: " + (payout - totalPrice));
 				System.out.println("주문이 완료되었습니다.");
 			}
-
 			break;
 		case 2:
 			System.out.println("결제가 취소되었습니다.");
