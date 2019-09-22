@@ -79,33 +79,28 @@ public class PCmanagement {
 			System.out.print("ID를 입력해 주세요 : ");
 			String id = scanner.next();
 			User target = users.get(id);
-			// target.setSaveTime(30); // 테스트 용 코드
-			if (target != null) {
-				System.out.print("비밀번호를 입력해 주세요 : ");
-				String password = scanner.next();
-				if (target.getPassword().equals(password)) {
-					if (target.getIsLogin()) {
-						System.out.println("이미 로그인 중인 아이디입니다.");
-						break;
-					} else if (target.getSaveTime() < 1) {
-						System.out.println("사용가능한 시간이 없습니다.");
-						break;
-					} else if(!ValidataionHelper.ageCheck(user)) {
-						System.out.println("청소년보호법에 의해 로그인을 제한합니다.");
-						break;
-					}
 
-					System.out.println("로그인 성공 하셨습니다.");
-					selectComputer.powerOn(target);
-
-					loginCheck = true;
+			System.out.print("비밀번호를 입력해 주세요 : ");
+			String password = scanner.next();
+			if (target.getPassword().equals(password)) {
+				if (target.getIsLogin()) {
+					System.out.println("이미 로그인 중인 아이디입니다.");
 					break;
-				} else {
-					System.out.println("비밀번호를 다시 한 번 확인해주세요");
-					System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
+				} else if (target.getSaveTime() < 1) {
+					System.out.println("사용가능한 시간이 없습니다.");
+					break;
+				} else if (!ValidataionHelper.ageCheck(user)) {
+					System.out.println("청소년보호법에 의해 로그인을 제한합니다.");
+					break;
 				}
+
+				System.out.println("로그인 성공 하셨습니다.");
+				selectComputer.powerOn(target);
+
+				loginCheck = true;
+				break;
 			} else {
-				System.out.println("일치하는 ID가 없습니다.");
+				System.out.println("아이디/비밀번호를 다시 한 번 확인해주세요");
 				System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
 			}
 		}
@@ -180,5 +175,5 @@ public class PCmanagement {
 			}
 		}
 	}
-	
+
 }
