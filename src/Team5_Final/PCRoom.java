@@ -243,6 +243,7 @@ public class PCRoom {
 						snack.count -= snackCount;
 						addSalesInfos(targetUser, "매점 이용", 5000);
 						break Orderloop;
+
 					} else
 						System.out.println("제품을 선택해주세요.");
 					break;
@@ -277,26 +278,30 @@ public class PCRoom {
 		productsPrint(totalPrice);
 
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
-		payLoop: switch (choice) {
+		switch (choice) {
 		case 1:
 			System.out.println("지불 금액을 입력해주세요.");
-			int payout = ValidataionHelper.checkChoiceNumber(scanner);
-			if (payout < totalPrice) {
-				payout = 0;
-				System.out.println("다시 입력해주세요.");
-				System.out.print(">> ");
-				break payLoop;
-			} else {
-				totalSales += totalPrice;
-				System.out.println("거스름돈: " + (payout - totalPrice));
-				System.out.println("주문이 완료되었습니다.");
+			while (true) {
+				int payout = ValidataionHelper.checkChoiceNumber(scanner);
+				if (payout < totalPrice) {
+					payout = 0;
+					System.out.println("금액이 부족합니다.");
+					continue;
+				} else {
+					totalSales += totalPrice;
+					System.out.println("거스름돈: " + (payout - totalPrice));
+					System.out.println("주문이 완료되었습니다.");
+					break;
+				}
 			}
 			break;
+
 		case 2:
 			System.out.println("결제가 취소되었습니다.");
 			totalPrice = 0;
 			orders.clear();
 			break;
+
 		}
 	}
 
@@ -319,5 +324,8 @@ public class PCRoom {
 		users.put("ko", new User("코찔이", "010-3148-1088", "ko", "ko", "880228-1111111"));
 		users.put("dodo", new User("도도", "010-3642-3603", "dodo", "dodo", "961220-1111111"));
 		users.put("goldcow", new User("황소", "010-5233-3208", "goldcow", "goldcow", "890827-1111111"));
+		users.put("i7027", new User("임경균", "010-1234-1234", "i7027", "i7027", "010727-3111111"));
+		users.put("one", new User("김일겸", "010-4567-4567", "one", "one", "021111-3111111"));
+
 	}
 }
