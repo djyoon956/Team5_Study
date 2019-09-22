@@ -133,7 +133,7 @@ public class PCRoom {
 		User user = new User(name, phoneNumber, id, password, securitNumber);
 		users.put(user.getId(), user);
 		System.out.println(user.getName() + "님 회원가입이 완료되었습니다.");
-		System.out.println();
+		System.out.println("");
 	}
 
 	private void addTime() {
@@ -289,6 +289,7 @@ public class PCRoom {
 					totalSales += totalPrice;
 					System.out.println("거스름돈: " + (payout - totalPrice));
 					System.out.println("주문이 완료되었습니다.");
+					System.out.println("");
 					break;
 				}
 			}
