@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class User implements Serializable {
-	Scanner scanner;
 	private String name;
 	private String phoneNumber;
 	private String id;
@@ -18,10 +17,6 @@ public class User implements Serializable {
 	private long saveTime; // 잔여시간
 	private int totalTime; // 누적시간
 	private String joinDay; // 가입일
-
-	public User() {
-		scanner = new Scanner(System.in);
-	}
 
 	public User(String name, String phoneNumber, String id, String password, String securitNumber) {
 		this.name = name;

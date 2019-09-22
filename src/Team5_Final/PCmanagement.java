@@ -15,7 +15,6 @@ public class PCmanagement {
 	public PCmanagement(Scanner scanner) {
 		this.scanner = scanner;
 		computers = initComputers();
-		user = new User();
 	}
 
 	public void showMenu(Map<String, User> users) {
@@ -89,7 +88,7 @@ public class PCmanagement {
 				} else if (target.getSaveTime() < 1) {
 					System.out.println("사용가능한 시간이 없습니다.");
 					break;
-				} else if (!ValidataionHelper.ageCheck(user)) {
+				} else if (!ValidataionHelper.ageCheck(target)) {
 					System.out.println("청소년보호법에 의해 로그인을 제한합니다.");
 					break;
 				}
