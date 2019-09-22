@@ -47,6 +47,7 @@ public class ValidataionHelper {
 			}
 		}
 
+		System.out.println();
 		return choice;
 	}
 
@@ -66,7 +67,7 @@ public class ValidataionHelper {
 
 		return choice;
 	}
-	
+
 	public static boolean ageCheck(User user) {
 		long cur = System.currentTimeMillis();
 		// (2) 출력 형태를 지정하기 위해 Formatter를 얻는다.
@@ -82,6 +83,8 @@ public class ValidataionHelper {
 		} else {
 			isAdult = true;
 		}
+
+		System.out.println();
 		return isAdult;
 	}
 }
