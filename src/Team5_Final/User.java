@@ -45,10 +45,6 @@ public class User implements Serializable {
 		return id;
 	}
 
-	public void setSaveTime(long saveTime) {
-		this.saveTime = saveTime;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -59,6 +55,10 @@ public class User implements Serializable {
 
 	public int getAge() {
 		return age;
+	}
+
+	public void setSaveTime(long saveTime) {
+		this.saveTime = saveTime;
 	}
 
 	public void setLogin(boolean isLogin) {
@@ -78,15 +78,11 @@ public class User implements Serializable {
 	}
 
 	public void setTotalTime(int totalTime) {
-		this.totalTime = totalTime;
+		this.totalTime += totalTime;
 	}
 
 	public String getJoinDay() {
 		return joinDay;
-	}
-
-	public void setJoinDay(String joinDay) {
-		this.joinDay = joinDay;
 	}
 
 	@Override
@@ -110,5 +106,4 @@ public class User implements Serializable {
 
 		return age;
 	}
-
 }

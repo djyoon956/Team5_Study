@@ -210,14 +210,14 @@ public class Admin {
 			osw = new OutputStreamWriter(fos, "EUC-KR");
 			bw = new BufferedWriter(osw);
 
-			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,누적 시간,가입일,가입 시간");
+			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,잔여 시간,누적 시간,가입일,가입 시간");
 			bw.newLine();
 			int index = 0;
 			for (User user : users.values()) {
 				String[] date = user.getJoinDay().split(" ");
 				bw.write(++index + "," + user.getName() + "," + user.getId() + "," + user.getPhoneNumber() + ","
-						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getTotalTime() + "," + date[0]
-						+ "," + date[1]);
+						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getSaveTime() + ","
+						+ user.getTotalTime() + "," + date[0] + "," + date[1]);
 				bw.newLine();
 			}
 		} catch (Exception e) {
