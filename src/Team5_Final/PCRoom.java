@@ -141,11 +141,11 @@ public class PCRoom {
 		if (targetUser != null) {
 			showPcMenu();
 
-			System.out.print("번호를 선택해주세요 : ");
+			System.out.println("번호를 선택해주세요.");
 			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
 
-			System.out.print("시간 추가를 위해 지불할 돈을 입력하세요 : ");
-			int inputMoney = scanner.nextInt();
+			System.out.println("시간 추가를 위해 지불할 돈을 입력하세요.");
+			int inputMoney = ValidataionHelper.checkChoiceNumber(scanner);
 
 			switch (choice) {
 			case 1:

@@ -47,4 +47,21 @@ public class ValidataionHelper {
 
 		return choice;
 	}
+
+	public static int checkChoiceNumber(Scanner scanner) {
+		int choice = 0;
+		String word = "입력";
+		while (true) {
+			System.out.printf("%s >> ", word);
+			if (scanner.hasNextInt()) {
+				choice = scanner.nextInt();
+				break;
+			} else {
+				scanner.next();
+				word = "재 입력";
+			}
+		}
+
+		return choice;
+	}
 }
