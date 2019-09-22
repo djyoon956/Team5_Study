@@ -157,26 +157,23 @@ public class PCmanagement {
 	private void move() {
 		System.out.print("ID를 입력해주세요. : ");
 		String id = scanner.next();
-
-		for (Computer computer : computers) {
-			if (computer.getIsUse() && computer.getUser().getId().equals(id)) {
-				System.out.println("이동하실 자리번호를 입력해주세요.");
-				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
-				if (!computers[comNum - 1].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
-					User target = users.get(id);
-//					computers[comNum - 1].getUser().setSaveTime(computer.getUser().getSaveTime());
-//					computers[comNum - 1].getUser().setTotalTime(computer.getUser().getTotalTime());
-					computer.powerOff(false, "자리이동");
-					computers[comNum - 1].powerOn(target);
-					System.out.println(computers[comNum - 1].getUser().toString());
-					break;
-				} else {
-					System.out.println("사용중인 좌석입니다.");
-					break;
+		User target = users.get(id);
+		if (target != null && target.getIsLogin()) {
+			System.out.println("이동하실 자리번호를 입력해주세요.");
+			int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
+			if (!computers[comNum - 1].getIsUse()) {
+				for (Computer computer : computers) {
+					if (computer.getUser()!=null && computer.getUser().equals(target)) {
+						computer.powerOff(false, "자리이동");
+						computers[comNum - 1].powerOn(target);
+						break;
+					}
 				}
 			} else {
-				System.out.println("로그인되어있지 않습니다.");
+				System.out.println("사용중인 좌석입니다.");
 			}
+		} else {
+			System.out.println("로그인되어있지 않습니다.");
 		}
 	}
 
