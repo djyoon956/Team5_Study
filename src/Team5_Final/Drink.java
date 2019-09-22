@@ -15,6 +15,6 @@ public class Drink extends Product {
 
 	@Override
 	public String toString() {
-		return this.name + "가격: " + this.price + "원";
+		return this.name + " 가격: " + this.price + "원";
 	}
 }

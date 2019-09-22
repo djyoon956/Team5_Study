@@ -210,14 +210,14 @@ public class Admin {
 			osw = new OutputStreamWriter(fos, "EUC-KR");
 			bw = new BufferedWriter(osw);
 
-			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,누적 시간,가입일,가입 시간");
+			bw.write("번호,이름,아이디,핸드폰 번호,나이,주민번호,잔여 시간,누적 시간,가입일,가입 시간");
 			bw.newLine();
 			int index = 0;
 			for (User user : users.values()) {
 				String[] date = user.getJoinDay().split(" ");
 				bw.write(++index + "," + user.getName() + "," + user.getId() + "," + user.getPhoneNumber() + ","
-						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getTotalTime() + "," + date[0]
-						+ "," + date[1]);
+						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getSaveTime() + ","
+						+ user.getTotalTime() + "," + date[0] + "," + date[1]);
 				bw.newLine();
 			}
 		} catch (Exception e) {
@@ -272,8 +272,8 @@ public class Admin {
 	private void stockManagement() { // 음료,과자 재고관리
 		System.out.println("관리할 품목을 선택해주세요.");
 		System.out.println("번호\t품명\t개수");
-		System.out.printf("1\t%s\t%s", drink.name, drink.count);
-		System.out.printf("2\t%s\t%s", snack.name, snack.count);
+		System.out.printf("1\t%s\t%s\n", drink.name, drink.count);
+		System.out.printf("2\t%s\t%s\n", snack.name, snack.count);
 
 		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 2);
 
@@ -288,8 +288,7 @@ public class Admin {
 
 		if (choice == 1) {// 발주
 			System.out.println("몇 개를 발주넣으겠습니까?");
-			System.out.print(">> ");
-			int addCount = scanner.nextInt();
+			int addCount = ValidataionHelper.checkChoiceNumber(scanner);
 			if (addCount + selectProduct.count > PRODUCT_MAX_COUNT) {
 				System.out.println("재고 최대 갯수는 100개 입니다. 다시 입력해 주세요.");
 			} else {
@@ -298,8 +297,7 @@ public class Admin {
 			}
 		} else if (choice == 2) {// 반품
 			System.out.println("몇 개를 반품하시겠습니까?");
-			System.out.print(">> ");
-			int subCount = scanner.nextInt();
+			int subCount = ValidataionHelper.checkChoiceNumber(scanner);
 			if (selectProduct.count - subCount >= 0) {
 				selectProduct.count -= subCount;
 				System.out.println("현재 " + selectProduct.name + " 재고" + selectProduct.count + "개 있습니다.");

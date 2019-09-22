@@ -1,8 +1,5 @@
 package Team5_Final;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 public class SalesInfo {
 	private User buyer;
 	private String productName;

@@ -1,7 +1,5 @@
 package Team5_Final;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class ValidataionHelper {
@@ -49,22 +47,21 @@ public class ValidataionHelper {
 
 		return choice;
 	}
-	
-	public static boolean ageCheck(User user) {
-		long cur = System.currentTimeMillis();
-		// (2) 출력 형태를 지정하기 위해 Formatter를 얻는다.
-		SimpleDateFormat sdf = new SimpleDateFormat("hh");
-		// (3) 출력 형태에 맞는 문자열을 얻는다.
-		String dateTime = sdf.format(new Date(cur));
-		boolean isAdult = false;
-		if (Integer.parseInt(dateTime) > 9) {
-			if (user.getAge() < 20) {
+
+	public static int checkChoiceNumber(Scanner scanner) {
+		int choice = 0;
+		String word = "입력";
+		while (true) {
+			System.out.printf("%s >> ", word);
+			if (scanner.hasNextInt()) {
+				choice = scanner.nextInt();
+				break;
 			} else {
-				isAdult = true;
+				scanner.next();
+				word = "재 입력";
 			}
-		} else {
-			isAdult = true;
 		}
-		return isAdult;
+
+		return choice;
 	}
 }
