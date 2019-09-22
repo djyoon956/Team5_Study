@@ -72,6 +72,7 @@ public class Admin {
 	private void adminLogout() {
 		isAdmin = false;
 		System.out.println("관리자 모드를 종료합니다.");
+		System.out.println();
 	}
 
 	private void showAdminMenu() {
