@@ -31,6 +31,7 @@ public class PCRoom {
 		admin = new Admin(scanner);
 		pcm = new PCmanagement(scanner);
 		users = initUsers();
+		// addTestData();
 	}
 
 	public void start() {
@@ -306,5 +307,15 @@ public class PCRoom {
 		System.out.println("===========================");
 		System.out.println("총 금액: " + totalPrice + "원");
 		System.out.println("[1]결제    [2]주문취소");
+	}
+
+	private void addTestData() {
+		users.put("oh", new User("오형남", "010-3642-3603", "oh", "oh", "961220-1111111"));
+		users.put("lee", new User("이하연", "010-2108-0124", "lee", "lee", "940123-1111111"));
+		users.put("kwon", new User("권태일", "010-3148-1088", "Kwon", "Kwon", "880228-1111111"));
+		users.put("park", new User("박성호", "010-5233-3208", "park", "park", "900226-1111111"));
+		users.put("ko", new User("코찔이", "010-3148-1088", "ko", "ko", "880228-1111111"));
+		users.put("dodo", new User("도도", "010-3642-3603", "dodo", "dodo", "961220-1111111"));
+		users.put("park", new User("황소", "010-5233-3208", "park", "park", "890827-1111111"));
 	}
 }
