@@ -78,29 +78,31 @@ public class PCmanagement {
 			System.out.print("ID를 입력해 주세요 : ");
 			String id = scanner.next();
 			User target = users.get(id);
+			// target.setSaveTime(30); // 테스트 용 코드
+			if (target != null) {
+				System.out.print("비밀번호를 입력해 주세요 : ");
+				String password = scanner.next();
+				if (target.getPassword().equals(password)) {
+					if (target.getIsLogin()) {
+						System.out.println("이미 로그인 중인 아이디입니다.");
+						break;
+					} else if (target.getSaveTime() < 1) {
+						System.out.println("사용가능한 시간이 없습니다.");
+						break;
+					} else if (!ValidataionHelper.ageCheck(target)) {
+						System.out.println("청소년보호법에 의해 로그인을 제한합니다.");
+						break;
+					}
 
-			System.out.print("비밀번호를 입력해 주세요 : ");
-			String password = scanner.next();
-			if (target.getPassword().equals(password)) {
-				if (target.getIsLogin()) {
-					System.out.println("이미 로그인 중인 아이디입니다.");
+					System.out.println("로그인 성공 하셨습니다.");
+					selectComputer.powerOn(target);
+
+					loginCheck = true;
 					break;
-				} else if (target.getSaveTime() < 1) {
-					System.out.println("사용가능한 시간이 없습니다.");
-					break;
-				} else if (!ValidataionHelper.ageCheck(target)) {
-					System.out.println("청소년보호법에 의해 로그인을 제한합니다.");
-					break;
+				} else {
+					System.out.println("아이디/비밀번호를 다시 한 번 확인해주세요");
+					System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
 				}
-
-				System.out.println("로그인 성공 하셨습니다.");
-				selectComputer.powerOn(target);
-
-				loginCheck = true;
-				break;
-			} else {
-				System.out.println("아이디/비밀번호를 다시 한 번 확인해주세요");
-				System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
 			}
 		}
 
@@ -161,16 +163,19 @@ public class PCmanagement {
 				System.out.println("이동하실 자리번호를 입력해주세요.");
 				int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 				if (!computers[comNum - 1].getIsUse()) { // 선택한 좌석이 사용중이지 않다면
-					computers[comNum - 1].setUser(computer.getUser());
+					User target = users.get(id);
+//					computers[comNum - 1].getUser().setSaveTime(computer.getUser().getSaveTime());
+//					computers[comNum - 1].getUser().setTotalTime(computer.getUser().getTotalTime());
 					computer.powerOff(false, "자리이동");
-					computers[comNum - 1].powerOn(user);
+					computers[comNum - 1].powerOn(target);
+					System.out.println(computers[comNum - 1].getUser().toString());
 					break;
 				} else {
 					System.out.println("사용중인 좌석입니다.");
 					break;
 				}
 			} else {
-				continue;
+				System.out.println("로그인되어있지 않습니다.");
 			}
 		}
 	}

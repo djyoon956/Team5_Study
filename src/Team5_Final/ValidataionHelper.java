@@ -75,16 +75,10 @@ public class ValidataionHelper {
 		SimpleDateFormat sdf = new SimpleDateFormat("hh");
 		// (3) 출력 형태에 맞는 문자열을 얻는다.
 		String dateTime = sdf.format(new Date(cur));
-		boolean isAdult = false;
-		if (Integer.parseInt(dateTime) > 9) {
-			if (user.getAge() < 20) {
-			} else {
-				isAdult = true;
-			}
-		} else {
-			isAdult = true;
-		}
-
+		boolean isAdult = true;
+		if (Integer.parseInt(dateTime) > 9 && user.getAge() < 20) {
+			isAdult = false;
+		} 
 		return isAdult;
 	}
 }
