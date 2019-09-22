@@ -215,9 +215,13 @@ public class Admin {
 			int index = 0;
 			for (User user : users.values()) {
 				String[] date = user.getJoinDay().split(" ");
+				int hours = (int) (user.getSaveTime() / 3600);
+				int minutes = (int) ((user.getSaveTime() % 3600) / 60);
+				int seconds = (int) (user.getSaveTime() % 60);
+				String saveTime = hours + ":" + minutes + ":" + seconds;
 				bw.write(++index + "," + user.getName() + "," + user.getId() + "," + user.getPhoneNumber() + ","
-						+ user.getAge() + "," + user.getSecuritNumber() + "," + user.getSaveTime() + ","
-						+ user.getTotalTime() + "," + date[0] + "," + date[1]);
+						+ user.getAge() + "," + user.getSecuritNumber() + "," + saveTime + "," + user.getTotalTime()
+						+ "," + date[0] + "," + date[1]);
 				bw.newLine();
 			}
 		} catch (Exception e) {
