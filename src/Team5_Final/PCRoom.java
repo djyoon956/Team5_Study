@@ -249,6 +249,8 @@ public class PCRoom {
 				case 4: // 주문취소
 					System.out.println("주문이 취소되었습니다.");
 					totalPrice = 0;
+					drinkCount = 0;
+					snackCount = 0;
 					orders.clear();
 					break Orderloop;
 				}
