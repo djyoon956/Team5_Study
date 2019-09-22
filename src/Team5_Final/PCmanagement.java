@@ -89,19 +89,20 @@ public class PCmanagement {
 					} else if (target.getSaveTime() < 1) {
 						System.out.println("사용가능한 시간이 없습니다.");
 						break;
-				} else if (!ValidataionHelper.ageCheck(target)) {
-					System.out.println("청소년보호법에 의해 로그인을 제한합니다.");
+					} else if (!ValidataionHelper.ageCheck(target)) {
+						System.out.println("청소년보호법에 의해 로그인을 제한합니다.");
+						break;
+					}
+
+					System.out.println("로그인 성공 하셨습니다.");
+					selectComputer.powerOn(target);
+
+					loginCheck = true;
 					break;
+				} else {
+					System.out.println("아이디/비밀번호를 다시 한 번 확인해주세요");
+					System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
 				}
-
-				System.out.println("로그인 성공 하셨습니다.");
-				selectComputer.powerOn(target);
-
-				loginCheck = true;
-				break;
-			} else {
-				System.out.println("아이디/비밀번호를 다시 한 번 확인해주세요");
-				System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
 			}
 		}
 
