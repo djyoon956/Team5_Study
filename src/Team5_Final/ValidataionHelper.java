@@ -65,6 +65,7 @@ public class ValidataionHelper {
 			}
 		}
 
+		System.out.println();
 		return choice;
 	}
 
@@ -84,7 +85,6 @@ public class ValidataionHelper {
 			isAdult = true;
 		}
 
-		System.out.println();
 		return isAdult;
 	}
 }
