@@ -195,7 +195,7 @@ public class PCRoom {
 		salesInfos.add(new SalesInfo(buyer, productName, price));
 	}
 
-	public void showPcMenu() {
+	private void showPcMenu() {
 		System.out.println("[1] 1시간\t가격  : 1000원 ");
 		System.out.println("[2] 6시간\t가격  : 5000원 ");
 		System.out.println("[3] 15시간\t가격 : 10000원 ");
@@ -242,8 +242,11 @@ public class PCRoom {
 						addSalesInfos(targetUser, "매점 이용", 5000);
 						break Orderloop;
 
-					} else
+					} else {
 						System.out.println("제품을 선택해주세요.");
+						System.out.println(" ");
+					}
+						
 					break;
 				case 4: // 주문취소
 					System.out.println("주문이 취소되었습니다.");

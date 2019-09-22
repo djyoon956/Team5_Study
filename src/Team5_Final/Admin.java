@@ -36,7 +36,7 @@ public class Admin {
 		adminLogin();
 	}
 
-	public void adminLogin() {
+	private void adminLogin() {
 		System.out.println("관리자 로그인을 시작합니다.");
 
 		isAdmin = checkLoginCount(3);
@@ -139,7 +139,7 @@ public class Admin {
 		}
 	}
 
-	public void searchAllUser() {
+	private void searchAllUser() {
 		List<User> targets = new ArrayList<User>(users.values());
 		showSearchUsers(targets);
 	}

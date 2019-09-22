@@ -39,12 +39,12 @@ public class PCmanagement {
 		}
 	}
 
-	public void showSeat() { // 접근제어자
+	private void showSeat() { // 접근제어자
 		for (int i = 0; i < computers.length; i++) {
 			if (computers[i].getIsUse()) {
-				System.out.print("■");
+				System.out.print("■\t");
 			} else {
-				System.out.print("□");
+				System.out.print("□\t");
 			}
 			if (((i + 1) % 5) == 0) {
 				System.out.println();
@@ -162,6 +162,7 @@ public class PCmanagement {
 		String id = scanner.next();
 		User target = users.get(id);
 		if (target != null && target.getIsLogin()) {
+			showSeat();
 			System.out.println("이동하실 자리번호를 입력해주세요.");
 			int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 			if (!computers[comNum - 1].getIsUse()) {
@@ -169,6 +170,9 @@ public class PCmanagement {
 					if (computer.getUser() != null && computer.getUser().equals(target)) {
 						computer.powerOff(false, "자리이동");
 						computers[comNum - 1].powerOn(target);
+						System.out.println("");
+						System.out.println("자리이동이 완료되었습니다.");
+						showSeat();
 						break;
 					}
 				}

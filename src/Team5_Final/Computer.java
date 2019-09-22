@@ -16,7 +16,6 @@ public class Computer {
 	private boolean isUse;
 	private User user;
 	private Timer timer;
-	private double testCount;
 	private String root = "ComputerInfo";
 
 	public Computer(int number) {
@@ -25,10 +24,6 @@ public class Computer {
 
 	public int getNumber() {
 		return number;
-	}
-
-	public void setNumber(int number) {
-		this.number = number;
 	}
 
 	public boolean getIsUse() {
@@ -45,22 +40,6 @@ public class Computer {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Timer getTimer() {
-		return timer;
-	}
-
-	public void setTimer(Timer timer) {
-		this.timer = timer;
-	}
-
-	public double getTestCount() {
-		return testCount;
-	}
-
-	public void setTestCount(double testCount) {
-		this.testCount = testCount;
 	}
 
 	public void powerOn(User user) {
