@@ -180,24 +180,27 @@ public class Admin {
 	}
 
 	private void showFileMenu() {
-		System.out.println("1. 회원 파일 저장");
-		System.out.println("2. 매출 파일 저장");
-		System.out.println("3. 이전 메뉴로 돌아가기");
-		int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
-		String savePath = "";
-		switch (choice) {
-		case 1:
-			savePath = saveUserInfoFile();
-			break;
-		case 2:
-			savePath = saveSalesInfoFile();
-			break;
-		case 3:
-			break;
+		while (true) {
+			System.out.println("1. 회원 파일 저장");
+			System.out.println("2. 매출 파일 저장");
+			System.out.println("3. 이전 메뉴로 돌아가기");
+			int choice = ValidataionHelper.checkChoiceNumber(scanner, 1, 3);
+			String savePath = "";
+			switch (choice) {
+			case 1:
+				savePath = saveUserInfoFile();
+				break;
+			case 2:
+				savePath = saveSalesInfoFile();
+				break;
+			case 3:
+				break;
+			}
+
+			System.out.println("파일 저장을 완료했습니다.");
+			System.out.println("파일 경로 : " + savePath);
 		}
 
-		System.out.println("파일 저장을 완료했습니다.");
-		System.out.println("파일 경로 : " + savePath);
 	}
 
 	private String saveUserInfoFile() {
