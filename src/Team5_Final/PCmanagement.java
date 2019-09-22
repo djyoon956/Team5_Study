@@ -77,11 +77,12 @@ public class PCmanagement {
 		for (int i = tryCount; i > 0; i--) {
 			System.out.print("ID를 입력해 주세요 : ");
 			String id = scanner.next();
+			System.out.print("비밀번호를 입력해 주세요 : ");
+			String password = scanner.next();
+
 			User target = users.get(id);
 			// target.setSaveTime(30); // 테스트 용 코드
 			if (target != null) {
-				System.out.print("비밀번호를 입력해 주세요 : ");
-				String password = scanner.next();
 				if (target.getPassword().equals(password)) {
 					if (target.getIsLogin()) {
 						System.out.println("이미 로그인 중인 아이디입니다.");
@@ -100,12 +101,16 @@ public class PCmanagement {
 					loginCheck = true;
 					break;
 				} else {
-					System.out.println("아이디/비밀번호를 다시 한 번 확인해주세요");
-					System.out.println("재시도 기회 : " + (i - 1) + "/" + tryCount);
+					System.out.println("비밀번호를 다시 한 번 확인해주세요");
+					System.out.println("재시도 기회 : " + (tryCount - (i - 1)) + "/" + tryCount);
 				}
+			} else {
+				System.out.println("아이디를 다시 한 번 확인해주세요");
+				System.out.println("재시도 기회 : " + (tryCount - (i - 1)) + "/" + tryCount);
 			}
 		}
 
+		System.out.println();
 		return loginCheck;
 	}
 
@@ -163,7 +168,7 @@ public class PCmanagement {
 			int comNum = ValidataionHelper.checkChoiceNumber(scanner, 1, 20);
 			if (!computers[comNum - 1].getIsUse()) {
 				for (Computer computer : computers) {
-					if (computer.getUser()!=null && computer.getUser().equals(target)) {
+					if (computer.getUser() != null && computer.getUser().equals(target)) {
 						computer.powerOff(false, "자리이동");
 						computers[comNum - 1].powerOn(target);
 						break;

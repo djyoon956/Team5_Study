@@ -41,7 +41,7 @@ public class Admin {
 
 		isAdmin = checkLoginCount(3);
 		if (isAdmin) {
-			System.out.println("관리자 로그인 성공!");
+			System.out.println("관리자 로그인 성공!\n");
 			showAdminMenu();
 		} else
 			System.out.println("관리자 로그인에 실패했습니다. 초기화면으로 이동합니다.");
@@ -168,15 +168,17 @@ public class Admin {
 
 	private void showSearchUsers(List<User> users) {
 		if (users.size() > 0) {
-			System.out.println("번호\t이름\t아이디\t전화번호\t나이\t주민 번호");
-			System.out.println("─────────────────────────────────");
+			System.out.println("번호\t이름\t아이디\t\t전화번호\t\t나이\t주민 번호");
+			System.out.println("───────────────────────────────────────────────────────────────");
 			for (int i = 0; i < users.size(); i++) {
 				User user = users.get(i);
-				System.out.printf("%02d\t%s\t%s\t%s\t%d\t%s\n", (i + 1), user.getName(), user.getId(),
+				System.out.printf("%02d\t%s\t%s\t\t%s\t%d\t%s\n", (i + 1), user.getName(), user.getId(),
 						user.getPhoneNumber(), user.getAge(), user.getSecuritNumber().split("-")[0]);
 			}
 		} else
 			System.out.println("검색 결과가 없습니다.");
+
+		System.out.println();
 	}
 
 	private void showFileMenu() {
@@ -199,8 +201,8 @@ public class Admin {
 
 			System.out.println("파일 저장을 완료했습니다.");
 			System.out.println("파일 경로 : " + savePath);
+			System.out.println();
 		}
-
 	}
 
 	private String saveUserInfoFile() {
@@ -298,6 +300,7 @@ public class Admin {
 			int addCount = ValidataionHelper.checkChoiceNumber(scanner);
 			if (addCount + selectProduct.count > PRODUCT_MAX_COUNT) {
 				System.out.println("재고 최대 갯수는 100개 입니다. 다시 입력해 주세요.");
+				stockManagement();
 			} else {
 				drink.count += addCount;
 				System.out.println("현재 " + selectProduct.name + " 재고" + selectProduct.count + "개 있습니다.");
@@ -313,5 +316,7 @@ public class Admin {
 				stockManagement();
 			}
 		}
+
+		System.out.println();
 	}
 }
